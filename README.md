@@ -10,7 +10,7 @@ Basically the flow is as follows:
 1. User adds a new tag in application git repository
 2. CI kicks in in that repository and builds the new image
 3. The image is pushed to docker hub with that specific tag
-4. A new commit is made by the CI/user on this repo in which we change the image version in the manifest
+4. A new commit is made by the CI/user on this repo in which we change the image version in the manifest (wait for the GHA that pushes the image to DockerHub to end successfuly).
 5. Fleet cluster will detect a change in this repo and apply the changes
 
 ## Contributing
