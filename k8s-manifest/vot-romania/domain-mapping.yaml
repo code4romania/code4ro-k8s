@@ -1,43 +1,10 @@
-apiVersion: serving.knative.dev/v1beta1
+apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"serving.knative.dev/v1beta1","kind":"DomainMapping","metadata":{"annotations":{},"name":"api.votromania.ro","namespace":"vot-romania"},"spec":{"ref":{"apiVersion":"serving.knative.dev/v1","kind":"Service","name":"vot-romania","namespace":"vot-romania"}}}
-    serving.knative.dev/creator: kubernetes-admin
-    serving.knative.dev/lastModifier: kubernetes-admin
-  creationTimestamp: "2021-10-27T20:56:12Z"
-  finalizers:
-    - domainmappings.serving.knative.dev
-  generation: 1
-  name: api.votromania.ro
+  name: api.vot-romania.ro
   namespace: vot-romania
-  resourceVersion: "27230271"
-  uid: 9f9d3b84-333a-4c0d-b5ea-e202037a2096
 spec:
   ref:
-    apiVersion: serving.knative.dev/v1
-    kind: Service
     name: vot-romania
-    namespace: vot-romania
-status:
-  address:
-    url: https://api.votromania.ro
-  conditions:
-    - lastTransitionTime: "2021-10-27T21:40:52Z"
-      status: "True"
-      type: CertificateProvisioned
-    - lastTransitionTime: "2021-10-27T20:56:12Z"
-      status: "True"
-      type: DomainClaimed
-    - lastTransitionTime: "2021-10-28T08:11:27Z"
-      status: "True"
-      type: IngressReady
-    - lastTransitionTime: "2021-10-28T08:11:27Z"
-      status: "True"
-      type: Ready
-    - lastTransitionTime: "2021-10-27T20:56:12Z"
-      status: "True"
-      type: ReferenceResolved
-  observedGeneration: 1
-  url: https://api.votromania.ro
+    kind: Service
+    apiVersion: serving.knative.dev/v1
