@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: api.votdiaspora.ro
+  namespace: vot-diaspora
+spec:
+  ref:
+    name: vot-diaspora
+    kind: Service
+    apiVersion: serving.knative.dev/v1
