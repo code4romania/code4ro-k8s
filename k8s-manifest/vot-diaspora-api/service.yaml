@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "3"
     spec:
       containers:
-        - image: code4romania/vot-diaspora-update:3d42b165584d2456cfaa99f3f8e3b1db7bd23819
+        - image: code4romania/vot-diaspora:v1.0
           resources:
             requests:
               cpu: 100m
