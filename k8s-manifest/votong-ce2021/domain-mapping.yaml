@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: votong.ro
+  namespace: votong-ce2021
+spec:
+  ref:
+    name: votong-ce2021
+    kind: Service
+    apiVersion: serving.knative.dev/v1
