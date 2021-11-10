@@ -13,26 +13,11 @@ spec:
         - image: code4romania/votong:v1.2.2
           resources:
             limits:
-              memory: 240M
-              cpu: 1
+              cpu: 260m
+              memory: 1Gi
           ports:
             - containerPort: 8010
           env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: votong-ce2021-secret
-                  key: S_POSTGRES_USER
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: votong-ce2021-secret
-                  key: S_POSTGRES_PASSWORD
-            - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: votong-ce2021-secret
-                  key: S_POSTGRES_DB
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
