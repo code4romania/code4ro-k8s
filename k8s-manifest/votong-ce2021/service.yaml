@@ -11,10 +11,13 @@ spec:
     spec:
       containers:
         - image: code4romania/votong:v1.2.2
-          resources:
-            limits:
+          resources:            
+            requests:
+              cpu: 100m
               memory: 240M
+            limits:
               cpu: 1
+              memory: 1Gi
           ports:
             - containerPort: 8010
           env:
