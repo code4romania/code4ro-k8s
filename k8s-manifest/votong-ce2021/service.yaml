@@ -18,11 +18,6 @@ spec:
           ports:
             - containerPort: 8010
           env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: votong-ce2021-secret
-                  key: S_POSTGRES_USER
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
