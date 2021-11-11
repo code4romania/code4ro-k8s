@@ -27,35 +27,20 @@ spec:
                   name: rezultate-vot-secret
                   key: db_connection
             - name: ASPNETCORE__ENVIRONMENT
-              valueFrom:
-                secretKeyRef:
-                  name: rezultate-vot-secret
-                  key: aspnetcore_environment
+              value: "Production"
             - name: S3Bucket__BucketName
-              valueFrom:
-                secretKeyRef:
-                  name: rezultate-vot-secret
-                  key: s3_bucket_name
+              value: "rezultatevot-images-upload"
             - name: S3Bucket__AccessKeyId
-              valueFrom:
-                secretKeyRef:
-                  name: rezultate-vot-secret
-                  key: s3_access_key_id
+              value: "AKIASQDJNISKZBUCKRGI"
             - name: S3Bucket__AccessKeySecret
               valueFrom:
                 secretKeyRef:
                   name: rezultate-vot-secret
                   key: s3_secret_access_key
             - name: ScheduleTaskEnabled
-              valueFrom:
-                secretKeyRef:
-                  name: rezultate-vot-secret
-                  key: scheduled_task_enabled
+              value: "false"
             - name: LiveElectionSettings__ResultsTypes
-              valueFrom:
-                secretKeyRef:
-                  name: rezultate-vot-secret
-                  key: liveelectionsettings_results_type
+              value: "part"
             - name: LiveElectionSettings__FtpUser
               valueFrom:
                 secretKeyRef:
@@ -67,27 +52,12 @@ spec:
                   name: rezultate-vot-secret
                   key: liveelectionsettings_ftp_password
             - name: LiveElectionSettings__TurnoutUrl
-              valueFrom:
-                secretKeyRef:
-                  name: rezultate-vot-secret
-                  key: liveelectionsettings_turnout_url
+              value: "https://prezenta.roaep.ro/parlamentare06122020/data/csv/simpv/presence_now.csv"
             - name: LiveElectionSettings__TurnoutIntervalInMinutes
-              valueFrom:
-                secretKeyRef:
-                  name: rezultate-vot-secret
-                  key: liveelectionsettings_turnout_interval
+              value: "1"
             - name: LiveElectionSettings__ResultsUrl
-              valueFrom:
-                secretKeyRef:
-                  name: rezultate-vot-secret
-                  key: liveelectionsettings_results_url
+              value: "https://prezenta.roaep.ro/parlamentare06122020/data/csv/sicpv/"
             - name: LiveElectionSettings__ResultsCacheInMinutes
-              valueFrom:
-                secretKeyRef:
-                  name: rezultate-vot-secret
-                  key: liveelectionsettings_results_cache_minutes
+              value: "1"
             - name: LiveElectionSettings__CsvCacheInMinutes
-              valueFrom:
-                secretKeyRef:
-                  name: rezultate-vot-secret
-                  key: liveelectionsettings_csv_cache_minutes
+              value: "3"
