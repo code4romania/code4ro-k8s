@@ -14,7 +14,7 @@ spec:
           resources:
             limits:
               cpu: 260m
-              memory: 240M
+              memory: 1Gi
           ports:
             - containerPort: 8010
           env:
