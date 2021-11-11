@@ -38,6 +38,11 @@ spec:
                   key: authentication_secret
             - name: UserSettings__Users__0__Name
               value: "Super admin"
+            - name: UserSettings__Users__0__UserName
+              valueFrom:
+                secretKeyRef:
+                  name: vot-romania-secret
+                  key: admin_username
             - name: UserSettings__Users__0__Password
               valueFrom:
                 secretKeyRef:
