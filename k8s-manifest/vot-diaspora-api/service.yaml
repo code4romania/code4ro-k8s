@@ -31,28 +31,19 @@ spec:
                 secretKeyRef:
                   name: vot-diaspora-secret
                   key: authentication_secret
+            - name: UserSettings__Users__0__Name
+              value: "Super admin"      
             - name: UserSettings__Users__0__UserName
               valueFrom:
                 secretKeyRef:
                   name: vot-diaspora-secret
                   key: admin_username
-            - name: UserSettings__Users__0__Name
-              valueFrom:
-                secretKeyRef:
-                  name: vot-diaspora-secret
-                  key: admin_name
             - name: UserSettings__Users__0__Password
               valueFrom:
                 secretKeyRef:
                   name: vot-diaspora-secret
                   key: admin_password
             - name: UserSettings__Users__0__Scopes__0
-              valueFrom:
-                secretKeyRef:
-                  name: vot-diaspora-secret
-                  key: admin_scopes_content
+              value: "content"
             - name: UserSettings__Users__0__Scopes__1
-              valueFrom:
-                secretKeyRef:
-                  name: vot-diaspora-secret
-                  key: admin_scopes_stations
+              value: "polling-stations"
