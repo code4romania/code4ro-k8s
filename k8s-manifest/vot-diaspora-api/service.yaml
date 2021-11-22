@@ -11,13 +11,10 @@ spec:
     spec:
       containers:
         - image: code4romania/vot-diaspora:v1.0
-          resources:
-            requests:
-              cpu: 100m
-              memory: 240M
+          resources:            
             limits:
-              cpu: 1
-              memory: 1Gi
+              cpu: 100m
+              memory: 200M
           ports:
             - containerPort: 80
           env:
