@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: api.vietipierdute.ro
+  namespace: vieti-pierdute
+spec:
+  ref:
+    name: vieti-pierdute
+    kind: Service
+    apiVersion: serving.knative.dev/v1

@@ -1,0 +1,35 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: vieti-pierdute
+  namespace: vieti-pierdute
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "3"
+    spec:
+      containers:
+        - image: code4romania/vieti-pierdute:v1.4
+          resources:
+            requests:
+              cpu: 100m
+              memory: 240M
+            limits:
+              cpu: 500m
+              memory: 300M
+          ports:
+            - containerPort: 1337
+          env:
+            - name: DATE_LA_ZI_API
+              value: "https://d35p9e4fm9h3wo.cloudfront.net/smallData.json"
+            - name: RECAPTCHA_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: vieti-pierdute-secret
+                  key: recapcha_key
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: vieti-pierdute-secret
+                  key: database_url
