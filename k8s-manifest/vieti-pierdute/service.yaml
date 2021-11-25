@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "3"
     spec:
       containers:
-        - image: code4romania/vieti-pierdute-api:v1.10
+        - image: code4romania/vieti-pierdute-api:v1.11
           resources:
             requests:
               cpu: 100m
