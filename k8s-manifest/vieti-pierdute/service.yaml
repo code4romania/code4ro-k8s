@@ -33,3 +33,13 @@ spec:
                 secretKeyRef:
                   name: vieti-pierdute-secret
                   key: database_url
+            - name: ADMIN_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: vieti-pierdute-secret
+                  key: admin_jwt_secret
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: vieti-pierdute-secret
+                  key: jwt_secret                  
