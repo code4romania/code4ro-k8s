@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/maxScale: "6"
     spec:
       containers:
-        - image: code4romania/votong:v1.6
+        - image: code4romania/votong:v1.7
           resources:
             limits:
               cpu: 260m
