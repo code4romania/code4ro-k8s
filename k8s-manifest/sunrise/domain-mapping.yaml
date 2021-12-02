@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: api.sunrise.ro
+  namespace: sunrise
+spec:
+  ref:
+    name: sunrise
+    kind: Service
+    apiVersion: serving.knative.dev/v1
