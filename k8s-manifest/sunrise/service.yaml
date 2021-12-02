@@ -91,7 +91,10 @@ spec:
             - name: MAIL_PORT
               value: ""
             - name: MAIL_USERNAME
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: mail_username
             - name: MAIL_FROM
               value: ""
             - name: MAIL_PASSWORD
