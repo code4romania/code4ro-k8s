@@ -30,7 +30,10 @@ spec:
             - name: APP_URL
               value: ""
             - name: APP_KEY
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: app_key
             - name: APP_LOCALE
               value: "ro"
             - name: APP_FALLBACK_LOCALE
@@ -45,7 +48,10 @@ spec:
                   name: sunrise-secret
                   key: db_host
             - name: DB_PORT
-              value: "3306"
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: db_port
             - name: DB_DATABASE
               valueFrom:
                 secretKeyRef:
@@ -66,7 +72,10 @@ spec:
             - name: CACHE_DRIVER
               value: "sunrise"
             - name: CACHE_CODE_PARSER_DATA_CACHE_KEY
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: cache_key_parser_data_cache_key
             - name: LOG_CHANNEL
               value: "daily"
             - name: CMS_ACTIVE_THEME
@@ -87,16 +96,25 @@ spec:
             - name: MAIL_DRIVER
               value: ""
             - name: MAIL_HOST
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: mail_host
             - name: MAIL_PORT
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: mail_port
             - name: MAIL_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
                   key: mail_username
             - name: MAIL_FROM
-              value: ""
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: mail_from
             - name: MAIL_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -117,8 +135,6 @@ spec:
               value: "true"
             - name: CMS_BACKEND_URI
               value: "backend-sunrise"
-            - name: CMS_BACKEND_FORCE_REMEMBER
-              value: ""
             - name: CMS_ROUTES_CACHE
               value: "true"
             - name: CMS_ASSET_CACHE
