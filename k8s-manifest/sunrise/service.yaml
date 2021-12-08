@@ -75,7 +75,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
-                  key: cache_key_parser_data_cache_key
+                  key: cache_code_parser_data_cache_key
             - name: LOG_CHANNEL
               value: "daily"
             - name: CMS_ACTIVE_THEME
