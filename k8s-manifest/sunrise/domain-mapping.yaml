@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
 metadata:
-  name: sunrise-api.stopviolenteidomestice.ro
+  name: sunrise-api.heroesof.tech
   namespace: sunrise
 spec:
   ref:
