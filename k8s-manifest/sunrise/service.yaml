@@ -94,7 +94,7 @@ spec:
             - name: QUEUE_DRIVER
               value: "sync"
             - name: MAIL_DRIVER
-              value: ""
+              value: "smtp"
             - name: MAIL_HOST
               valueFrom:
                 secretKeyRef:
