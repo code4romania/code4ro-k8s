@@ -7,7 +7,6 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/minScale: "1"
         autoscaling.knative.dev/maxScale: "6"
     spec:
       containers:
