@@ -28,7 +28,7 @@ spec:
             - name: APP_NAME
               value: "Sunrise"
             - name: APP_URL
-              value: ""
+              value: "https://sunrise-api.stopviolenteidomestice.ro"
             - name: APP_KEY
               valueFrom:
                 secretKeyRef:
@@ -39,7 +39,7 @@ spec:
             - name: APP_FALLBACK_LOCALE
               value: "en"
             - name: APP_FRONTEND_URL
-              value: ""
+              value: "https://sunrise.stopviolenteidomestice.ro"
             - name: DB_CONNECTION
               value: "mysql"
             - name: DB_HOST
