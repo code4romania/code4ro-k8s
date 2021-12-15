@@ -1,0 +1,145 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: sunrise
+  namespace: sunrise
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "3"
+    spec:
+      containers:
+        - image: code4romania/sunrise:v1.5
+          resources:
+             requests:
+              cpu: 100m
+              memory: 240M
+             limits:
+              cpu: 500m
+              memory: 300M
+          ports:
+            - containerPort: 80
+          env:
+            - name: APP_ENV
+              value: "production"
+            - name: APP_DEBUG
+              value: "false"
+            - name: APP_NAME
+              value: "Sunrise"
+            - name: APP_URL
+              value: "https://sunrise-api.stopviolenteidomestice.ro"
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: app_key
+            - name: APP_LOCALE
+              value: "ro"
+            - name: APP_FALLBACK_LOCALE
+              value: "en"
+            - name: APP_FRONTEND_URL
+              value: "https://sunrise.stopviolenteidomestice.ro"
+            - name: DB_CONNECTION
+              value: "mysql"
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: db_host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: db_port
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: db_database
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: db_username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: db_password
+            - name: CACHE_DRIVER
+              value: "file"
+            - name: CACHE_DRIVER
+              value: "sunrise"
+            - name: CACHE_CODE_PARSER_DATA_CACHE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: cache_code_parser_data_cache_key
+            - name: LOG_CHANNEL
+              value: "daily"
+            - name: CMS_ACTIVE_THEME
+              value: "sunrise"
+            - name: SESSION_DRIVER
+              value: "database"
+            - name: SESSION_LIFETIME
+              value: "120"
+            - name: SESSION_SECURE
+              value: "true"
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: jwt_secret
+            - name: QUEUE_DRIVER
+              value: "sync"
+            - name: MAIL_DRIVER
+              value: "smtp"
+            - name: MAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: mail_host
+            - name: MAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: mail_port
+            - name: MAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: mail_username
+            - name: MAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: mail_from
+            - name: MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: mail_password
+            - name: MAIL_ENCRYPTION
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: mail_encryption
+            - name: CMS_EDGE_UPDATES
+              value: "false"
+            - name: CMS_BACKEND_FORCE_SECURE
+              value: "false"
+            - name: CMS_ASSET_DEEP_HASHING
+              value: "true"
+            - name: CMS_ASSET_MINIFY
+              value: "true"
+            - name: CMS_BACKEND_URI
+              value: "backend-sunrise"
+            - name: CMS_ROUTES_CACHE
+              value: "true"
+            - name: CMS_ASSET_CACHE
+              value: "true"
+            - name: CMS_LINK_POLICY
+              value: "secure"
+            - name: CMS_ENABLE_CSRF
+              value: "true"
