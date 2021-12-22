@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "3"
     spec:
       containers:
-        - image: code4romania/sunrise:v1.19
+        - image: code4romania/sunrise:v1.20
           resources:
              requests:
               cpu: 100m
