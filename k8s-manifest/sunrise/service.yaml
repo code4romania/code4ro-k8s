@@ -10,19 +10,17 @@ spec:
         autoscaling.knative.dev/maxScale: "3"
     spec:
       containers:
-        - image: code4romania/sunrise:v1.23
+        - image: code4romania/sunrise:v1.26
           resources:
              requests:
               cpu: 100m
-              memory: 241M
+              memory: 240M
              limits:
               cpu: 500m
               memory: 300M
           ports:
             - containerPort: 80
           env:
-            - name: APP_ENV
-              value: "production"
             - name: APP_DEBUG
               value: "false"
             - name: APP_NAME
@@ -42,27 +40,27 @@ spec:
               value: "https://sunrise.stopviolenteidomestice.ro"
             - name: DB_CONNECTION
               value: "mysql"
-            - name: DB_HOST
+            - name: DB_CONNECTION_MYSQL_HOST
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
                   key: db_host
-            - name: DB_PORT
+            - name: DB_CONNECTION_MYSQL_PORT
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
                   key: db_port
-            - name: DB_DATABASE
+            - name: DB_CONNECTION_MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
                   key: db_database
-            - name: DB_USERNAME
+            - name: DB_CONNECTION_MYSQL_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
                   key: db_username
-            - name: DB_PASSWORD
+            - name: DB_CONNECTION_MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
@@ -110,11 +108,13 @@ spec:
                 secretKeyRef:
                   name: sunrise-secret
                   key: mail_username
-            - name: MAIL_FROM
+            - name: MAIL_FROM_ADDRESS
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
                   key: mail_from
+            - name: MAIL_FROM_NAME
+              value: "Sunrise"
             - name: MAIL_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -135,6 +135,8 @@ spec:
               value: "true"
             - name: CMS_BACKEND_URI
               value: "backend-sunrise"
+            - name: CMS_CONVERT_LINE_ENDINGS
+              value: "true"
             - name: CMS_ROUTES_CACHE
               value: "true"
             - name: CMS_ASSET_CACHE
