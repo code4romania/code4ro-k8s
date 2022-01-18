@@ -12,7 +12,7 @@ spec:
       containers:
         - image: code4romania/rezultate-vot-api:v1.0
           resources:           
-             requests:
+            requests:
               cpu: 100m
               memory: 240M
             limits:
