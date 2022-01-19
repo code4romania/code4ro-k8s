@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: ecutremur.heroesof.tech
+  namespace: ecutremur
+spec:
+  ref:
+    name: ecutremur
+    kind: Service
+    apiVersion: serving.knative.dev/v1
