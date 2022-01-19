@@ -67,8 +67,6 @@ spec:
                   key: db_password
             - name: CACHE_DRIVER
               value: "file"
-            - name: CACHE_DRIVER
-              value: "sunrise"
             - name: CACHE_CODE_PARSER_DATA_CACHE_KEY
               valueFrom:
                 secretKeyRef:
