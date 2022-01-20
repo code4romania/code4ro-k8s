@@ -22,7 +22,7 @@ spec:
             - containerPort: 80
           env:
             - name: APP_DEBUG
-              value: "false"
+              value: "true"
             - name: APP_NAME
               value: "Sunrise"
             - name: APP_URL
