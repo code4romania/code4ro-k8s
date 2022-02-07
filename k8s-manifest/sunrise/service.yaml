@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "3"
     spec:
       containers:
-        - image: code4romania/sunrise:v1.30
+        - image: code4romania/sunrise:v1.31
           resources:
              requests:
               cpu: 100m
@@ -38,6 +38,8 @@ spec:
               value: "en"
             - name: APP_FRONTEND_URL
               value: "https://sunrise.stopviolenteidomestice.ro"
+            - name: APP_TRUSTED_HOSTS_PRODUCTION
+              value: "https://sunrise-api.stopviolenteidomestice.ro/"
             - name: DB_CONNECTION
               value: "mysql"
             - name: DB_CONNECTION_MYSQL_HOST
