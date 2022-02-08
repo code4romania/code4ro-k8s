@@ -13,7 +13,7 @@ spec:
         - image: code4romania/votong:v1.9
           resources:
             limits:
-              cpu: 260m
+              cpu: 270m
               memory: 1.5Gi
           ports:
             - containerPort: 8010
