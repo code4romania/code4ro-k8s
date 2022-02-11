@@ -13,7 +13,7 @@ spec:
         - image: decembrya/basic-demo-api:v1.0
           resources:
             requests:
-              cpu: 100m
+              cpu: 150m
               memory: 1000M
             limits:
               cpu: 200m
