@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "3"
     spec:
       containers:
-        - image: code4romania/sunrise:v1.34
+        - image: code4romania/sunrise:v1.35
           resources:
              requests:
               cpu: 100m
@@ -145,3 +145,21 @@ spec:
               value: "secure"
             - name: CMS_ENABLE_CSRF
               value: "true"
+            - name: FILESYSTEMS_DEFAULT
+              value: "s3"
+            - name: FILESYSTEMS_DISKS_S3_DRIVER
+              value: "s3"
+            - name: FILESYSTEMS_DISKS_S3_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: filesystem_disks_s3_key
+            - name: FILESYSTEMS_DISKS_S3_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: sunrise-secret
+                  key: filesystem_disks_s3_secret
+            - name: FILESYSTEMS_DISKS_S3_REGION
+              value: "eu-central-1"
+            - name: FILESYSTEMS_DISKS_S3_REGION
+              value: "code4ro-sunrise-production"
