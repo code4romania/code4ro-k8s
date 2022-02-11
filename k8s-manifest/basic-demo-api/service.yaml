@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
-        - image: decembrya/basic-demo-api:v1.3
+        - image: decembrya/basic-demo-api:v1.4
           resources:
             limits:
               cpu: 150m
