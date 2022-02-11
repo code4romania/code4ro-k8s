@@ -1,0 +1,26 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: basic-demo
+  namespace: basic-demo
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "1"
+    spec:
+      containers:
+        - image: decembrya/basic-demo-api:v1.3
+          resources:
+            requests:
+              cpu: 150m
+              memory: 1000M
+            limits:
+              cpu: 200m
+              memory: 300M
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE__ENVIRONMENT
+              value: "Production"
+ 
