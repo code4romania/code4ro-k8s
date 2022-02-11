@@ -12,15 +12,11 @@ spec:
       containers:
         - image: decembrya/basic-demo-api:v1.3
           resources:
-            requests:
+            limits:
               cpu: 150m
               memory: 100M
-            limits:
-              cpu: 200m
-              memory: 300M
           ports:
             - containerPort: 80
           env:
             - name: ASPNETCORE__ENVIRONMENT
               value: "Production"
- 
