@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: demo.heroesof.tech
+  namespace: demo
+spec:
+  ref:
+    name: demo
+    kind: Service
+    apiVersion: serving.knative.dev/v1
