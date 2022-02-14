@@ -1,0 +1,22 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: aws-demo
+  namespace: aws-demo
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "1"
+    spec:
+      containers:
+        - image: decembrya/basic-demo-api:v1.4
+          resources:
+            limits:
+              cpu: 150m
+              memory: 100M
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE__ENVIRONMENT
+              value: "Production"
