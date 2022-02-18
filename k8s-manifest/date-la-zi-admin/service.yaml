@@ -43,3 +43,9 @@ spec:
                 secretKeyRef:
                   name: date-la-zi-admin-secret
                   key: db_password
+        - volumeMounts:
+            - name: temp
+              mountPath: /tmp
+      volumes:
+        - name: temp
+          emptyDir: {}
