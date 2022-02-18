@@ -45,7 +45,7 @@ spec:
                   key: db_password
           volumeMounts:
             - name: temp
-              mountPath: /tmp
+              mountPath: /
       volumes:
         - name: temp
           emptyDir: {}
