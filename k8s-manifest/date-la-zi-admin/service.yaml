@@ -1,0 +1,45 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: date-la-zi-admin
+  namespace: date-la-zi-admin
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "3"
+    spec:
+      containers:
+        - image: code4romania/admin-la-zi:latest
+          resources:
+            limits:
+              cpu: 200m
+              memory: 300M
+          ports:
+            - containerPort: 80
+          env:
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: date-la-zi-admin-secret
+                  key: app_key
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: date-la-zi-admin-secret
+                  key: db_host
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: date-la-zi-admin-secret
+                  key: db_database
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: date-la-zi-admin-secret
+                  key: db_username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: date-la-zi-admin-secret
+                  key: db_password
