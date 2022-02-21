@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "3"
     spec:
       containers:
-        - image: code4romania/admin-la-zi:v1.2
+        - image: code4romania/admin-la-zi:v1.3
           resources:
             limits:
               cpu: 200m
@@ -43,3 +43,22 @@ spec:
                 secretKeyRef:
                   name: date-la-zi-admin-secret
                   key: db_password
+            - name: SENTRY_LARAVEL_DSN
+              value: "https://910c909d82b441fca86c8d540ef40b6f@o375441.ingest.sentry.io/6219339"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: date-la-zi-admin-secret
+                  key: aws_access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: date-la-zi-admin-secret
+                  key: aws_secret_access_key
+            - name: AWS_DEFAULT_REGION
+              value: "eu-central-1"
+            - name: AWS_CLOUDFRONT_DISTRIBUTION_ID
+              valueFrom:
+                secretKeyRef:
+                  name: date-la-zi-admin-secret
+                  key: aws_cloudfront_distr_id
