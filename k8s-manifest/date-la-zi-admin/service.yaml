@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "3"
     spec:
       containers:
-        - image: code4romania/admin-la-zi:v1.5
+        - image: code4romania/admin-la-zi:v1.6
           resources:
             limits:
               cpu: 200m
