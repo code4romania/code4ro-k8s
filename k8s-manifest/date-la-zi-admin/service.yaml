@@ -63,4 +63,4 @@ spec:
                   name: date-la-zi-admin-secret
                   key: aws_cloudfront_distr_id
             - name: PARSE_TIME_LIMIT
-              value: "180"
+              value: "370"
