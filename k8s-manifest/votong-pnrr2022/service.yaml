@@ -7,14 +7,13 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/max-scale: "5"
-        autoscaling.knative.dev/min-scale: "5"
+        autoscaling.knative.dev/max-scale: "3"
     spec:
       containers:
         - image: code4romania/votong:v1.14
           resources:
             limits:
-              cpu: 500m
+              cpu: 270m
               memory: 1Gi
           ports:
             - containerPort: 8010
