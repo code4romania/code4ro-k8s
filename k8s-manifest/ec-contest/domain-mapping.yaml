@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
 metadata:
-  name: api-euroquiz.heroesof.tech
+  name: api.euroquiz.ro
   namespace: ec-contest
 spec:
   ref:
