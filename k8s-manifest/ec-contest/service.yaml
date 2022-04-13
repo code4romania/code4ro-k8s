@@ -46,7 +46,7 @@ spec:
             - name: QUEUE_CONNECTION
               value: sync
             - name: SESSION_DRIVER
-              value: database
+              value: cookie
             - name: SESSION_LIFETIME
               valueFrom:
                 secretKeyRef:
