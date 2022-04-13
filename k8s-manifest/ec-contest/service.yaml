@@ -32,7 +32,7 @@ spec:
             - name: APP_DEBUG
               value: "false"
             - name: APP_URL
-              value: "https://api-euroquiz.heroesof.tech"
+              value: "https://api.euroquiz.ro"
             - name: LOG_CHANNEL
               value: stderr
             - name: DB_CONNECTION
