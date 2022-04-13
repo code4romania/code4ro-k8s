@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
-        - image: code4romania/ec-contest:v1.1
+        - image: code4romania/ec-contest:v1.2
           resources:
             limits:
               cpu: 200m
@@ -26,7 +26,7 @@ spec:
             - containerPort: 8080
           env:
             - name: APP_NAME
-              value: "Laravel"
+              value: "Euroquiz"
             - name: APP_ENV
               value: production
             - name: APP_DEBUG
