@@ -7,15 +7,15 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/max-scale: "11"
+        autoscaling.knative.dev/max-scale: "15"
         autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
         - image: code4romania/ec-contest:v1.9
           resources:
             limits:
-              cpu: 300m
-              memory: 1Gi 
+              cpu: 500m
+              memory: 2Gi 
           command: ["/bin/sh"]
           args:
             - -c
