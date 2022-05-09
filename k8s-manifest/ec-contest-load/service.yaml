@@ -1,0 +1,112 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: ec-contest-load
+  namespace: ec-contest-load
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/max-scale: "15"
+        autoscaling.knative.dev/min-scale: "1"
+    spec:
+      containers:
+        - image: code4romania/ec-contest:v1.14
+          resources:
+            limits:
+              cpu: 500m
+              memory: 2Gi
+          command: ["/bin/sh"]
+          args:
+            - -c
+            - >-
+              php artisan migrate --force &&
+              exec /usr/sbin/apache2ctl -D FOREGROUND
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APP_NAME
+              value: "Euroquiz"
+            - name: APP_ENV
+              value: production
+            - name: APP_DEBUG
+              value: "false"
+            - name: APP_URL
+              value: "https://euroload.heroesof.tech"
+            - name: LOG_CHANNEL
+              value: stderr
+            - name: DB_CONNECTION
+              value: mysql
+            - name: DB_PORT
+              value: "3306"
+            - name: BROADCAST_DRIVER
+              value: log
+            - name: CACHE_DRIVER
+              value: file
+            - name: QUEUE_CONNECTION
+              value: sync
+            - name: SESSION_DRIVER
+              value: cookie
+            - name: SESSION_LIFETIME
+              valueFrom:
+                secretKeyRef:
+                  name: ec-contest-load-secret
+                  key: session_lifetime
+            - name: MAIL_MAILER
+              value: smtp
+            - name: MAIL_PORT
+              value: "2587"
+            - name: MAIL_ENCRYPTION
+              value: tls
+            - name: MAIL_FROM_NAME
+              value: "Euroquiz"
+            - name: MAIL_FROM_ADDRESS
+              value: noreply@euroquiz.ro
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: ec-contest-load-secret
+                  key: app_key
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: ec-contest-load-secret
+                  key: database_host
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: ec-contest-load-secret
+                  key: database_name
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ec-contest-load-secret
+                  key: database_username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ec-contest-load-secret
+                  key: database_password
+            - name: MAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: ec-contest-load-secret
+                  key: mail_host
+            - name: MAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ec-contest-load-secret
+                  key: mail_username
+            - name: MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ec-contest-load-secret
+                  key: mail_password
+            - name: SENTRY_LARAVEL_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: ec-contest-load-secret
+                  key: sentry_laravel_dsn
+            - name: SENTRY_TRACES_SAMPLE_RATE
+              value: "0.1"
+
