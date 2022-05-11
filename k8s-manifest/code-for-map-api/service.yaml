@@ -1,0 +1,100 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: code-for-map-api
+  namespace: code-for-map-api
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/max-scale: "3"
+    spec:
+      containers:
+        - image: code4romania/code-for-map-api:v1.12
+          resources:
+            requests:
+              cpu: 100m
+              memory: 250M
+            limits:
+              cpu: 300m
+              memory: 250M
+          ports:
+            - containerPort: 1337
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: DATABASE_CLIENT
+              value: "postgres" 
+            - name: DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: database_host
+            - name: DATABASE_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: database_port
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: database_name
+            - name: DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: database_username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: database_password
+            - name: APP_KEYS
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: app_keys
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: jwt_secret
+            - name: ADMIN_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: admin_jwt_secret
+            - name: API_TOKEN_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: api_token_salt
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: aws_access_key_id
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: aws_access_key_id
+            - name: AWS_ACCESS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: aws_access_secret
+            - name: AWS_REGION
+              value: "eu-central-1"
+            - name: AWS_BUCKET
+              value: "code-for-map-api"
+            - name: AWS_BUCKET_ACL
+              valueFrom:
+                secretKeyRef:
+                  name: code-for-map-api-secret
+                  key: aws_bucket_acl
+            - name: CDN_BASE_URL
+              value: ""
+            - name: BUCKET_PREFIX
+              value: "strapi-assets"
