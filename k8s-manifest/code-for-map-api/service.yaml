@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/max-scale: "3"
     spec:
       containers:
-        - image: code4romania/code-for-map-api:v1.4
+        - image: code4romania/code-for-map-api:v1.5
           resources:
             requests:
               cpu: 100m
@@ -118,3 +118,7 @@ spec:
                 secretKeyRef:
                   name: code-for-map-api-secret
                   key: smtp_password
+            - name: SMTP_FROM_EMAIL
+              value: "noreply@heoresof.tech"
+            - name: SMTP_REPLY_TO_EMAIL
+              value: "noreply@heoresof.tech"
