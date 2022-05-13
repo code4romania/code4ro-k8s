@@ -119,6 +119,6 @@ spec:
                   name: code-for-map-api-secret
                   key: smtp_password
             - name: SMTP_FROM_EMAIL
-              value: "code-for-map@heoresof.tech"
+              value: "code-for-map@heroesof.tech"
             - name: SMTP_REPLY_TO_EMAIL
-              value: "code-for-map@heoresof.tech"
+              value: "code-for-map@heroesof.tech"
