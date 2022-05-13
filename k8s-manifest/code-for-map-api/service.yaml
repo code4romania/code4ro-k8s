@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/max-scale: "3"
     spec:
       containers:
-        - image: code4romania/code-for-map-api:v1.5
+        - image: code4romania/code-for-map-api:v1.7
           resources:
             requests:
               cpu: 100m
