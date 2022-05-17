@@ -43,8 +43,10 @@ spec:
               value: "no"
             - name : ALLOWED_HOSTS
               value: "testarehiv.edreptultau.ro,testarehiv-api.edreptultau.ro"
-            - name : CORS_ALLOWED_ORIGIN_REGEXES
+            - name : CORS_ALLOWED_ORIGINS
               value: "testarehiv.edreptultau.ro,testarehiv-api.edreptultau.ro"
+            - name : CORS_ALLOWED_ORIGIN_REGEXES
+              value: ""
             - name: EMAIL_HOST
               valueFrom:
                 secretKeyRef:
