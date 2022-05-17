@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: testarehiv-api.edreptultau.ro
+  namespace: centre-testare-hiv
+spec:
+  ref:
+    name: centre-testare-hiv
+    kind: Service
+    apiVersion: serving.knative.dev/v1
