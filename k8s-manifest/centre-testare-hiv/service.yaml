@@ -134,3 +134,30 @@ spec:
               value: "Super"
             - name: SUPER_ADMIN_LAST_NAME
               value: "Admin"
+            - name : USE_S3
+              value: "yes"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: centre-testare-hiv-secret
+                  key: aws_access_key_id
+            - name: AWS_S3_REGION_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: centre-testare-hiv-secret
+                  key: aws_s3_region_name
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: centre-testare-hiv-secret
+                  key: aws_secret_access_key
+            - name: AWS_STORAGE_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: centre-testare-hiv-secret
+                  key: aws_storage_bucket_name
+            - name: AWS_SUBDOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: centre-testare-hiv-secret
+                  key: aws_subdomain
