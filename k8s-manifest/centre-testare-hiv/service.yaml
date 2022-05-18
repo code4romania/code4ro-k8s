@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/max-scale: "3"
     spec:
       containers:
-        - image: code4romania/centre-testare-hiv:v1.2
+        - image: code4romania/centre-testare-hiv:v1.3
           resources:
             requests:
               cpu: 100m
@@ -119,3 +119,17 @@ spec:
                 secretKeyRef:
                   name: centre-testare-hiv-secret
                   key: here_maps_api_key
+            - name: SUPER_ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: centre-testare-hiv-secret
+                  key: super_admin_email
+            - name: SUPER_ADMIN_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: centre-testare-hiv-secret
+                  key: super_admin_pass
+            - name: SUPER_ADMIN_FIRST_NAME
+              value: "Super"
+            - name: SUPER_ADMIN_LAST_NAME
+              value: "Admin"
