@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
-        - image: code4romania/centre-testare-hiv:v1.6
+        - image: code4romania/centre-testare-hiv:v1.7
           resources:
             requests:
               cpu: 300m
