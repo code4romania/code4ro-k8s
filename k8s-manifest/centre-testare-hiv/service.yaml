@@ -66,9 +66,9 @@ spec:
             - name: EMAIL_PORT
               value: "465"
             - name: EMAIL_USE_TLS
-              value: "yes"
-            - name: EMAIL_USE_SSL
               value: "no"
+            - name: EMAIL_USE_SSL
+              value: "yes"
             - name: NO_REPLY_EMAIL
               value: "noreply@edreptultau.ro"
             - name: DEFAULT_FROM_EMAIL
