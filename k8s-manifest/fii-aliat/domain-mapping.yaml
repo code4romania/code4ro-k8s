@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: api.fiialiat.ro
+  namespace: fii-aliat
+spec:
+  ref:
+    name: fii-aliat
+    kind: Service
+    apiVersion: serving.knative.dev/v1

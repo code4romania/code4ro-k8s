@@ -1,0 +1,44 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: fii-aliat
+  namespace: fii-aliat
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "3"
+    spec:
+      containers:
+        - image: code4romania/fii-aliat-api:v1.0.0
+          resources:
+            requests:
+              cpu: 100m
+              memory: 241M
+            limits:
+              cpu: 500m
+              memory: 300M
+          ports:
+            - containerPort: 1337
+          env:
+            - name: RECAPTCHA_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fii-aliat-secret
+                  key: recapcha_key
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: fii-aliat-secret
+                  key: database_url
+            - name: ADMIN_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: fii-aliat-secret
+                  key: admin_jwt_secret
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: fii-aliat-secret
+                  key: jwt_secret
