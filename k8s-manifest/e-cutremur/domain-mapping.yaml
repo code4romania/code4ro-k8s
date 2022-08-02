@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: e-cutremur.ro
+  namespace: e-cutremur
+spec:
+  ref:
+    name: e-cutremur
+    kind: Service
+    apiVersion: serving.knative.dev/v1
