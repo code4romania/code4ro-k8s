@@ -23,7 +23,7 @@ spec:
             - containerPort: 80
           env:
             - name: APP_URL
-              value: "https://new.leadmoldova.org"
+              value: "https://leadmoldova.org"
             - name: APP_DEBUG
               value: "false"
             - name: APP_ENV
