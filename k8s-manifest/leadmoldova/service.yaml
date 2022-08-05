@@ -25,7 +25,7 @@ spec:
             - name: APP_URL
               value: "https://new.leadmoldova.org"
             - name: APP_DEBUG
-              value: false
+              value: "false"
             - name: APP_ENV
               value: "production"
             - name: APP_KEY
