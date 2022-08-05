@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
 metadata:
-  name: new.leadmoldova.org
+  name: leadmoldova.org
   namespace: leadmoldova
 spec:
   ref:
