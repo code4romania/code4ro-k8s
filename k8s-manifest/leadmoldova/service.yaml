@@ -14,10 +14,10 @@ spec:
         - image: code4romania/website-factory:1.0.1
           resources:
             requests:
-              cpu: 100m
+              cpu: 500m
               memory: 250M
             limits:
-              cpu: 500m
+              cpu: 1000m
               memory: 500M
           ports:
             - containerPort: 80
