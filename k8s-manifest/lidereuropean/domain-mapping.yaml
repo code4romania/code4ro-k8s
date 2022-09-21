@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: lidereuropean.heroesof.tech
+  namespace: lidereuropean
+spec:
+  ref:
+    name: lidereuropean
+    kind: Service
+    apiVersion: serving.knative.dev/v1

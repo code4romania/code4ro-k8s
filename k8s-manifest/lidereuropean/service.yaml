@@ -1,0 +1,72 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: lidereuropean
+  namespace: lidereuropean
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "1"
+    spec:
+      containers:
+        - image: code4romania/lidereuropean:0.0.1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128M
+            limits:
+              cpu: 500m
+              memory: 256M
+          ports:
+            - containerPort: 80
+          env:
+            - name: APP_DEBUG
+              value: "false"
+            - name: APP_NAME
+              value: "Lider European"
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: lidereuropean-secret
+                  key: APP_KEY
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: lidereuropean-secret
+                  key: DB_HOST
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: lidereuropean-secret
+                  key: DB_DATABASE
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: lidereuropean-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lidereuropean-secret
+                  key: DB_PASSWORD
+            - name: MAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: lidereuropean-secret
+                  key: MAIL_HOST
+            - name: MAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: lidereuropean-secret
+                  key: MAIL_USERNAME
+            - name: MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lidereuropean-secret
+                  key: MAIL_PASSWORD
+            - name: MAIL_FROM_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: lidereuropean-secret
+                  key: MAIL_FROM_ADDRESS
