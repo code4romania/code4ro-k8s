@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
-        - image: code4romania/lidereuropean:0.0.3
+        - image: code4romania/lidereuropean:0.0.4
           resources:
             requests:
               cpu: 100m
