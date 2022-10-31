@@ -8,3 +8,14 @@ spec:
     name: platformadonatorilor
     kind: Service
     apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: dashboard.platformadonatorilor.ro
+  namespace: platformadonatorilor
+spec:
+  ref:
+    name: platformadonatorilor
+    kind: Service
+    apiVersion: serving.knative.dev/v1

@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
-        - image: code4romania/donors-platform:1.0.1
+        - image: code4romania/donors-platform:1.0.2
           resources:
             requests:
               cpu: 500m
@@ -105,3 +105,9 @@ spec:
                 secretKeyRef:
                   name: platformadonatorilor-secret
                   key: ANALYTICS_TRACK_ID
+            - name: DASHBOARD_URL
+              value: "https://dashboard.platformadonatorilor.ro"
+            - name: DASHBOARD_PATH
+              value: "/"
+            - name: DASHBOARD_MAILTO
+              value: "platformadonatorilor@code4.ro"
