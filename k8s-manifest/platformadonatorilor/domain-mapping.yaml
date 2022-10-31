@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: platformadonatorilor.ro
+  namespace: platformadonatorilor
+spec:
+  ref:
+    name: platformadonatorilor
+    kind: Service
+    apiVersion: serving.knative.dev/v1

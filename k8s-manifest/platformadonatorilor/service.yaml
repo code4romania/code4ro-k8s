@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
-        - image: code4romania/donors-platform:1.0.0
+        - image: code4romania/donors-platform:1.0.1
           resources:
             requests:
               cpu: 500m
