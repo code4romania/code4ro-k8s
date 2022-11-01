@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: paul.code4.ro
+  namespace: paul
+spec:
+  ref:
+    name: paul
+    kind: Service
+    apiVersion: serving.knative.dev/v1
