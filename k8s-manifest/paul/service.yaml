@@ -87,6 +87,11 @@ spec:
                 secretKeyRef:
                   name: paul-secret
                   key: AWS_S3_REGION_NAME
+            - name: DJANGO_ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: paul-secret
+                  key: DJANGO_ADMIN_EMAIL
             - name: DJANGO_ADMIN_EMAIL
               valueFrom:
                 secretKeyRef:
