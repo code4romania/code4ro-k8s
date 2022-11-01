@@ -89,6 +89,8 @@ spec:
                 secretKeyRef:
                   name: paul-secret
                   key: AWS_S3_REGION_NAME
+            - name: AWS_DEFAULT_ACL
+              value: "public-read"
             - name: DJANGO_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
