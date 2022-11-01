@@ -10,14 +10,14 @@ spec:
         autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
-        - image: code4romania/paul:1.1.0
+        - image: code4romania/paul:1.1.1
           resources:
             requests:
               cpu: 500m
-              memory: 256M
+              memory: 512M
             limits:
               cpu: 1000m
-              memory: 512M
+              memory: 1G
           ports:
             - containerPort: 80
           env:
