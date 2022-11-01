@@ -43,6 +43,8 @@ spec:
                 secretKeyRef:
                   name: paul-secret
                   key: SECRET_KEY
+            - name: EMAIL_BACKEND
+              value: "django.core.mail.backends.smtp.EmailBackend"
             - name: EMAIL_HOST
               valueFrom:
                 secretKeyRef:
