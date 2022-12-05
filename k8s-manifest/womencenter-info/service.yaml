@@ -1,0 +1,97 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: womencenter-info
+  namespace: womencenter-info
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: '1'
+        autoscaling.knative.dev/maxScale: '1'
+    spec:
+      containers:
+        - image: code4romania/website-factory:1.3.2
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512M
+            limits:
+              cpu: 1000m
+              memory: 1G
+          ports:
+            - containerPort: 80
+          env:
+            - name: WEBSITE_FACTORY_EDITION
+              value: 'internal'
+            - name: APP_URL
+              value: 'https://new.womencenter.info'
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: APP_KEY
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: DB_HOST
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: DB_DATABASE
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: DB_PASSWORD
+            - name: MAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: MAIL_HOST
+            - name: MAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: MAIL_USERNAME
+            - name: MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: MAIL_PASSWORD
+            - name: MAIL_FROM_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: MAIL_FROM_ADDRESS
+            - name: FILESYSTEM_DRIVER
+              value: 's3'
+            - name: FILESYSTEM_CLOUD
+              value: 's3'
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: AWS_DEFAULT_REGION
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: womencenter-info-secret
+                  key: AWS_BUCKET
