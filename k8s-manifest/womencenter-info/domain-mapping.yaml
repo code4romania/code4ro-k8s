@@ -1,7 +1,18 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
 metadata:
-  name: new.womencenter.info
+  name: womencenter.info
+  namespace: womencenter-info
+spec:
+  ref:
+    name: womencenter-info
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: www.womencenter.info
   namespace: womencenter-info
 spec:
   ref:
