@@ -7,8 +7,8 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/minScale: '1'
-        autoscaling.knative.dev/maxScale: '1'
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
         - image: code4romania/website-factory:1.3.2
@@ -23,9 +23,9 @@ spec:
             - containerPort: 80
           env:
             - name: WEBSITE_FACTORY_EDITION
-              value: 'internal'
+              value: "internal"
             - name: APP_URL
-              value: 'https://new.womencenter.info'
+              value: "https://new.womencenter.info"
             - name: APP_KEY
               valueFrom:
                 secretKeyRef:
@@ -72,9 +72,9 @@ spec:
                   name: womencenter-info-secret
                   key: MAIL_FROM_ADDRESS
             - name: FILESYSTEM_DRIVER
-              value: 's3'
+              value: "s3"
             - name: FILESYSTEM_CLOUD
-              value: 's3'
+              value: "s3"
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
