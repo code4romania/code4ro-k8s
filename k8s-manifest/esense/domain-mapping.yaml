@@ -19,3 +19,14 @@ spec:
     name: esense
     kind: Service
     apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: test.esense.ro
+  namespace: esense
+spec:
+  ref:
+    name: esense-app
+    kind: Service
+    apiVersion: serving.knative.dev/v1

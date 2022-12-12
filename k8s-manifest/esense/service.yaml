@@ -95,3 +95,117 @@ spec:
                 secretKeyRef:
                   name: esense-secret
                   key: AWS_BUCKET
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: esense-app
+  namespace: esense
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "1"
+    spec:
+      containers:
+        - image: code4romania/esense:1.1.0
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512M
+            limits:
+              cpu: 1000m
+              memory: 1G
+          ports:
+            - containerPort: 80
+          env:
+            - name: APP_NAME
+              value: "e-Sense"
+            - name: APP_ENV
+              value: "production"
+            - name: APP_DEBUG
+              value: "false"
+            - name: APP_LOG
+              value: "daily"
+            - name: APP_URL
+              value: "https://app.esense.ro"
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: esense-app-secret
+                  key: APP_KEY
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: esense-app-secret
+                  key: DB_HOST
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: esense-app-secret
+                  key: DB_DATABASE
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: esense-app-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: esense-app-secret
+                  key: DB_PASSWORD
+            - name: CACHE_DRIVER
+              value: "file"
+            - name: CMS_DISK
+              value: "s3"
+            - name: CMS_ACTIVE_THEME
+              value: "esense"
+            - name: CMS_ASSET_CACHE
+              value: "true"
+            - name: CMS_ASSET_DEEP_HASHING
+              value: "true"
+            - name: CMS_ASSET_MINIFY
+              value: "true"
+            - name: CMS_BACKEND_FORCE_REMEMBER
+              value: "null"
+            - name: CMS_BACKEND_FORCE_SECURE
+              value: "false"
+            - name: CMS_BACKEND_URI
+              value: "backend-esense"
+            - name: CMS_CONVERT_LINE_ENDINGS
+              value: "true"
+            - name: CMS_EDGE_UPDATES
+              value: "false"
+            - name: CMS_ENABLE_CSRF
+              value: "true"
+            - name: CMS_LINK_POLICY
+              value: "secure"
+            - name: CMS_ROUTES_CACHE
+              value: "true"
+            - name: QUEUE_DRIVER
+              value: "sync"
+            - name: SESSION_DRIVER
+              value: "database"
+            - name: SESSION_LIFETIME
+              value: "120"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: esense-app-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: esense-app-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: esense-app-secret
+                  key: AWS_DEFAULT_REGION
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: esense-app-secret
+                  key: AWS_BUCKET
