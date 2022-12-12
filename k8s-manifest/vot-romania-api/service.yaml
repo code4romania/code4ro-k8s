@@ -12,12 +12,9 @@ spec:
       containers:
         - image: code4romania/vot-romania:v1.1
           resources:
-            requests:
-              cpu: 100m
-              memory: 240M
             limits:
-              cpu: 500m
-              memory: 300M
+              cpu: 100m
+              memory: 256M
           ports:
             - containerPort: 80
           env:

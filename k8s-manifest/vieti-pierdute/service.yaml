@@ -7,18 +7,17 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/minScale: "1"
-        autoscaling.knative.dev/maxScale: "3"
+        autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
         - image: code4romania/vieti-pierdute-api:v1.16
           resources:
             requests:
-              cpu: 100m
-              memory: 241M
+              cpu: 50m
+              memory: 64M
             limits:
-              cpu: 500m
-              memory: 300M
+              cpu: 250m
+              memory: 128M
           ports:
             - containerPort: 1337
           env:
@@ -43,4 +42,4 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: vieti-pierdute-secret
-                  key: jwt_secret                  
+                  key: jwt_secret

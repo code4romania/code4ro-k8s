@@ -13,10 +13,10 @@ spec:
         - image: code4romania/e-cutremur:1.0.2
           resources:
             requests:
-              cpu: 100m
-              memory: 512M
+              cpu: 50m
+              memory: 256M
             limits:
-              cpu: 500m
+              cpu: 250m
               memory: 512M
           ports:
             - containerPort: 80

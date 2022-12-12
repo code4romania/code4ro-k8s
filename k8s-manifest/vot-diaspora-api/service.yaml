@@ -11,10 +11,10 @@ spec:
     spec:
       containers:
         - image: code4romania/vot-diaspora:v1.0
-          resources:            
+          resources:
             limits:
               cpu: 100m
-              memory: 201M
+              memory: 256M
           ports:
             - containerPort: 80
           env:
@@ -29,7 +29,7 @@ spec:
                   name: vot-diaspora-secret
                   key: authentication_secret
             - name: UserSettings__Users__0__Name
-              value: "Super admin"      
+              value: "Super admin"
             - name: UserSettings__Users__0__UserName
               valueFrom:
                 secretKeyRef:

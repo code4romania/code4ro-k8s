@@ -14,17 +14,17 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 250M
+              memory: 256M
             limits:
-              cpu: 300m
-              memory: 500M
+              cpu: 250m
+              memory: 512M
           ports:
             - containerPort: 1337
           env:
             - name: NODE_ENV
               value: "production"
             - name: DATABASE_CLIENT
-              value: "postgres" 
+              value: "postgres"
             - name: DATABASE_HOST
               valueFrom:
                 secretKeyRef:

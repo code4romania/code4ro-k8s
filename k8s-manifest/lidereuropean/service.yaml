@@ -7,18 +7,14 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/minScale: "1"
         autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
         - image: code4romania/lidereuropean:1.2.0
           resources:
-            requests:
-              cpu: 500m
-              memory: 256M
             limits:
-              cpu: 1000m
-              memory: 512M
+              cpu: 250m
+              memory: 256M
           ports:
             - containerPort: 80
           env:

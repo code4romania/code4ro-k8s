@@ -14,10 +14,10 @@ spec:
         - image: code4romania/centre-testare-hiv:v1.9
           resources:
             requests:
-              cpu: 300m
+              cpu: 100m
               memory: 250M
             limits:
-              cpu: 1000m
+              cpu: 250m
               memory: 1.5Gi
           ports:
             - containerPort: 8050
@@ -27,7 +27,7 @@ spec:
             - name: HOME_SITE_URL
               value: "testarehiv.edreptultau.ro"
             - name: SITE_URL
-              value: "testarehiv-api.edreptultau.ro"  
+              value: "testarehiv-api.edreptultau.ro"
             - name: DEBUG
               value: "no"
             - name: RUN_MIGRATION
@@ -42,11 +42,11 @@ spec:
               value: "no"
             - name: ENABLE_DEBUG_TOOLBAR
               value: "no"
-            - name : ALLOWED_HOSTS
+            - name: ALLOWED_HOSTS
               value: "testarehiv.edreptultau.ro,testarehiv-api.edreptultau.ro"
-            - name : CORS_ALLOWED_ORIGINS
+            - name: CORS_ALLOWED_ORIGINS
               value: "https://testarehiv.edreptultau.ro,https://testarehiv-api.edreptultau.ro"
-            - name : CORS_ALLOWED_ORIGIN_REGEXES
+            - name: CORS_ALLOWED_ORIGIN_REGEXES
               value: ""
             - name: EMAIL_HOST
               valueFrom:
@@ -134,7 +134,7 @@ spec:
               value: "Super"
             - name: SUPER_ADMIN_LAST_NAME
               value: "Admin"
-            - name : USE_S3
+            - name: USE_S3
               value: "yes"
             - name: AWS_ACCESS_KEY_ID
               valueFrom:

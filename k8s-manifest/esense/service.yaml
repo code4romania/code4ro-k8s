@@ -112,11 +112,11 @@ spec:
         - image: code4romania/esense:1.1.0
           resources:
             requests:
+              cpu: 100m
+              memory: 256M
+            limits:
               cpu: 500m
               memory: 512M
-            limits:
-              cpu: 1000m
-              memory: 1G
           ports:
             - containerPort: 80
           env:
