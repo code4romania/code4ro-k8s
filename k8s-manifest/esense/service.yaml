@@ -157,6 +157,8 @@ spec:
                   key: DB_PASSWORD
             - name: CACHE_DRIVER
               value: "file"
+            - name: FILESYSTEM_DRIVER
+              value: "s3"
             - name: CMS_DISK
               value: "s3"
             - name: CMS_ACTIVE_THEME
