@@ -209,3 +209,8 @@ spec:
                 secretKeyRef:
                   name: esense-app-secret
                   key: AWS_BUCKET
+            - name: FILESYSTEM_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: esense-app-secret
+                  key: FILESYSTEM_PATH
