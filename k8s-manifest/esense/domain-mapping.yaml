@@ -23,7 +23,7 @@ spec:
 apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
 metadata:
-  name: test.esense.ro
+  name: app.esense.ro
   namespace: esense
 spec:
   ref:
