@@ -109,7 +109,7 @@ spec:
         autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
-        - image: code4romania/esense:1.1.1
+        - image: code4romania/esense:1.1.2
           resources:
             requests:
               cpu: 100m
@@ -158,8 +158,6 @@ spec:
             - name: CACHE_DRIVER
               value: "file"
             - name: FILESYSTEM_DRIVER
-              value: "s3"
-            - name: CMS_DISK
               value: "s3"
             - name: CMS_ACTIVE_THEME
               value: "esense"
