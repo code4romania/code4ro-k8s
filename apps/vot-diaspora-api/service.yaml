@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: vot-diaspora
   namespace: vot-diaspora
-  labels:
-    app.kubernetes.io/instance: vot-diaspora-api
 spec:
   template:
     metadata:
