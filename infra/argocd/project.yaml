@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: infra
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  description: Kubernetes Infrastructure Applications
+  destinations:
+  - namespace: '*'
+    server: '*'
+  sourceRepos:
+  - '*'

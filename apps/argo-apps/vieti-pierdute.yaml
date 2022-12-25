@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vieti-pierdute
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: apps/vieti-pierdute
+    repoURL: https://github.com/code4romania/code4ro-k8s.git
+    targetRevision: HEAD
+  destination:
+    namespace: vieti-pierdute
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - CreateNamespace=true
