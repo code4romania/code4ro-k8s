@@ -3,15 +3,20 @@
 [![License: MPL 2.0][ico-license]][link-license]
 
 This repository contains the k8s manifest for all the applications in the Code4ro platform.
-The k8s cluster is using [Fleet](fleet.rancher.io/) to automatically deploy manifests when a new change is detected.
+The k8s cluster is using [ArgoCD](https://cd.code4.ro) to automatically deploy manifests when a new change is detected.
 
-Basically the flow is as follows:
+The flow is as follow:
 
 1. User adds a new tag in application git repository
 2. CI kicks in in that repository and builds the new image
 3. The image is pushed to docker hub with that specific tag
-4. A new commit is made by the CI/user on this repo in which we change the image version in the manifest (wait for the GHA that pushes the image to DockerHub to end successfuly).
-5. Fleet cluster will detect a change in this repo and apply the changes
+4. A new commit is made by the CI/user on this repo in which we change the image version in the manifest (wait for the GHA that pushes the image to DockerHub to end successfuly)
+5. ArgoCD will detect the change in this repo and apply the manifests to the k8s cluster
+
+ArgoCD projects:
+
+- **_infra_**: knative, cert-manager, sealed-secrets and argocd. `infra/argo-apps-infra.yaml` is the root ArgoCD Application for `infra/argo-apps`. `infra/argo-apps` store the ArgoCD Applications.
+- **_default_**: all applications manifests. `apps/argo-apps-default.yaml` is the root ArgoCD Application for `infra/argo-apps`. `apps/argo-apps` store the ArgoCD Applications.
 
 ## Contributing
 
