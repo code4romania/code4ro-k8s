@@ -18,3 +18,9 @@ spec:
       http-protocol: "Redirected"
       auto-tls: "Enabled"
       autocreate-cluster-domain-claims: "true"
+    gc:
+      # always keep around the last non-active revision
+      retain-since-create-time: "disabled"
+      retain-since-last-active-time: "disabled"
+      min-non-active-revisions: "1"
+      max-non-active-revisions: "1"
