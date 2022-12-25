@@ -10,7 +10,7 @@ spec:
     repoURL: https://github.com/code4romania/code4ro-k8s.git
     targetRevision: HEAD
   destination:
-    namespace: argo
+    namespace: argocd
     server: https://kubernetes.default.svc
   syncPolicy:
     automated: {}
