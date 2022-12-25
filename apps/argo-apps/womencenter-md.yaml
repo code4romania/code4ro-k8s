@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     path: apps/womencenter-md
-    repoURL: git@github.com:code4romania/code4ro-k8s.git
+    repoURL: https://github.com/code4romania/code4ro-k8s.git
     targetRevision: new-cluster
   destination:
     namespace: womencenter-md
