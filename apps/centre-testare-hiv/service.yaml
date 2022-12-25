@@ -14,7 +14,7 @@ spec:
         - image: code4romania/centre-testare-hiv:v1.9
           resources:
             requests:
-              cpu: 200m
+              cpu: 100m
               memory: 250M
             limits:
               cpu: 250m
