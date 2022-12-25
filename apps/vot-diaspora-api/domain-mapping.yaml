@@ -3,6 +3,8 @@ kind: DomainMapping
 metadata:
   name: api.votdiaspora.ro
   namespace: vot-diaspora
+  labels:
+    app.kubernetes.io/instance: vot-diaspora-api
 spec:
   ref:
     name: vot-diaspora
