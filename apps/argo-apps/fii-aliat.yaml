@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fii-aliat
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: apps/fii-aliat
+    repoURL: git@github.com:code4romania/code4ro-k8s.git
+    targetRevision: new-cluster
+  destination:
+    namespace: fii-aliat
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: code-for-map-api
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: apps/code-for-map-api
+    repoURL: git@github.com:code4romania/code4ro-k8s.git
+    targetRevision: new-cluster
+  destination:
+    namespace: code-for-map-api
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
