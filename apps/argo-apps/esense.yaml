@@ -8,7 +8,7 @@ spec:
   source:
     path: apps/esense
     repoURL: https://github.com/code4romania/code4ro-k8s.git
-    targetRevision: new-cluster
+    targetRevision: HEAD
   destination:
     namespace: esense
     server: https://kubernetes.default.svc

@@ -8,7 +8,7 @@ spec:
   source:
     path: apps/code-for-map-api
     repoURL: https://github.com/code4romania/code4ro-k8s.git
-    targetRevision: new-cluster
+    targetRevision: HEAD
   destination:
     namespace: code-for-map-api
     server: https://kubernetes.default.svc

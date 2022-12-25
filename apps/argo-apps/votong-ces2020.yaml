@@ -8,7 +8,7 @@ spec:
   source:
     path: apps/votong-ces2020
     repoURL: https://github.com/code4romania/code4ro-k8s.git
-    targetRevision: new-cluster
+    targetRevision: HEAD
   destination:
     namespace: votong-ces2020
     server: https://kubernetes.default.svc

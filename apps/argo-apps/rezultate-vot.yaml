@@ -8,7 +8,7 @@ spec:
   source:
     path: apps/rezultate-vot
     repoURL: https://github.com/code4romania/code4ro-k8s.git
-    targetRevision: new-cluster
+    targetRevision: HEAD
   destination:
     namespace: rezultate-vot
     server: https://kubernetes.default.svc

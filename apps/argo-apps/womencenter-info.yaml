@@ -8,7 +8,7 @@ spec:
   source:
     path: apps/womencenter-info
     repoURL: https://github.com/code4romania/code4ro-k8s.git
-    targetRevision: new-cluster
+    targetRevision: HEAD
   destination:
     namespace: womencenter-info
     server: https://kubernetes.default.svc
