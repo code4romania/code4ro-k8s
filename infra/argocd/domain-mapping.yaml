@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: cd.code4.ro
+  namespace: argocd
+spec:
+  ref:
+    name: argocd-server
+    kind: Service
+    apiVersion: v1
