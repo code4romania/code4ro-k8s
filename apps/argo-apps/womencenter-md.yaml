@@ -13,5 +13,6 @@ spec:
     namespace: womencenter-md
     server: https://kubernetes.default.svc
   syncPolicy:
+    automated: {}
     syncOptions:
     - CreateNamespace=true

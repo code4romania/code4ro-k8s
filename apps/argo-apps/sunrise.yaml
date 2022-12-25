@@ -13,5 +13,6 @@ spec:
     namespace: sunrise
     server: https://kubernetes.default.svc
   syncPolicy:
+    automated: {}
     syncOptions:
     - CreateNamespace=true
