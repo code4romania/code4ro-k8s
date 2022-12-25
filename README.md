@@ -3,6 +3,9 @@
 [![License: MPL 2.0][ico-license]][link-license]
 
 This repository contains the k8s manifest for all the applications in the Code4ro platform.
+
+### ArgoCD
+
 The k8s cluster is using [ArgoCD](https://cd.code4.ro) to automatically deploy manifests when a new change is detected.
 
 The flow is as follow:
@@ -17,6 +20,31 @@ ArgoCD projects:
 
 - **_infra_**: knative, cert-manager, sealed-secrets and argocd. `infra/argo-apps-infra.yaml` is the root ArgoCD Application for `infra/argo-apps`. `infra/argo-apps` store the ArgoCD Applications.
 - **_default_**: all applications manifests. `apps/argo-apps-default.yaml` is the root ArgoCD Application for `infra/argo-apps`. `apps/argo-apps` store the ArgoCD Applications.
+
+### Sealed Secrets
+
+Encrypt secrets and store them on git. Below is an example of how to create secrets with kubeseal.
+
+```
+# Create a json/yaml-encoded Secret somehow:
+# (note use of `--dry-run` - this is just a local file!)
+echo -n bar | kubectl create secret generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json >mysecret.json
+
+# This is the important bit:
+kubeseal --format yaml <secret.yaml >sealedsecret.yaml
+
+# At this point mysealedsecret.json is safe to upload to Github
+
+# Eventually:
+kubectl create -f mysealedsecret.json
+
+# Test it
+kubectl get secret mysecret
+```
+
+### Cert Manager
+
+For automatically regenerating certificates with Lets Encrypt using Cloudflare integration.
 
 ## Contributing
 
