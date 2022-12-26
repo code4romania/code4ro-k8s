@@ -42,6 +42,7 @@ spec:
             - --skip-nodes-with-local-storage=false
             - --expander=least-waste
             - --balance-similar-node-groups
+            - --scan-interval=60s
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/code4ro-prod
           volumeMounts:
             - name: ssl-certs
