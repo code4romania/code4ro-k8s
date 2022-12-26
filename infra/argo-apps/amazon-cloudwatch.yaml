@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: amazon-cloudwatch
+  namespace: argocd
+spec:
+  project: infra
+  source:
+    path: infra/amazon-cloudwatch
+    repoURL: https://github.com/code4romania/code4ro-k8s.git
+    targetRevision: HEAD
+  destination:
+    namespace: amazon-cloudwatch
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
