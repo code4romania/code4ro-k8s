@@ -7,7 +7,7 @@ bases:
 
 resources:
   - crd.yaml
+  - kourier-service.yaml
 
 patchesStrategicMerge:
   - config-certmanager.yaml
-  - kourier-service.yaml
