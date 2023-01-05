@@ -26,25 +26,22 @@ ArgoCD projects:
 Encrypt secrets and store them on git. Below is an example of how to create secrets with kubeseal.
 
 ```
-# Create a json/yaml-encoded Secret somehow:
+# Create a yaml-encoded Secret somehow:
 # (note use of `--dry-run` - this is just a local file!)
-echo -n bar | kubectl create secret generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json >mysecret.json
+echo -n bar | kubectl create secret generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o yaml >secret.yaml
 
 # This is the important bit:
-kubeseal --format yaml <secret.yaml >sealedsecret.yaml
+kubeseal --format yaml <secret.yaml >sealed-secret.yaml
 
-# At this point mysealedsecret.json is safe to upload to Github
-
-# Eventually:
-kubectl create -f mysealedsecret.json
+# At this point sealed-secret.yaml is safe to upload to Github
 
 # Test it
-kubectl get secret mysecret
+kubectl get secret my-secret
 ```
 
 ### Cert Manager
 
-For automatically regenerating certificates with Lets Encrypt using Cloudflare integration.
+For automatically regenerating certificates with Lets Encrypt using Route53 integration.
 
 ## Contributing
 
