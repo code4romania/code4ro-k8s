@@ -13,6 +13,9 @@ spec:
     kourier:
       enabled: true
   config:
+    issuerRef:
+      kind: ClusterIssuer
+      name: letsencrypt
     network:
       ingress-class: "kourier.ingress.networking.knative.dev"
       http-protocol: "Redirected"

@@ -7,6 +7,3 @@ bases:
 
 resources:
   - crd.yaml
-
-patchesStrategicMerge:
-  - config-certmanager.yaml
