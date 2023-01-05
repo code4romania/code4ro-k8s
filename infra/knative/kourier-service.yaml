@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app.kubernetes.io/component: net-kourier
+    app.kubernetes.io/instance: knative
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/version: 1.8.0
     networking.knative.dev/ingress-provider: kourier
