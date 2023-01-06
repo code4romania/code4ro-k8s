@@ -19,6 +19,8 @@ spec:
   ingress:
     kourier:
       enabled: true
+  additionalManifests:
+    - URL: /knative-custom-manifest
   config:
     certmanager:
       issuerRef: |
