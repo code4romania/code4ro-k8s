@@ -19,8 +19,12 @@ spec:
   ingress:
     kourier:
       enabled: true
-  additionalManifests:
-    - URL: /knative-custom-manifest
+  services:
+    - name: kourier
+      annotations:
+        service.beta.kubernetes.io/aws-load-balancer-type: "external"
+        service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+        service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
   config:
     certmanager:
       issuerRef: |
