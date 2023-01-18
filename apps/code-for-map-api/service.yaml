@@ -96,7 +96,7 @@ spec:
                   name: code-for-map-api-secret
                   key: aws_bucket_acl
             - name: CDN_BASE_URL
-              value: "https://d2hnpboyl1l4i8.cloudfront.net"
+              value: "https://d3nrmb4u1g4f18.cloudfront.net"
             - name: BUCKET_PREFIX
               value: "strapi-assets"
             - name: SMTP_HOST
