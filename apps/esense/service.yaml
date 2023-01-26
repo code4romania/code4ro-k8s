@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
-        - image: code4romania/website-factory:1.3.3
+        - image: code4romania/website-factory:1.3.5
           resources:
             requests:
               cpu: 100m
