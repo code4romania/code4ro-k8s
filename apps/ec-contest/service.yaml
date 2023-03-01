@@ -22,7 +22,7 @@ spec:
             - name: APP_DEBUG
               value: "false"
             - name: APP_NAME
-              value: "Euroquiz"
+              value: "EuroQuiz"
             - name: APP_KEY
               valueFrom:
                 secretKeyRef:
@@ -68,3 +68,5 @@ spec:
                 secretKeyRef:
                   name: ec-contest-secret
                   key: MAIL_FROM_ADDRESS
+            - name: MAIL_FROM_NAME
+              value: "EuroQuiz"
