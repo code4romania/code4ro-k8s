@@ -5,8 +5,6 @@ metadata:
   labels:
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/version: 1.8.0
-    app.kubernetes.io/instance: knative
     kubernetes.io/metadata.name: knative-serving
     networking.knative.dev/ingress-provider: kourier
 ---
@@ -16,6 +14,7 @@ metadata:
   name: knative-serving
   namespace: knative-serving
 spec:
+  version: "1.9"
   ingress:
     kourier:
       enabled: true
