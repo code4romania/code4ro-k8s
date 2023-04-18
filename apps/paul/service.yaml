@@ -33,7 +33,7 @@ spec:
             - name: NO_REPLY_EMAIL
               value: "paul@code4.ro"
             - name: PLUGIN_MAILCHIMP_ENABLED
-              value: True
+              value: "True"
             - name: RUN_COLLECT_STATIC
               value: "yes"
             - name: DATABASE_URL
