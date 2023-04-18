@@ -14,11 +14,11 @@ spec:
         - image: code4romania/paul:1.1.5
           resources:
             requests:
-              cpu: 100m
-              memory: 256M
-            limits:
               cpu: 250m
               memory: 512M
+            limits:
+              cpu: 500m
+              memory: 1024M
           ports:
             - containerPort: 80
           env:
