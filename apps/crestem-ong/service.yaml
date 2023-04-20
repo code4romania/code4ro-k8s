@@ -70,3 +70,27 @@ spec:
                   key: MAIL_FROM_ADDRESS
             - name: MAIL_FROM_NAME
               value: "CrestemOng"
+            - name: FILESYSTEM_DRIVER
+              value: "s3"
+            - name: FILESYSTEM_CLOUD
+              value: "s3"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-secret
+                  key: AWS_DEFAULT_REGION
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-secret
+                  key: AWS_BUCKET
