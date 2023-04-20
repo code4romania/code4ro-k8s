@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crestem-ong
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: apps/crestem-ong
+    repoURL: https://github.com/code4romania/code4ro-k8s.git
+    targetRevision: HEAD
+  destination:
+    namespace: crestem-ong
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
