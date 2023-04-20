@@ -94,3 +94,8 @@ spec:
                 secretKeyRef:
                   name: crestem-ong-secret
                   key: AWS_BUCKET
+            - name: AWS_BUCKET_ROOT
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-secret
+                  key: AWS_BUCKET_ROOT
