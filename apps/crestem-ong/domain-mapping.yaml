@@ -1,0 +1,21 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: crestem.ong
+  namespace: crestem-ong
+spec:
+  ref:
+    name: crestem-ong
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: www.crestem.ong
+  namespace: crestem-ong
+spec:
+  ref:
+    name: crestem-ong
+    kind: Service
+    apiVersion: serving.knative.dev/v1
