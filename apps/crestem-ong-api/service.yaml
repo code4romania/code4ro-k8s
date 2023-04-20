@@ -72,6 +72,7 @@ spec:
                 secretKeyRef:
                   name: crestem-ong-api-secret
                   key: DATABASE_PASSWORD
+
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
@@ -102,3 +103,34 @@ spec:
                 secretKeyRef:
                   name: crestem-ong-api-secret
                   key: BUCKET_PREFIX
+
+            - name: AWS_SES_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: AWS_SES_KEY
+            - name: AWS_SES_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: AWS_SES_SECRET
+            - name: AWS_SES_AMAZON
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: AWS_SES_AMAZON
+            - name: DEFAULT_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: DEFAULT_FROM
+            - name: DEFAULT_REPLY_TO
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: DEFAULT_REPLY_TO
+            - name: CLIENT_PUBLIC_URL
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: CLIENT_PUBLIC_URL
