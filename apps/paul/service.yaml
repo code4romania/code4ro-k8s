@@ -116,3 +116,8 @@ spec:
                   key: SENTRY_DSN
             - name: SENTRY_ENVIRONMENT
               value: main
+            - name: MAILCHIMP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: paul-secret
+                  key: MAILCHIMP_KEY
