@@ -5,15 +5,18 @@ metadata:
   namespace: cert-manager
 spec:
   acme:
-    email: mihai.legat@gmail.com
+    email: infrastructure@code4.ro
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: issuer-account-key
     solvers:
-    - dns01:
-        route53:
-          region: eu-central-1
-          accessKeyID: AKIASQDJNISK3BHPNSXP
-          secretAccessKeySecretRef:
-            name: acme-route53
-            key: secret-access-key
+      - dns01:
+          route53:
+            region: eu-central-1
+            accessKeyID: AKIASQDJNISK3BHPNSXP
+            secretAccessKeySecretRef:
+              name: acme-route53
+              key: secret-access-key
+      - http01:
+          ingress:
+            class: kourier.ingress.networking.knative.dev
