@@ -8,14 +8,3 @@ spec:
     name: ec-contest
     kind: Service
     apiVersion: serving.knative.dev/v1
----
-apiVersion: serving.knative.dev/v1alpha1
-kind: DomainMapping
-metadata:
-  name: test.wakatech.ro
-  namespace: ec-contest
-spec:
-  ref:
-    name: ec-contest
-    kind: Service
-    apiVersion: serving.knative.dev/v1
