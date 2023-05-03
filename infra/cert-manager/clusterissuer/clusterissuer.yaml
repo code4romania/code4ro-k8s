@@ -20,3 +20,6 @@ spec:
       - http01:
           ingress:
             class: kourier.ingress.networking.knative.dev
+        selector:
+          matchLabels:
+            "use-http01-solver": "true"
