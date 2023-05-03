@@ -10,13 +10,13 @@ spec:
     privateKeySecretRef:
       name: issuer-account-key
     solvers:
-      # - dns01:
-      #     route53:
-      #       region: eu-central-1
-      #       accessKeyID: AKIASQDJNISK3BHPNSXP
-      #       secretAccessKeySecretRef:
-      #         name: acme-route53
-      #         key: secret-access-key
+      - dns01:
+          route53:
+            region: eu-central-1
+            accessKeyID: AKIASQDJNISK3BHPNSXP
+            secretAccessKeySecretRef:
+              name: acme-route53
+              key: secret-access-key
       - http01:
           ingress:
             class: kourier.ingress.networking.knative.dev
