@@ -12,7 +12,7 @@ spec:
 apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
 metadata:
-  name: test.wakatech.ro
+  name: test.datelazi.ro
   namespace: ec-contest
 spec:
   ref:
