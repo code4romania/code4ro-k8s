@@ -3,15 +3,12 @@ kind: Service
 metadata:
   name: ec-contest
   namespace: ec-contest
-  annotations:
-    networking.knative.dev/http-protocol: "enabled"
 spec:
   template:
     metadata:
       annotations:
         autoscaling.knative.dev/minScale: "0"
         autoscaling.knative.dev/maxScale: "1"
-        networking.knative.dev/http-protocol: "enabled"
     spec:
       containers:
         - image: code4romania/ec-contest:2.0.3

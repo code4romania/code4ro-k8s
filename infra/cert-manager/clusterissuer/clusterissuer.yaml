@@ -17,9 +17,3 @@ spec:
             secretAccessKeySecretRef:
               name: acme-route53
               key: secret-access-key
-      - http01:
-          ingress:
-            class: kourier.ingress.networking.knative.dev
-        selector:
-          dnsNames:
-            - 'test.wakatech.ro'
