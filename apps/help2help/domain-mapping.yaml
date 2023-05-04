@@ -1,0 +1,32 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: servicii.helptohelpukraine.ro
+  namespace: help2help
+spec:
+  ref:
+    name: help2help
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: www.servicii.helptohelpukraine.ro
+  namespace: help2help
+spec:
+  ref:
+    name: help2help
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: help2help.heroesof.tech
+  namespace: help2help
+spec:
+  ref:
+    name: help2help
+    kind: Service
+    apiVersion: serving.knative.dev/v1
