@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: ec-contest
   namespace: ec-contest
+  annotations:
+    networking.knative.dev/http-protocol: "enabled"
 spec:
   template:
     metadata:
