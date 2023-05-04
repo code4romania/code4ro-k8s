@@ -11,6 +11,7 @@ spec:
       name: issuer-account-key
     solvers:
       - dns01:
+          cnameStrategy: Follow
           route53:
             region: eu-central-1
             accessKeyID: AKIASQDJNISK3BHPNSXP
