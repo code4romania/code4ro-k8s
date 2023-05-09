@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-agent-operator
+  namespace: argocd
+spec:
+  project: infra
+  sources:
+    - chart: grafana-agent-operator
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 0.2.15
+    - path: infra/grafana-agent
+      repoURL: https://github.com/code4romania/code4ro-k8s.git
+      targetRevision: HEAD      
+  destination:
+    namespace: grafana
+    server: https://kubernetes.default.svc
+  syncPolicy:
+      syncOptions:
+      - CreateNamespace=true

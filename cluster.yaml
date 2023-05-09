@@ -1,0 +1,55 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: code4ro-prod
+  region: eu-central-1
+  version: "1.25"
+  tags: 
+    app: code4ro-k8s-prod
+    env: production
+vpc:
+  publicAccessCIDRs: ["YOUR-IP-ADDRESS/32"]
+  clusterEndpoints:
+    publicAccess:  true
+    privateAccess: true
+
+iamIdentityMappings:
+  - arn: arn:aws:iam::172019762325:role/AWSReservedSSO_AdministratorAccess_bd5b1d6f35734daa
+    groups:
+      - system:bootstrappers
+      - system:nodes
+    username: admin
+    noDuplicateARNs: true # prevents shadowing of ARNs
+
+iam:
+  withOIDC: true   
+  serviceAccounts:
+    - metadata:
+        name: aws-load-balancer-controller
+        namespace: kube-system
+      wellKnownPolicies:
+        awsLoadBalancerController: true
+
+managedNodeGroups:
+  - name: default-nodegroup
+    instanceType: t3a.medium
+    iam:
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+        - arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess
+        - arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy # we need only this for viewing logs in Cloudwatch, the rest are there because we need the default https://eksctl.io/usage/iam-policies/#attaching-policies-by-arn
+      withAddonPolicies:
+        autoScaler: true
+        awsLoadBalancerController: true
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 6
+    volumeSize: 20
+    tags:
+      nodegroup-role: worker
+      app: code4ro-k8s-prod
+      env: prod
