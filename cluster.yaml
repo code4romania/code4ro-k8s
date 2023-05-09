@@ -9,7 +9,7 @@ metadata:
     app: code4ro-k8s-prod
     env: production
 vpc:
-  publicAccessCIDRs: ["YOUR-IP-ADDRESS/32"]
+  publicAccessCIDRs: ["192.168.0.0/16"]
   clusterEndpoints:
     publicAccess:  true
     privateAccess: true
@@ -30,9 +30,20 @@ iam:
         namespace: kube-system
       wellKnownPolicies:
         awsLoadBalancerController: true
+    - metadata:
+        name: ebs-csi-controller-sa
+        namespace: kube-system
+      wellKnownPolicies:
+        ebsCSIController: true
+      roleName: AmazonEKS_EBS_CSI_DriverRole
+      roleOnly: true
+
+addons:
+  - name: aws-ebs-csi-driver
+    serviceAccountRoleARN: arn:aws:iam::172019762325:role/AmazonEKS_EBS_CSI_DriverRole
 
 managedNodeGroups:
-  - name: default-nodegroup
+  - name: nodegroup
     instanceType: t3a.medium
     iam:
       attachPolicyARNs:
@@ -45,6 +56,7 @@ managedNodeGroups:
       withAddonPolicies:
         autoScaler: true
         awsLoadBalancerController: true
+        ebs: true
     desiredCapacity: 2
     minSize: 2
     maxSize: 6
