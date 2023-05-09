@@ -7,15 +7,15 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/maxScale: "3"
+        autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
         - image: code4romania/sunrise:v1.35
           resources:
-             requests:
+            requests:
               cpu: 100m
               memory: 241M
-             limits:
+            limits:
               cpu: 500m
               memory: 300M
           ports:

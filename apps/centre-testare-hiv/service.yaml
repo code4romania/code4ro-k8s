@@ -7,8 +7,8 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/max-scale: "3"
         autoscaling.knative.dev/min-scale: "1"
+        autoscaling.knative.dev/max-scale: "3"
     spec:
       containers:
         - image: code4romania/centre-testare-hiv:v1.9

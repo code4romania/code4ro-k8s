@@ -7,7 +7,7 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/maxScale: "6"
+        autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
         - image: code4romania/votong:v1.9

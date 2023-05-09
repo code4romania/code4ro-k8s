@@ -7,11 +7,11 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/maxScale: "3"
+        autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
         - image: code4romania/rezultate-vot-api:v1.0
-          resources:           
+          resources:
             requests:
               cpu: 100m
               memory: 240M
