@@ -4,7 +4,7 @@ kind: ClusterConfig
 metadata:
   name: code4ro-prod
   region: eu-central-1
-  version: "1.25"
+  version: "1.26"
   tags: 
     app: code4ro-k8s-prod
     env: production
@@ -59,7 +59,7 @@ managedNodeGroups:
         ebs: true
     desiredCapacity: 2
     minSize: 2
-    maxSize: 6
+    maxSize: 8
     volumeSize: 20
     tags:
       nodegroup-role: worker
