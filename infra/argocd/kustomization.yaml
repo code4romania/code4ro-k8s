@@ -2,14 +2,20 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 namespace: argocd
-bases:
-  - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml?ref=v2.6.7
-
 resources:
+  - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml?ref=v2.6.7
   - namespace.yaml
   - project.yaml
   - domain-mapping.yaml
 
-patchesStrategicMerge:
-  - argocd-cmd-params-cm.yaml
-  - argocd-cm.yaml
+patches:
+- path: argocd-cmd-params-cm.yaml
+  target:
+    version: v1
+    kind: ConfigMap
+    name: argocd-cmd-params-cm
+- path: argocd-cm.yaml
+  target:
+    version: v1
+    kind: ConfigMap
+    name: argocd-cm
