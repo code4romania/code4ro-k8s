@@ -22,9 +22,9 @@ spec:
     - name: kourier
       annotations:
         service.beta.kubernetes.io/aws-load-balancer-type: "external"
-        service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
-        service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
-        alb.ingress.kubernetes.io/group.name: main-lb
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/target-type: ip
+        alb.ingress.kubernetes.io/group.name: knative-serving.kourier
   config:
     certmanager:
       issuerRef: |

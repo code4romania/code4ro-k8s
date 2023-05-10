@@ -63,7 +63,7 @@ spec:
               "cert-manager.io/cluster-issuer": letsencrypt
               "alb.ingress.kubernetes.io/scheme": internet-facing
               "alb.ingress.kubernetes.io/target-type": ip
-              "alb.ingress.kubernetes.io/group.name": main-lb
+              "alb.ingress.kubernetes.io/group.name": knative-serving.kourier
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
