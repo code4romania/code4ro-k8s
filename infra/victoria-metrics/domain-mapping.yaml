@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: victoria-metrics-main.heroesof.tech
+  namespace: victoria-metrics
+spec:
+  ref:
+    name: victoria-metrics-victoria-metrics-auth
+    kind: Service
+    apiVersion: v1
