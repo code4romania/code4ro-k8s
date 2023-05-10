@@ -48,22 +48,22 @@ spec:
                 secretKeyRef:
                   name: victoria-metrics-auth
                   key: AUTH_TOKEN
-          ingress:
-            enabled: true
-            ingressClassName: alb
-            hosts:
-              - name: victoria-metrics-main.heroesof.tech
-                path: /
-                port: http
-            tls:
-              - secretName: web-ssl
-                hosts:
-                  - victoria-metrics-main.heroesof.tech
-            annotations:
-              "cert-manager.io/cluster-issuer": letsencrypt
-              "alb.ingress.kubernetes.io/scheme": internet-facing
-              "alb.ingress.kubernetes.io/target-type": ip
-              "alb.ingress.kubernetes.io/group.name": knative-serving.kourier
+          # ingress:
+          #   enabled: true
+          #   ingressClassName: alb
+          #   hosts:
+          #     - name: victoria-metrics-main.heroesof.tech
+          #       path: /
+          #       port: http
+          #   tls:
+          #     - secretName: web-ssl
+          #       hosts:
+          #         - victoria-metrics-main.heroesof.tech
+          #   annotations:
+          #     "cert-manager.io/cluster-issuer": letsencrypt
+          #     "alb.ingress.kubernetes.io/scheme": internet-facing
+          #     "alb.ingress.kubernetes.io/target-type": ip
+          #     "alb.ingress.kubernetes.io/group.name": knative-serving.kourier
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
