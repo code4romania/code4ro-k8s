@@ -5,6 +5,6 @@ metadata:
   namespace: victoria-metrics
 spec:
   ref:
-    name: victoria-metrics-victoria-metrics-auth
+    name: victoria-metrics-victoria-metrics-auth-custom
     kind: Service
     apiVersion: v1

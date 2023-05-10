@@ -36,8 +36,6 @@ spec:
       chart: victoria-metrics-auth
       helm:
         values: |-
-          service:
-            servicePort: 80
           config:
             users:
             - bearer_token: \%{AUTH_TOKEN}
