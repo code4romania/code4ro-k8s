@@ -9,48 +9,16 @@ spec:
     server: https://kubernetes.default.svc
   project: infra
   sources:
-    - repoURL: https://github.com/code4romania/code4ro-k8s.git
-      path: infra/victoria-metrics
-      targetRevision: HEAD  
+    - path: infra/victoria-metrics
+      repoURL: https://github.com/code4romania/code4ro-k8s.git
+      targetRevision: HEAD 
+      ref: myRepo 
     - repoURL: https://victoriametrics.github.io/helm-charts
       targetRevision: 0.14.17
       chart: victoria-metrics-k8s-stack
       helm:
-        values: |-
-          fullnameOverride: "vm-stack"
-          alertmanager:
-            enabled: false
-          grafana:
-            enabled: trued
-          vmsingle:
-            retentionPeriod: 1
-            #   scrape:
-            #     enabled: true
-            #     configMap: ""
-            #     config:
-            #       global:
-            #         scrape_interval: 30s
-            #       scrape_configs:
-            #         - job_name: victoriametrics
-            #           static_configs:
-            #             - targets: [ "localhost:8428" ]
-    - repoURL: https://victoriametrics.github.io/helm-charts
-      targetRevision: 0.2.80
-      chart: victoria-metrics-auth
-      helm:
-        values: |-
-          config:
-            users:
-            - bearer_token: \%{AUTH_TOKEN}
-              url_prefix: "http://vmsingle-vm-stack:8429"
-              headers:
-              - "X-Scope-OrgID: code4ro"
-          env:
-            - name: AUTH_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: victoria-metrics-auth
-                  key: AUTH_TOKEN
+        valueFiles:
+          - $myRepo/infra/victoria-metrics/helm-chart-values/values.yaml      
   syncPolicy:
     syncOptions:
     - CreateNamespace=true

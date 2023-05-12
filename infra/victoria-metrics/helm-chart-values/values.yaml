@@ -1,0 +1,66 @@
+fullnameOverride: "vm-stack"
+alertmanager:
+  enabled: false
+vmsingle:
+  retentionPeriod: 1
+  
+grafana:
+  admin:
+    existingSecret: grafana-secret
+  envFromSecret: grafana-secret
+  persistence:
+    enabled: true
+
+  grafana.ini:
+    server:
+      root_url: https://metrics.code4.ro
+    users:
+      allow_sign_up: false
+      allow_org_create: false
+    log:
+      mode: console
+      level: error
+    auth.github:
+        enabled: true
+        client_id: 123a
+        client_secret: ${github-client-secret}
+        allowed_organizations: code4romania
+        skip_org_role_sync: true
+      
+  # alerting:
+  #   contactpoints.yaml:
+  #     apiVersion: 1
+  #     contactPoints:
+  #       - orgId: 1
+  #         name: Code4Ro Slack
+  #         receivers:
+  #           - uid: XTCAjgR4z
+  #             type: slack
+  #             settings:
+  #               recipient: aws-alerts
+  #               token: xxx
+  #               username: grafana_bot
+  #               # <string>
+  #               icon_emoji: heart
+  #               # <string>
+  #               icon_url: https://icon_url
+  #               # <string>
+  #               mentionUsers: user_1,user_2
+  #               # <string>
+  #               mentionGroups: group_1,group_2
+  #               # <string> options: here, channel
+  #               mentionChannel: here
+  #               # <string> Optionally provide a Slack incoming webhook URL for sending messages, in this case the token isn't necessary
+  #               url: https://some_webhook_url
+  #               title: |
+  #                 [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }} for {{ .CommonLabels.job }}      {{- if gt (len .CommonLabels) (len .GroupLabels) -}}        {{" "}}(        {{- with .CommonLabels.Remove .GroupLabels.Names }}          {{- range $index, $label := .SortedPairs -}}            {{ if $index }}, {{ end }}            {{- $label.Name }}="{{ $label.Value -}}"          {{- end }}        {{- end -}}        )      {{- end }}
+  #               text: |
+  #                    {{ range .Alerts -}}
+                        # *Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
+
+                        # *Description:* {{ .Annotations.description }}
+
+                        # *Details:*
+                        #   {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+                        #   {{ end }} 
+                        # {{ end }} 
