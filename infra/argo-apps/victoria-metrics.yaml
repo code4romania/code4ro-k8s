@@ -13,6 +13,22 @@ spec:
       path: infra/victoria-metrics
       targetRevision: HEAD  
     - repoURL: https://victoriametrics.github.io/helm-charts
+      targetRevision: 0.5.23
+      chart: victoria-metrics-alert
+      helm:
+        values: |-
+          server:
+            extraArgs:
+              rule: []
+            datasource:
+              url: http://victoria-metrics-victoria-metrics-single-server:8428
+            remote: 
+              write:
+                url: http://victoria-metrics-victoria-metrics-single-server:8428
+            remote:
+              read:
+                url: http://victoria-metrics-victoria-metrics-single-server:8428
+    - repoURL: https://victoriametrics.github.io/helm-charts
       targetRevision: 0.8.59
       chart: victoria-metrics-single
       helm:
@@ -21,6 +37,7 @@ spec:
             extraArgs:
               opentsdbHTTPListenAddr: ":4242"
               retentionPeriod: 1
+              # vmalert.proxyURL: http://vmalert-%s.%s.svc:8080
             scrape:
               enabled: true
               configMap: ""
