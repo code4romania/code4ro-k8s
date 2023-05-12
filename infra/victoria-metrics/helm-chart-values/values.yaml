@@ -13,6 +13,7 @@ grafana:
 
   grafana.ini:
     server:
+      domain: metrics.code4.ro
       root_url: https://metrics.code4.ro
     users:
       allow_sign_up: false
