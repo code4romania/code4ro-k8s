@@ -9,8 +9,6 @@ kubeEtcd:
   enabled: false
 kubeScheduler:
   enabled: false
-vmagent:
-  enabled: false
 grafana:
   vmServiceScrape:
     enabled: false
