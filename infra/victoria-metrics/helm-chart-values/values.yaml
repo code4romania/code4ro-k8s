@@ -11,7 +11,7 @@ kubeScheduler:
   enabled: false
 prometheus-node-exporter:
   vmServiceScrape:
-    enabled: true
+    enabled: false
 vmagent:
   enabled: true
 grafana:
