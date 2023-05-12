@@ -18,16 +18,30 @@ spec:
       helm:
         values: |-
           server:
-            extraArgs:
-              rule: []
+            config:
+              # We cannot create this Helm Chart without any alert groups
+              alerts:
+                groups:
+                  - name: common
+                    rules:
+                      - alert: instanceIsDown
+                        for: 1m
+                        expr: up == 0
+                        labels:
+                          severity: critical
+                        annotations:
+                          summary: "instance: is not up"
+                          description: "Job instance: is not up for the last 1 minute"
             datasource:
               url: http://victoria-metrics-victoria-metrics-single-server:8428
             remote: 
               write:
                 url: http://victoria-metrics-victoria-metrics-single-server:8428
-            remote:
               read:
                 url: http://victoria-metrics-victoria-metrics-single-server:8428
+            notifier:
+              alertmanager:
+                url: https://alertmanager-eu-west-0.grafana.net
     - repoURL: https://victoriametrics.github.io/helm-charts
       targetRevision: 0.8.59
       chart: victoria-metrics-single
@@ -37,7 +51,7 @@ spec:
             extraArgs:
               opentsdbHTTPListenAddr: ":4242"
               retentionPeriod: 1
-              # vmalert.proxyURL: http://vmalert-%s.%s.svc:8080
+              vmalert.proxyURL: http://victoria-metrics-victoria-metrics-alert-server:8880
             scrape:
               enabled: true
               configMap: ""
