@@ -1,14 +1,14 @@
 fullnameOverride: "vm-stack"
-alertmanager:
-  enabled: false
 vmsingle:
   retentionPeriod: 1
+alertmanager:
+  enabled: false
 coreDns:
   enabled: false
 kubeEtcd:
   enabled: false
 kubeScheduler:
-  enabled: true
+  enabled: false
 prometheus-node-exporter:
   vmServiceScrape:
     enabled: true
