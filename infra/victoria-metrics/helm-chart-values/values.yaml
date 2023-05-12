@@ -16,7 +16,7 @@ vmagent:
   enabled: true
 grafana:
   vmServiceScrape:
-    enabled: true
+    enabled: false
   admin:
     existingSecret: grafana-secret
   envFromSecret: grafana-secret
