@@ -1,0 +1,154 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: oncologie-pediatrica
+  namespace: oncologie-pediatrica
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/max-scale: "3"
+        autoscaling.knative.dev/min-scale: "1"
+    spec:
+      containers:
+        - image: code4romania/oncologie-pediatrica:1.6.1
+          resources:
+            limits:
+              cpu: 300m
+              memory: 2Gi
+          ports:
+            - containerPort: 8070
+          env:
+            - name: ENVIRONMENT
+              value: "production"
+            - name: DEBUG
+              value: "no"
+            - name: APP_PORT
+              value: "8070"
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: secret_key
+            - name: RUN_MIGRATION
+              value: "yes"
+            - name: RUN_COMPILEMESSAGES
+              value: "yes"
+            - name: RUN_SEED_DATA
+              value: "yes"
+            - name: RUN_COLLECT_STATIC
+              value: "yes"
+            - name: RUN_DEV_SERVER
+              value: "no"
+            - name: DJANGO_SETTINGS_MODULE
+              value: "oncoped_site.settings.production"
+            - name: ALLOWED_HOSTS
+              value: ".ukrainechildcancerhelp.ro"
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: database_user
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: database_password
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: database_name
+            - name: DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: database_host
+            - name: DATABASE_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: database_port
+            - name: GUNICORN_WORKERS
+              value: "10"
+            - name: SUPER_ADMIN_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: super_admin_password
+            - name: SUPER_ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: super_admin_email
+            - name: SUPER_ADMIN_FIRST_NAME
+              value: "Super"
+            - name: SUPER_ADMIN_LAST_NAME
+              value: "Admin"
+            - name: EMAIL_USE_TLS
+              value: "yes"
+            - name: EMAIL_USE_SSL
+              value: "no"
+            - name: FROM_EMAIL
+              value: "noreply@ukrainechildcancerhelp.ro"
+            - name: EMAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: email_host
+            - name: EMAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: email_port
+            - name: EMAIL_HOST_USER
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: email_host_user
+            - name: EMAIL_HOST_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: email_host_password
+            - name: ENABLE_SLACK_LOGGING
+              value: "yes"
+            - name: SLACK_LOGGING_COLOR
+              value: "1D49A7"
+            - name: SLACK_WEBHOOK_URL
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: slack_webhook_url
+            - name: RECAPTCHA_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: recapcha_public_key
+            - name: RECAPTCHA_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: recapcha_private_key
+            - name: USE_S3
+              value: "yes"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: aws_access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: aws_secret_access_key
+            - name: AWS_STORAGE_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: aws_bucket_name
+            - name: AWS_S3_REGION_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: oncologie-pediatrica-secret
+                  key: aws_region_name

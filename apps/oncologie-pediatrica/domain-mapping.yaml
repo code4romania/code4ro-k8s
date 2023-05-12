@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: app.ukrainechildcancerhelp.ro
+  namespace: oncologie-pediatrica
+spec:
+  ref:
+    name: oncologie-pediatrica
+    kind: Service
+    apiVersion: serving.knative.dev/v1
