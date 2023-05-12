@@ -14,8 +14,8 @@ data:
       configs:
       - name: integrations
         remote_write:
-        - url: http://victoria-metrics-victoria-metrics-single-server.victoria-metrics.svc.cluster.local:8428/api/v1/write
-          scrape_configs:
+        - url: http://vmsingle-victoria-metrics-victoria-metrics-k8s-stack.victoria-metrics.svc.cluster.local:8429/api/v1/write
+        scrape_configs:
         - bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
           job_name: integrations/kubernetes/cadvisor
           kubernetes_sd_configs:
@@ -220,23 +220,3 @@ data:
               source_labels:
                 - __meta_kubernetes_pod_node_name
               target_label: instance
-    
-    integrations:
-      eventhandler:
-        cache_path: /var/lib/agent/eventhandler.cache
-        logs_instance: integrations
-    logs:
-      configs:
-      - name: integrations
-        clients:
-        - url: https://logs-prod-eu-west-0.grafana.net/loki/api/v1/push
-          basic_auth:
-            username: 147853
-            password: REPLACE_WITH_API_TOKEN
-          external_labels:
-            cluster: code4ro-main-cluster
-            job: integrations/kubernetes/eventhandler
-        positions:
-          filename: /tmp/positions.yaml
-        target_config:
-          sync_period: 10s
