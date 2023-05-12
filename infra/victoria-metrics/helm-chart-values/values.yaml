@@ -6,7 +6,7 @@ vmsingle:
 coreDns:
   enabled: false
 kubeEtcd:
-  enabled: true
+  enabled: false
 kubeScheduler:
   enabled: true
 prometheus-node-exporter:
