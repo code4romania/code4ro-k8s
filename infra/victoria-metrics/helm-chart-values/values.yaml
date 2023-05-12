@@ -9,11 +9,8 @@ kubeEtcd:
   enabled: false
 kubeScheduler:
   enabled: false
-prometheus-node-exporter:
-  vmServiceScrape:
-    enabled: false
 vmagent:
-  enabled: true
+  enabled: false
 grafana:
   vmServiceScrape:
     enabled: false
