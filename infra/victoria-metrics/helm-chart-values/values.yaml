@@ -3,8 +3,20 @@ alertmanager:
   enabled: false
 vmsingle:
   retentionPeriod: 1
-  
+coreDns:
+  enabled: false
+kubeEtcd:
+  enabled: true
+kubeScheduler:
+  enabled: true
+prometheus-node-exporter:
+  vmServiceScrape:
+    enabled: true
+vmagent:
+  enabled: true
 grafana:
+  vmServiceScrape:
+    enabled: true
   admin:
     existingSecret: grafana-secret
   envFromSecret: grafana-secret
