@@ -17,16 +17,11 @@ spec:
       chart: victoria-metrics-k8s-stack
       helm:
         values: |-
-          prometheus-node-exporter:
-            enabled: false
-          kube-state-metrics:
-            enabled: false
+          fullnameOverride: "vm-stack"
           alertmanager:
             enabled: false
-          defaultDashboardsEnabled: false
-          experimentalDashboardsEnabled: false
           grafana:
-            enabled: false
+            enabled: trued
           vmsingle:
             retentionPeriod: 1
             #   scrape:
@@ -47,7 +42,7 @@ spec:
           config:
             users:
             - bearer_token: \%{AUTH_TOKEN}
-              url_prefix: "http://vmsingle-victoria-metrics-victoria-metrics-k8s-stack:8429"
+              url_prefix: "http://vmsingle-vm-stack:8429"
               headers:
               - "X-Scope-OrgID: code4ro"
           env:

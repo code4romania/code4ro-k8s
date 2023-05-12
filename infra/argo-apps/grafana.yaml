@@ -6,12 +6,6 @@ metadata:
 spec:
   project: infra
   sources:
-    - chart: kube-state-metrics
-      repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 5.6.2
-    - chart: prometheus-node-exporter
-      repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 4.17.2
     - path: infra/grafana-agent
       repoURL: https://github.com/code4romania/code4ro-k8s.git
       targetRevision: HEAD      

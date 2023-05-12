@@ -14,7 +14,7 @@ data:
       configs:
       - name: integrations
         remote_write:
-        - url: http://vmsingle-victoria-metrics-victoria-metrics-k8s-stack.victoria-metrics.svc.cluster.local:8429/api/v1/write
+        - url: http://vmsingle-vm-stack.victoria-metrics.svc.cluster.local:8429/api/v1/write
         scrape_configs:
         - bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
           job_name: integrations/kubernetes/cadvisor
