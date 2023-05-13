@@ -1,4 +1,10 @@
 fullnameOverride: "vm-stack"
+
+kube-state-metrics:
+  metricLabelsAllowlist:
+    - pods=[*]
+    - deployments=[app.kubernetes.io/name,app.kubernetes.io/component,app.kubernetes.io/instance]
+
 vmsingle:
   retentionPeriod: 1
 alertmanager:
