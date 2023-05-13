@@ -1,28 +1,10 @@
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
 metadata:
-  labels:
-    app: controller
-  name: controller
-  namespace: knative-serving
-spec:
-  endpoints:
-  - interval: 30s
-    port: http-metrics
-  namespaceSelector:
-    matchNames:
-    - knative-serving
-  selector:
-    matchLabels:
-      app: controller
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
+  namespace: victoria-metrics
   labels:
     app: autoscaler
   name: autoscaler
-  namespace: knative-serving
 spec:
   endpoints:
   - interval: 30s
@@ -34,31 +16,31 @@ spec:
     matchLabels:
       app: autoscaler
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
 metadata:
+  namespace: victoria-metrics
   labels:
-    app: activator
-  name: activator
-  namespace: knative-serving
+    app: controller
+  name: controller
 spec:
   endpoints:
-  - interval: 30s
-    port: http-metrics
+    - interval: 30s
+      port: http-metrics
   namespaceSelector:
-    matchNames:
-    - knative-serving
+      matchNames:
+        - knative-serving
   selector:
     matchLabels:
-      app: activator
+      app: controller
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
 metadata:
+  namespace: victoria-metrics
   labels:
     app: webhook
   name: webhook
-  namespace: knative-serving
 spec:
   endpoints:
   - interval: 30s
@@ -69,3 +51,21 @@ spec:
   selector:
     matchLabels:
       app: webhook
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
+metadata:
+  namespace: victoria-metrics
+  labels:
+    app: activator
+  name: activator
+spec:
+  endpoints:
+  - interval: 30s
+    port: http-metrics
+  namespaceSelector:
+    matchNames:
+    - knative-serving
+  selector:
+    matchLabels:
+      app: activator
