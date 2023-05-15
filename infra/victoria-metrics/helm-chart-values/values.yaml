@@ -34,7 +34,6 @@ grafana:
         hosts:
           - metrics.code4.ro
     annotations:
-      "cert-manager.io/cluster-issuer": "letsencrypt"
       "alb.ingress.kubernetes.io/scheme": internet-facing
       "alb.ingress.kubernetes.io/target-type": ip
       "alb.ingress.kubernetes.io/group.name": main-alb
