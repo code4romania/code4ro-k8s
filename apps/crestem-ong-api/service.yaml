@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/maxScale: "1"
     spec:
       containers:
-        - image: code4romania/crestem-ong-api:1.0.4
+        - image: code4romania/crestem-ong-api:1.0.5
           resources:
             limits:
               cpu: 500m
