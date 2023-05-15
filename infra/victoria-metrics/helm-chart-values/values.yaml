@@ -24,6 +24,21 @@ grafana:
   persistence:
     enabled: true
 
+  ingress:
+    enabled: true
+    ingressClassName: alb
+    hosts:
+      - metrics.code4.ro
+    tls:
+      - secretName: web-ssl
+        hosts:
+          - metrics.code4.ro
+    annotations:
+      "cert-manager.io/cluster-issuer": "letsencrypt"
+      "alb.ingress.kubernetes.io/scheme": internet-facing
+      "alb.ingress.kubernetes.io/target-type": ip
+      "alb.ingress.kubernetes.io/group.name": main-alb
+
   grafana.ini:
     server:
       domain: metrics.code4.ro
