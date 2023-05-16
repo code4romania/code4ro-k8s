@@ -10,8 +10,6 @@ vmsingle:
     retentionPeriod: "1"
     extraArgs:
       maxLabelsPerTimeseries: "40"
-alertmanager:
-  enabled: false
 coreDns:
   enabled: false
 kubeEtcd:
