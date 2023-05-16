@@ -21,42 +21,6 @@ kind: VMServiceScrape
 metadata:
   namespace: victoria-metrics
   labels:
-    app: controller
-  name: controller
-spec:
-  endpoints:
-    - interval: 30s
-      port: http-metrics
-  namespaceSelector:
-      matchNames:
-        - knative-serving
-  selector:
-    matchLabels:
-      app: controller
----
-apiVersion: operator.victoriametrics.com/v1beta1
-kind: VMServiceScrape
-metadata:
-  namespace: victoria-metrics
-  labels:
-    app: webhook
-  name: webhook
-spec:
-  endpoints:
-  - interval: 30s
-    port: http-metrics
-  namespaceSelector:
-    matchNames:
-    - knative-serving
-  selector:
-    matchLabels:
-      app: webhook
----
-apiVersion: operator.victoriametrics.com/v1beta1
-kind: VMServiceScrape
-metadata:
-  namespace: victoria-metrics
-  labels:
     app: activator
   name: activator
 spec:
