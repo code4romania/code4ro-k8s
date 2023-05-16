@@ -5,10 +5,6 @@ kube-state-metrics:
     - pods=[*]
     - deployments=[app.kubernetes.io/name,app.kubernetes.io/component,app.kubernetes.io/instance]
 
-defaultRules:
-  rules:
-    kubernetesSystem: false
-
 vmsingle:
   spec:
     retentionPeriod: "1"
