@@ -25,6 +25,10 @@ grafana:
   persistence:
     enabled: true
 
+defaultRules:
+  rules:
+    kubernetesSystem: false
+
   ingress:
     enabled: true
     ingressClassName: alb
