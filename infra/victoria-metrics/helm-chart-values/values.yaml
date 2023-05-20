@@ -13,7 +13,16 @@ vmsingle:
     resources:
       requests:
         memory: 1Gi
-        limit: 1.5Gi
+      limits: 
+        memory: 1.5Gi
+
+vmagent:
+  spec:
+    resources:
+      requests:
+        cpu: 60m
+      limits: 
+        memory: 200M
 
 kubeControllerManager:
   enabled: false
