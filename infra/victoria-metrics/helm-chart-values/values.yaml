@@ -13,6 +13,7 @@ vmsingle:
     resources:
       requests:
         memory: 1Gi
+        limit: 1.5Gi
 
 kubeControllerManager:
   enabled: false
