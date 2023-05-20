@@ -10,6 +10,9 @@ vmsingle:
     retentionPeriod: "1"
     extraArgs:
       maxLabelsPerTimeseries: "40"
+    resources:
+      requests:
+        memory: 1Gi
 
 kubeControllerManager:
   enabled: false
