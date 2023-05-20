@@ -7,18 +7,18 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/minScale: "1"
-        autoscaling.knative.dev/maxScale: "1"
+        autoscaling.knative.dev/min-scale: "1"
+        autoscaling.knative.dev/max-scale: "1"
     spec:
       containers:
         - image: code4romania/vieti-pierdute-api:v1.16
           resources:
             requests:
-              cpu: 50m
-              memory: 64M
+              cpu: 10m
+              memory: 100M
             limits:
               cpu: 250m
-              memory: 128M
+              memory: 500M
           ports:
             - containerPort: 1337
           env:

@@ -8,10 +8,14 @@ spec:
     metadata:
       annotations:
         autoscaling.knative.dev/max-scale: "1"
+        autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
         - image: code4romania/votong:v1.14
           resources:
+            requests:
+              cpu: 10m
+              memory: 500M              
             limits:
               cpu: 250m
               memory: 1536Mi

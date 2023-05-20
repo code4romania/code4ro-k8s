@@ -13,9 +13,12 @@ spec:
       containers:
         - image: code4romania/sens-pozitiv:1.2.2
           resources:
+            requests:
+              cpu: 10m
+              memory: 800M          
             limits:
               cpu: 300m
-              memory: 2Gi
+              memory: 2500M
           ports:
             - containerPort: 8070
           env:

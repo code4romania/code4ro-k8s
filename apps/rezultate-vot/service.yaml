@@ -7,17 +7,18 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/maxScale: "1"
+        autoscaling.knative.dev/max-scale: "1"
+        autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
         - image: code4romania/rezultate-vot-api:v1.0
           resources:
             requests:
               cpu: 100m
-              memory: 240M
+              memory: 140M
             limits:
               cpu: 500m
-              memory: 350M
+              memory: 500M
           ports:
             - containerPort: 80
           env:

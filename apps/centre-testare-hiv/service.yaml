@@ -14,11 +14,11 @@ spec:
         - image: code4romania/centre-testare-hiv:v1.9
           resources:
             requests:
-              cpu: 100m
-              memory: 250M
+              cpu: 10m
+              memory: 800M
             limits:
               cpu: 250m
-              memory: 1536Mi
+              memory: 2Gi
           ports:
             - containerPort: 8050
           env:

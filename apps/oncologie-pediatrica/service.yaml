@@ -13,9 +13,12 @@ spec:
       containers:
         - image: code4romania/oncologie-pediatrica:1.6.1
           resources:
+            requests:
+                cpu: 10m
+                memory: 900M
             limits:
               cpu: 300m
-              memory: 2Gi
+              memory: 2500M
           ports:
             - containerPort: 8070
           env:
