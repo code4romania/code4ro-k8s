@@ -31,7 +31,7 @@ Encrypt secrets and store them on git. Below is an example of how to create secr
 echo -n bar | kubectl create secret generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o yaml >secret.yaml
 
 # This is the important bit:
-kubeseal --format yaml <secret.yaml >sealed-secret.yaml
+kubeseal --controller-namespace sealed-secrets --controller-name sealed-secrets --format yaml <secret.yaml >sealed-secret.yaml
 
 # At this point sealed-secret.yaml is safe to upload to Github
 
