@@ -4,6 +4,14 @@ kube-state-metrics:
   metricLabelsAllowlist:
     - pods=[*]
     - deployments=[app.kubernetes.io/name,app.kubernetes.io/component,app.kubernetes.io/instance]
+  nodeSelector: 
+    nodegroup-role: spot
+  tolerations:
+    - key: "nodegroup-role"
+      operator: "Equal"
+      value: "spot"
+      effect: "NoSchedule"
+
 
 vmsingle:
   spec:
@@ -15,6 +23,13 @@ vmsingle:
         memory: 1Gi
       limits: 
         memory: 1.5Gi
+    nodeSelector: 
+      nodegroup-role: spot
+    tolerations:
+      - key: "nodegroup-role"
+        operator: "Equal"
+        value: "spot"
+        effect: "NoSchedule"
 
 vmagent:
   spec:
@@ -23,6 +38,13 @@ vmagent:
         cpu: 60m
       limits: 
         memory: 200M
+    nodeSelector: 
+      nodegroup-role: spot
+    tolerations:
+      - key: "nodegroup-role"
+        operator: "Equal"
+        value: "spot"
+        effect: "NoSchedule"
 
 kubeControllerManager:
   enabled: false
@@ -40,6 +62,14 @@ grafana:
   envFromSecret: grafana-secret
   persistence:
     enabled: true
+
+  nodeSelector: 
+    nodegroup-role: spot
+  tolerations:
+    - key: "nodegroup-role"
+      operator: "Equal"
+      value: "spot"
+      effect: "NoSchedule"
 
   ingress:
     enabled: true
@@ -73,6 +103,7 @@ grafana:
         client_secret: ${github-client-secret}
         allowed_organizations: code4romania
         skip_org_role_sync: true
+
       
   # alerting:
   #   contactpoints.yaml:

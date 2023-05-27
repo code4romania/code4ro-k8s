@@ -65,3 +65,31 @@ managedNodeGroups:
       nodegroup-role: worker
       app: code4ro-k8s-prod
       env: prod
+
+  - name: spot-pool
+    instanceTypes: ["t3a.medium", "t3a.small"]
+    spot: true
+    iam:
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+        - arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess
+        - arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy # we need only this for viewing logs in Cloudwatch, the rest are there because we need the default https://eksctl.io/usage/iam-policies/#attaching-policies-by-arn
+      withAddonPolicies:
+        autoScaler: true
+        awsLoadBalancerController: true
+        ebs: true
+    desiredCapacity: 0
+    minSize: 0
+    maxSize: 3
+    volumeSize: 20
+    taints:
+      - key: nodegroup-role
+        value: spot
+        effect: NoSchedule
+    tags:
+      nodegroup-role: spot
+      app: code4ro-k8s-prod
+      env: prod
