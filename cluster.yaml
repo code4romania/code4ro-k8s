@@ -85,6 +85,7 @@ managedNodeGroups:
     minSize: 0
     maxSize: 3
     volumeSize: 20
+    labels: { nodegroup-role: spot, autoscaling: enabled }
     taints:
       - key: nodegroup-role
         value: spot
