@@ -45,6 +45,7 @@ addons:
 managedNodeGroups:
   - name: nodegroup
     instanceType: t3a.medium
+    availabilityZones: ["eu-central-1a"]
     iam:
       attachPolicyARNs:
         - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
@@ -67,7 +68,8 @@ managedNodeGroups:
       env: prod
 
   - name: spot-pool
-    instanceTypes: ["t3a.medium", "t3a.small"]
+    instanceTypes: ["t3a.medium", "t3a.small", "t3.medium", "t3.small"]
+    availabilityZones: ["eu-central-1a"]
     spot: true
     iam:
       attachPolicyARNs:
@@ -81,7 +83,7 @@ managedNodeGroups:
         autoScaler: true
         awsLoadBalancerController: true
         ebs: true
-    desiredCapacity: 0
+    desiredCapacity: 1
     minSize: 0
     maxSize: 3
     volumeSize: 20
