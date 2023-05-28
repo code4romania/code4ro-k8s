@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+data:
+  nginx.conf: |
+    worker_processes 4;
+    pid /run/nginx.pid;
+
+    events {
+      worker_connections 768;
+      # multi_accept on;
+    }
+
+    http {
+        # General Settings
+        gzip  on;
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay off;
+        server_tokens off;
+        # include mime.types;
+        keepalive_timeout 5;
+        default_type  application/octet-stream;
+
+        server {
+          server_name ~^(?!www\.)(?<domain>.+)$;
+          location /health {
+            access_log off;
+            return 200;
+            add_header Content-Type text/plain;
+          }
+        }
+
+        server {
+          listen 80;
+          server_name ~^www\.(?<domain>.+)$;
+
+          location /health {
+            access_log off;
+            return 200;
+            add_header Content-Type text/plain;
+          }
+
+          return  301 $scheme://$domain$request_uri;
+        }
+    }

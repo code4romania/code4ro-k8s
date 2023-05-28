@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-www-redirect
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: apps/nginx-www-redirect
+    repoURL: https://github.com/code4romania/code4ro-k8s.git
+    targetRevision: HEAD
+  destination:
+    namespace: nginx-www-redirect
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - CreateNamespace=true
