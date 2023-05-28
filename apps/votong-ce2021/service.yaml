@@ -9,6 +9,13 @@ spec:
       annotations:
         autoscaling.knative.dev/max-scale: "1"
     spec:
+      nodeSelector: 
+        nodegroup-role: spot
+      tolerations:
+        - key: "nodegroup-role"
+          operator: "Equal"
+          value: "spot"
+          effect: "NoSchedule"
       containers:
         - image: code4romania/votong:v1.9
           resources:

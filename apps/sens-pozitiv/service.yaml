@@ -10,6 +10,13 @@ spec:
         autoscaling.knative.dev/max-scale: "3"
         autoscaling.knative.dev/min-scale: "1"
     spec:
+      nodeSelector: 
+        nodegroup-role: spot
+      tolerations:
+        - key: "nodegroup-role"
+          operator: "Equal"
+          value: "spot"
+          effect: "NoSchedule"
       containers:
         - image: code4romania/sens-pozitiv:1.2.2
           resources:
