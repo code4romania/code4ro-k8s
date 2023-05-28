@@ -27,6 +27,9 @@ spec:
         service.beta.kubernetes.io/aws-load-balancer-attributes: deletion_protection.enabled=true
 
   config:
+    features:
+      kubernetes.podspec-tolerations: 'Allowed'
+      kubernetes.podspec-nodeselector: 'Allowed'
     certmanager:
       issuerRef: |
         kind: ClusterIssuer
