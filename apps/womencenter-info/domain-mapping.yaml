@@ -13,9 +13,9 @@ apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
 metadata:
   name: www.womencenter.info
-  namespace: womencenter-info
+  namespace: nginx-www-redirect
 spec:
   ref:
-    name: womencenter-info
+    name: nginx-www-redirect
     kind: Service
-    apiVersion: serving.knative.dev/v1
+    apiVersion: v1

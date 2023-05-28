@@ -13,9 +13,9 @@ apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
 metadata:
   name: www.crestem.ong
-  namespace: crestem-ong
+  namespace: nginx-www-redirect
 spec:
   ref:
-    name: crestem-ong
+    name: nginx-www-redirect
     kind: Service
-    apiVersion: serving.knative.dev/v1
+    apiVersion: v1

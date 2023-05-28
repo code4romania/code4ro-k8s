@@ -13,12 +13,12 @@ apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
 metadata:
   name: www.esense.ro
-  namespace: esense
+  namespace: nginx-www-redirect
 spec:
   ref:
-    name: esense
+    name: nginx-www-redirect
     kind: Service
-    apiVersion: serving.knative.dev/v1
+    apiVersion: v1
 ---
 apiVersion: serving.knative.dev/v1alpha1
 kind: DomainMapping
