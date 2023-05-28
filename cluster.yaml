@@ -4,7 +4,7 @@ kind: ClusterConfig
 metadata:
   name: code4ro-prod
   region: eu-central-1
-  version: "1.26"
+  version: "1.27"
   tags: 
     app: code4ro-k8s-prod
     env: production
