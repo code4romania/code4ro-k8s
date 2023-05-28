@@ -33,7 +33,6 @@ data:
         }
 
         server {
-          listen 80;
           server_name ~^www\.(?<domain>.+)$;
 
           location /health {
