@@ -68,7 +68,7 @@ managedNodeGroups:
       env: prod
 
   - name: spot-pool
-    instanceTypes: ["t3a.medium", "t3a.small", "t3.medium", "t3.small"]
+    instanceTypes: ["t3a.medium", "t3.medium"]
     availabilityZones: ["eu-central-1a"]
     spot: true
     iam:

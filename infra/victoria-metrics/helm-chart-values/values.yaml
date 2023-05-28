@@ -54,7 +54,7 @@ kubeEtcd:
   enabled: false
 kubeScheduler:
   enabled: false
-vmalert:
+alertmanager:
   nodeSelector: 
     nodegroup-role: spot
   tolerations:
