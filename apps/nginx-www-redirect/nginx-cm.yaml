@@ -4,6 +4,7 @@ metadata:
   name: nginx-conf
 data:
   nginx.conf: |
+    user nginx;
     worker_processes 4;
     pid /run/nginx.pid;
 
@@ -13,34 +14,24 @@ data:
     }
 
     http {
-        # General Settings
-        gzip  on;
-        sendfile on;
-        tcp_nopush on;
-        tcp_nodelay off;
-        server_tokens off;
-        # include mime.types;
-        keepalive_timeout 5;
-        default_type  application/octet-stream;
 
-        server {
-          server_name ~^(?!www\.)(?<domain>.+)$;
-          location /health {
-            access_log off;
-            return 200;
-            add_header Content-Type text/plain;
-          }
+      map $http_k_original_host $redirect_value {
+          default                    "";
+          "~^.{4}(?<suffix>.+)$"  $suffix;
+      }
+
+      server {
+        listen 3000;
+        location /health {
+          access_log off;
+          return 200;
+          add_header Content-Type text/plain;
         }
+      }
 
-        server {
-          server_name ~^www\.(?<domain>.+)$;
-
-          location /health {
-            access_log off;
-            return 200;
-            add_header Content-Type text/plain;
-          }
-
-          return  301 $scheme://$domain$request_uri;
-        }
+      server {
+        listen 80;
+        server_name ~^www\.(?<domain>.+)$;
+        return 301 $scheme://$redirect_value$request_uri;
+      }
     }
