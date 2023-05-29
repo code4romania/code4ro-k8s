@@ -12,3 +12,19 @@ patches:
       version: v1
       kind: ConfigMap
       name: config-certmanager
+      
+  - patch: |-
+      - op: replace
+        path: /spec/template/metadata/annotations/cluster-autoscaler.kubernetes.io~1safe-to-evict
+        value: "true"
+    target:
+      kind: Deployment
+      name: operator-webhook
+
+  - patch: |-
+      - op: replace
+        path: /spec/template/metadata/annotations/cluster-autoscaler.kubernetes.io~1safe-to-evict
+        value: "true"
+    target:
+      kind: Deployment
+      name: net-certmanager-webhook
