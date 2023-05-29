@@ -19,3 +19,19 @@ patches:
     version: v1
     kind: ConfigMap
     name: argocd-cm
+- patch: |-
+      kind: not-important
+      metadata:
+        name: not-important
+      spec:
+        template:
+          spec:
+            nodeSelector: 
+              nodegroup-role: spot
+            tolerations:
+              - key: "nodegroup-role"
+                operator: "Equal"
+                value: "spot"
+                effect: "NoSchedule"
+  target:
+    kind: (StatefulSet|Deployment)
