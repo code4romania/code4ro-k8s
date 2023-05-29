@@ -27,7 +27,7 @@ iam:
   serviceAccounts:
     - metadata:
         name: aws-load-balancer-controller
-        namespace: kube-system
+        namespace: aws-load-balancer
       wellKnownPolicies:
         awsLoadBalancerController: true
     - metadata:

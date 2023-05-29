@@ -17,5 +17,5 @@ spec:
     repoURL: https://aws.github.io/eks-charts
     targetRevision: 1.5.3
   destination:
-    namespace: kube-system
+    namespace: aws-load-balancer
     server: https://kubernetes.default.svc
