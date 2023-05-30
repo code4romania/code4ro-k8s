@@ -10,19 +10,19 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
         autoscaling.knative.dev/max-scale: "1"
     spec:
-      nodeSelector: 
-        nodegroup-role: spot
-      tolerations:
-        - key: "nodegroup-role"
-          operator: "Equal"
-          value: "spot"
-          effect: "NoSchedule"
+      # nodeSelector:
+      #   nodegroup-role: spot
+      # tolerations:
+      #   - key: "nodegroup-role"
+      #     operator: "Equal"
+      #     value: "spot"
+      #     effect: "NoSchedule"
       containers:
         - image: code4romania/website-factory:1.4.7
           resources:
             requests:
               cpu: 10m
-              memory: 100M          
+              memory: 100M
             limits:
               cpu: 500m
               memory: 256M
