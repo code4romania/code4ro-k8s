@@ -10,13 +10,13 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
         autoscaling.knative.dev/max-scale: "1"
     spec:
-      nodeSelector: 
-        nodegroup-role: spot
-      tolerations:
-        - key: "nodegroup-role"
-          operator: "Equal"
-          value: "spot"
-          effect: "NoSchedule"
+      # nodeSelector:
+      #   nodegroup-role: spot
+      # tolerations:
+      #   - key: "nodegroup-role"
+      #     operator: "Equal"
+      #     value: "spot"
+      #     effect: "NoSchedule"
       containers:
         - image: code4romania/fii-aliat-api:1.0.4
           resources:
