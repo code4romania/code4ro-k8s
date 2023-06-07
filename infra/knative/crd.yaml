@@ -29,10 +29,16 @@ spec:
   deployments:
   - name: webhook
     replicas: 2
+    annotations:
+      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
   - name: activator
     replicas: 2
+    annotations:
+      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"   
   - name: domainmapping-webhook
     replicas: 2
+    annotations:
+      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
   podDisruptionBudgets:
   - name: activator-pdb
     minAvailable: 50%
