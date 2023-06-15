@@ -68,7 +68,7 @@ managedNodeGroups:
       env: prod
 
   - name: spot-pool
-    instanceTypes: ["t3a.medium", "t3.medium"]
+    instanceTypes: ["t3a.medium", "t3.medium", "t3a.large", "t3.large", "t2.medium", "t2.large"]
     availabilityZones: ["eu-central-1a"]
     spot: true
     iam:
@@ -85,7 +85,7 @@ managedNodeGroups:
         ebs: true
     desiredCapacity: 1
     minSize: 0
-    maxSize: 3
+    maxSize: 6
     volumeSize: 20
     labels: { nodegroup-role: spot, autoscaling: enabled }
     taints:
