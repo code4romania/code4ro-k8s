@@ -55,13 +55,12 @@ kubeEtcd:
 kubeScheduler:
   enabled: false
 alertmanager:
-  nodeSelector: 
-    nodegroup-role: spot
-  tolerations:
-    - key: "nodegroup-role"
-      operator: "Equal"
-      value: "spot"
-      effect: "NoSchedule"
+  enabled: false
+
+defaultRules:
+  rules:
+    alertmanager: false
+
 grafana:
   vmServiceScrape:
     enabled: false
