@@ -8,3 +8,16 @@ metadata:
 data:
   # Argo CD's externally facing base URL (optional). Required when configuring SSO
   url: https://cd.code4.ro
+
+  # # A dex connector configuration (optional). See SSO configuration documentation:
+  # # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/sso
+  # # https://dexidp.io/docs/connectors/
+  dex.config: |
+    connectors:
+      - config:
+          issuer: https://accounts.google.com
+          clientID: 578670592407-lshlf5qr40300lljghbk382vkrgfm4jr.apps.googleusercontent.com
+          clientSecret: $dex.google.clientSecret
+        type: oidc
+        id: google
+        name: Google    
