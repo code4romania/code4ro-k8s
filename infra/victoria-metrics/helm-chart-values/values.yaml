@@ -55,11 +55,8 @@ kubeEtcd:
 kubeScheduler:
   enabled: false
 alertmanager:
-  enabled: false
-
-defaultRules:
-  rules:
-    alertmanager: false
+  spec:
+    configSecret: "alertmanager-config"
 
 grafana:
   vmServiceScrape:
