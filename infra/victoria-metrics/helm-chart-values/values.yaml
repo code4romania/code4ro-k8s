@@ -105,13 +105,11 @@ grafana:
     log:
       mode: console
       level: error
-    auth.github:
+    auth.google:
         enabled: true
-        client_id: 123a
-        client_secret: ${github-client-secret}
-        allowed_organizations: code4romania
-        skip_org_role_sync: true
-
+        client_id: 161706188385-cu9fj7lml3k2m754gbttqlb8gb4iq7tu.apps.googleusercontent.com
+        client_secret: ${google-client-secret}
+        allowed_domains: code4.ro commitglobal.org
       
   # alerting:
   #   contactpoints.yaml:
