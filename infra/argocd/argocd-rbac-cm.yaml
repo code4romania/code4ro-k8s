@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+data:
+  policy.default: role:readonly
+  policy.csv: |
+    p, role:org-editor, applications, get, default/*, allow
+    p, role:org-editor, applications, sync, default/*, allow
+    p, role:org-editor, applications, update, default/*, allow
+    p, role:org-editor, logs, get, default/*, allow
+    p, role:org-editor, projects, get, default, allow
+
+    g, andrei.ionita@commitglobal.org, role:admin
+    g, gheorghe.lupu@code4.ro, role:admin

@@ -10,6 +10,7 @@ resources:
   - sealed-secret.yaml
 
 patches:
+- path: argocd-rbac-cm.yaml
 - path: argocd-cmd-params-cm.yaml
   target:
     version: v1
