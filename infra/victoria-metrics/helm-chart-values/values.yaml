@@ -58,6 +58,10 @@ alertmanager:
   spec:
     configSecret: "alertmanager-config"
 
+defaultRules:
+  rules:
+    general: false
+
 grafana:
   vmServiceScrape:
     enabled: false
