@@ -107,7 +107,7 @@ grafana:
       level: error
     auth.google:
         enabled: true
-        client_id: 161706188385-cu9fj7lml3k2m754gbttqlb8gb4iq7tu.apps.googleusercontent.com
+        client_id: 578670592407-0r9vnq4l6r6ck8jpo1gthohfq520rgt7.apps.googleusercontent.com
         client_secret: ${google-client-secret}
         allowed_domains: code4.ro commitglobal.org
       
