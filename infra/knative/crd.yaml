@@ -25,27 +25,6 @@ spec:
         service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
         service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
         service.beta.kubernetes.io/aws-load-balancer-attributes: deletion_protection.enabled=true
-
-  deployments:
-  - name: webhook
-    replicas: 2
-    annotations:
-      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
-  - name: activator
-    replicas: 2
-    annotations:
-      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"   
-  - name: domainmapping-webhook
-    replicas: 2
-    annotations:
-      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
-  podDisruptionBudgets:
-  - name: activator-pdb
-    minAvailable: 50%
-  - name: webhook-pdb
-    minAvailable: 50%
-  - name: domainmapping-webhook-pdb
-    minAvailable: 50%
     
   config:
     features:
