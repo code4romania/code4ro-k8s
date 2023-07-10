@@ -6,9 +6,17 @@ metadata:
 spec:
   project: infra
   source:
-    path: infra/amazon-cloudwatch
-    repoURL: https://github.com/code4romania/code4ro-k8s.git
-    targetRevision: HEAD
+    chart: aws-for-fluent-bit
+    helm:
+      values: |-
+        env:
+        - name: CLUSTER_NAME
+          value: code4ro-prod
+        cloudWatchLogs:
+          logRetentionDays: 30
+          region: eu-central-1
+    repoURL: https://aws.github.io/eks-charts
+    targetRevision: 0.1.27
   destination:
     namespace: amazon-cloudwatch
     server: https://kubernetes.default.svc
