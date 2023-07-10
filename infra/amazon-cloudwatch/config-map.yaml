@@ -7,6 +7,6 @@ data:
   cluster.name: code4ro-prod
   http.port: "2020"
   http.server: "On"
-  logs.region: eu-central-1
+  logs.region: eu-west-1
   read.head: "Off"
   read.tail: "On"

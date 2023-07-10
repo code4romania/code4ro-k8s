@@ -3,13 +3,13 @@ kind: ClusterConfig
 
 metadata:
   name: code4ro-prod
-  region: eu-central-1
+  region: eu-west-1
   version: "1.27"
   tags: 
     app: code4ro-k8s-prod
     env: production
 vpc:
-  publicAccessCIDRs: ["192.168.0.0/16"]
+  publicAccessCIDRs: ["82.79.70.195/16"]
   clusterEndpoints:
     publicAccess:  true
     privateAccess: true
@@ -35,17 +35,17 @@ iam:
         namespace: kube-system
       wellKnownPolicies:
         ebsCSIController: true
-      roleName: AmazonEKS_EBS_CSI_DriverRole
+      roleName: AmazonEKS_EBS_CSI_Driver
       roleOnly: true
 
 addons:
   - name: aws-ebs-csi-driver
-    serviceAccountRoleARN: arn:aws:iam::172019762325:role/AmazonEKS_EBS_CSI_DriverRole
+    serviceAccountRoleARN: arn:aws:iam::172019762325:role/AmazonEKS_EBS_CSI_Driver
 
 managedNodeGroups:
   - name: nodegroup
     instanceType: t3a.medium
-    availabilityZones: ["eu-central-1a"]
+    availabilityZones: ["eu-west-1a"]
     iam:
       attachPolicyARNs:
         - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
@@ -69,7 +69,7 @@ managedNodeGroups:
 
   - name: spot-pool
     instanceTypes: ["t3a.medium", "t3.medium", "t3a.large", "t3.large", "t2.medium", "t2.large"]
-    availabilityZones: ["eu-central-1a"]
+    availabilityZones: ["eu-west-1a"]
     spot: true
     iam:
       attachPolicyARNs:
