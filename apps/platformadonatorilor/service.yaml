@@ -14,7 +14,7 @@ spec:
         - image: code4romania/donors-platform:1.0.4
           resources:
             requests:
-              cpu: 40m
+              cpu: 60m
               memory: 64M
             limits:
               cpu: 500m
