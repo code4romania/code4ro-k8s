@@ -43,7 +43,7 @@ addons:
     serviceAccountRoleARN: arn:aws:iam::172019762325:role/AmazonEKS_EBS_CSI_Driver
 
 managedNodeGroups:
-  - name: nodegroup
+  - name: nodegroup1
     instanceType: t3a.medium
     availabilityZones: ["eu-west-1a"]
     iam:
@@ -57,6 +57,7 @@ managedNodeGroups:
       withAddonPolicies:
         autoScaler: true
         awsLoadBalancerController: true
+        cloudWatch: true
         ebs: true
     desiredCapacity: 2
     minSize: 2
@@ -67,7 +68,7 @@ managedNodeGroups:
       app: code4ro-k8s-prod
       env: prod
 
-  - name: spot-pool
+  - name: spot-pool1
     instanceTypes: ["t3a.medium", "t3.medium", "t3a.large", "t3.large", "t2.medium", "t2.large"]
     availabilityZones: ["eu-west-1a"]
     spot: true
@@ -82,6 +83,7 @@ managedNodeGroups:
       withAddonPolicies:
         autoScaler: true
         awsLoadBalancerController: true
+        cloudWatch: true
         ebs: true
     desiredCapacity: 1
     minSize: 0
