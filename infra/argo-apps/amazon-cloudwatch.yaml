@@ -14,7 +14,7 @@ spec:
           value: code4ro-prod
         cloudWatchLogs:
           logRetentionDays: 30
-          region: eu-central-1
+          region: eu-west-1
     repoURL: https://aws.github.io/eks-charts
     targetRevision: 0.1.27
   destination:
