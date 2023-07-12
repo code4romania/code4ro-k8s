@@ -7,6 +7,7 @@ spec:
   template:
     metadata:
       annotations:
+        autoscaling.knative.dev/min-scale: "1"
         autoscaling.knative.dev/max-scale: "1"
     spec:
       nodeSelector:
