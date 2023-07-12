@@ -33,6 +33,8 @@ spec:
               value: "Ceasul Bun"
             - name: APP_URL
               value: "https://api.ceasulbun.ro"
+            - name: WEB_CLIENT_URL
+              value: "https://www.ceasulbun.ro"
             - name: APP_KEY
               valueFrom:
                 secretKeyRef:
