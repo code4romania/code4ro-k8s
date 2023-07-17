@@ -14,7 +14,7 @@ spec:
       targetRevision: HEAD 
       ref: myRepo 
     - repoURL: https://victoriametrics.github.io/helm-charts
-      targetRevision: 0.17.0
+      targetRevision: 0.17.1
       chart: victoria-metrics-k8s-stack
       helm:
         valueFiles:
