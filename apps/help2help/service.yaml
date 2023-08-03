@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/max-scale: "1"
     spec:
       containers:
-        - image: code4romania/harta-help2help-ucraina:2.0.8
+        - image: code4romania/harta-help2help-ucraina:2.0.9
           resources:
             requests:
               cpu: 10m
