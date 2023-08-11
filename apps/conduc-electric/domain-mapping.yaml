@@ -1,0 +1,21 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: conducelectric.ro
+  namespace: conduc-electric
+spec:
+  ref:
+    name: conduc-electric
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: www.conducelectric.ro
+  namespace: nginx-www-redirect
+spec:
+  ref:
+    name: nginx-www-redirect
+    kind: Service
+    apiVersion: v1
