@@ -106,8 +106,3 @@ spec:
                 secretKeyRef:
                   name: conduc-electric-secret
                   key: AWS_BUCKET
-            - name: AWS_BUCKET_ROOT
-              valueFrom:
-                secretKeyRef:
-                  name: conduc-electric-secret
-                  key: AWS_BUCKET_ROOT
