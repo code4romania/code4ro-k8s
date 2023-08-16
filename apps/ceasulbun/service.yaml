@@ -18,7 +18,7 @@ spec:
           value: "spot"
           effect: "NoSchedule"
       containers:
-        - image: code4romania/adapt-just-api:1.0.2
+        - image: code4romania/adapt-just-api:1.0.3
           resources:
             requests:
               cpu: 10m
