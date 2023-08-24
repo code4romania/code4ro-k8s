@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/max-scale: "1"
     spec:
       containers:
-        - image: code4romania/harta-help2help-ucraina:2.1.3
+        - image: code4romania/harta-help2help-ucraina:2.1.4
           resources:
             requests:
               cpu: 10m
@@ -78,6 +78,11 @@ spec:
                 secretKeyRef:
                   name: help2help-secret
                   key: GOOGLE_MAPS_API_KEY
+            - name: GOOGLE_ANALYTICS_ID
+              valueFrom:
+                secretKeyRef:
+                  name: help2help-secret
+                  key: GOOGLE_ANALYTICS_ID
             - name: MEDIA_DISK
               value: "s3"
             - name: AWS_ACCESS_KEY_ID
