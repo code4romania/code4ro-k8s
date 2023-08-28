@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cezicelegea
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: apps/cezicelegea
+    repoURL: https://github.com/code4romania/code4ro-k8s.git
+    targetRevision: HEAD
+  destination:
+    namespace: cezicelegea
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

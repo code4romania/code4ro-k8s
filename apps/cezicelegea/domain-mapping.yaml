@@ -1,0 +1,21 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: cezicelegea.ro
+  namespace: cezicelegea
+spec:
+  ref:
+    name: cezicelegea
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: www.cezicelegea.ro
+  namespace: nginx-www-redirect
+spec:
+  ref:
+    name: nginx-www-redirect
+    kind: Service
+    apiVersion: v1
