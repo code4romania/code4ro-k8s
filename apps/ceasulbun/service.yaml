@@ -32,9 +32,9 @@ spec:
             - name: APP_NAME
               value: "Ceasul Bun"
             - name: APP_URL
-              value: "https://api.ceasulbun.ro"
+              value: "https://api.adaptjust.ro"
             - name: WEB_CLIENT_URL
-              value: "https://www.ceasulbun.ro"
+              value: "https://www.adaptjust.ro"
             - name: APP_KEY
               valueFrom:
                 secretKeyRef:

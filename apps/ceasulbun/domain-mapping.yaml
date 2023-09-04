@@ -8,3 +8,14 @@ spec:
     name: ceasulbun
     kind: Service
     apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: api.adaptjust.ro
+  namespace: ceasulbun
+spec:
+  ref:
+    name: ceasulbun
+    kind: Service
+    apiVersion: serving.knative.dev/v1
