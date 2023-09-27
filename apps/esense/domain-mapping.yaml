@@ -1,4 +1,4 @@
-apiVersion: serving.knative.dev/v1alpha1
+apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
   name: esense.ro
@@ -9,7 +9,7 @@ spec:
     kind: Service
     apiVersion: serving.knative.dev/v1
 ---
-apiVersion: serving.knative.dev/v1alpha1
+apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
   name: www.esense.ro
@@ -20,7 +20,7 @@ spec:
     kind: Service
     apiVersion: v1
 ---
-apiVersion: serving.knative.dev/v1alpha1
+apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
   name: app.esense.ro

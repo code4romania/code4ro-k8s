@@ -1,4 +1,4 @@
-apiVersion: serving.knative.dev/v1alpha1
+apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
   name: crestem.ong
@@ -9,7 +9,7 @@ spec:
     kind: Service
     apiVersion: serving.knative.dev/v1
 ---
-apiVersion: serving.knative.dev/v1alpha1
+apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
   name: www.crestem.ong
