@@ -18,7 +18,7 @@ spec:
       #     value: "spot"
       #     effect: "NoSchedule"
       containers:
-        - image: code4romania/lidereuropean:1.2.2
+        - image: code4romania/lidereuropean:1.3.0
           resources:
             requests:
               cpu: 10m
@@ -78,3 +78,7 @@ spec:
                 secretKeyRef:
                   name: lidereuropean-secret
                   key: MAIL_FROM_ADDRESS
+            - name: ONLINE_MEETING_START_DATE
+              value: "2023-09-28"
+            - name: ONLINE_MEETING_END_DATE
+              value: "2023-10-09"
