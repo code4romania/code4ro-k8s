@@ -11,14 +11,14 @@ spec:
   sources:
     - path: infra/victoria-metrics
       repoURL: https://github.com/code4romania/code4ro-k8s.git
-      targetRevision: HEAD 
-      ref: myRepo 
+      targetRevision: HEAD
+      ref: myRepo
     - repoURL: https://victoriametrics.github.io/helm-charts
-      targetRevision: 0.17.1
+      targetRevision: 0.18.1
       chart: victoria-metrics-k8s-stack
       helm:
         valueFiles:
-          - $myRepo/infra/victoria-metrics/helm-chart-values/values.yaml      
+          - $myRepo/infra/victoria-metrics/helm-chart-values/values.yaml
   syncPolicy:
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true

@@ -16,10 +16,10 @@ spec:
           logRetentionDays: 14
           region: eu-west-1
     repoURL: https://aws.github.io/eks-charts
-    targetRevision: 0.1.27
+    targetRevision: 0.1.30
   destination:
     namespace: amazon-cloudwatch
     server: https://kubernetes.default.svc
   syncPolicy:
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true

@@ -13,9 +13,9 @@ spec:
         clusterName: code4ro-prod
         serviceAccount:
           create: false
-          name: aws-load-balancer-controller 
+          name: aws-load-balancer-controller
     repoURL: https://aws.github.io/eks-charts
-    targetRevision: 1.5.3
+    targetRevision: 1.6.1
   destination:
     namespace: aws-load-balancer
     server: https://kubernetes.default.svc
