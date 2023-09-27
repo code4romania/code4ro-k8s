@@ -7,21 +7,22 @@ spec:
   template:
     metadata:
       annotations:
+        autoscaling.knative.dev/min-scale: "1"
         autoscaling.knative.dev/max-scale: "1"
     spec:
-      nodeSelector: 
-        nodegroup-role: spot
-      tolerations:
-        - key: "nodegroup-role"
-          operator: "Equal"
-          value: "spot"
-          effect: "NoSchedule"
+      # nodeSelector:
+      #   nodegroup-role: spot
+      # tolerations:
+      #   - key: "nodegroup-role"
+      #     operator: "Equal"
+      #     value: "spot"
+      #     effect: "NoSchedule"
       containers:
         - image: code4romania/lidereuropean:1.2.2
           resources:
             requests:
               cpu: 10m
-              memory: 70M            
+              memory: 70M
             limits:
               cpu: 500m
               memory: 256M
