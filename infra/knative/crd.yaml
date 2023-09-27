@@ -14,7 +14,7 @@ metadata:
   name: knative-serving
   namespace: knative-serving
 spec:
-  version: "1.10"
+  version: "1.11"
   ingress:
     kourier:
       enabled: true
@@ -25,11 +25,11 @@ spec:
         service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
         service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
         service.beta.kubernetes.io/aws-load-balancer-attributes: deletion_protection.enabled=true
-    
+
   config:
     features:
-      kubernetes.podspec-tolerations: 'Allowed'
-      kubernetes.podspec-nodeselector: 'Allowed'
+      kubernetes.podspec-tolerations: "Allowed"
+      kubernetes.podspec-nodeselector: "Allowed"
     certmanager:
       issuerRef: |
         kind: ClusterIssuer
