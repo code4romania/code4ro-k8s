@@ -25,11 +25,10 @@ spec:
         service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
         service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
         service.beta.kubernetes.io/aws-load-balancer-attributes: deletion_protection.enabled=true
-  workloads:
-    - name: net-kourier-controller
-      resources:
-        - container: controller
-          image: gcr.io/knative-releases/knative.dev/net-kourier/cmd/kourier@sha256:23d90ddc037772107d96ba429e706130666ac036ef3b1ebdb3671ca73c8a1d5d
+  registry:
+    override:
+      net-kourier-controller/controller: gcr.io/knative-releases/knative.dev/net-kourier/cmd/kourier@sha256:23d90ddc037772107d96ba429e706130666ac036ef3b1ebdb3671ca73c8a1d5d
+
   config:
     features:
       kubernetes.podspec-tolerations: "Allowed"
