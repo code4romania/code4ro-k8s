@@ -13,6 +13,6 @@ spec:
     namespace: acasainsiguranta
     server: https://kubernetes.default.svc
   syncPolicy:
-    automated: {}
+    # automated: {}
     syncOptions:
       - CreateNamespace=true
