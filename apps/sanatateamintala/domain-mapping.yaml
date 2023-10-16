@@ -1,0 +1,21 @@
+apiVersion: serving.knative.dev/v1beta1
+kind: DomainMapping
+metadata:
+  name: sanatateamintala.ro
+  namespace: sanatateamintala
+spec:
+  ref:
+    name: sanatateamintala
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1beta1
+kind: DomainMapping
+metadata:
+  name: www.sanatateamintala.ro
+  namespace: nginx-www-redirect
+spec:
+  ref:
+    name: nginx-www-redirect
+    kind: Service
+    apiVersion: v1
