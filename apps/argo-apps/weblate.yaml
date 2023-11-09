@@ -22,6 +22,8 @@ spec:
           postgresql:
             auth:
               existingSecret: weblate-secret
+              secretKeys:
+                adminPasswordKey: postgresql-password
           redis:
             auth:
               existingSecret: weblate-secret
