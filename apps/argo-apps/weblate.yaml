@@ -21,10 +21,7 @@ spec:
           siteDomain: translations.code4.ro
           postgresql:
             auth:
-              userName: "weblate"
               existingSecret: weblate-secret
-              secretKeys:
-                userPasswordKey: postgresql-password
           redis:
             auth:
               existingSecret: weblate-secret
