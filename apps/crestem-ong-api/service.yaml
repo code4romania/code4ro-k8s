@@ -14,11 +14,11 @@ spec:
         - image: code4romania/crestem-ong-api:1.0.14
           resources:
             requests:
-              cpu: 10m
-              memory: 150M
+              cpu: 100m
+              memory: 300M
             limits:
               cpu: 500m
-              memory: 256M
+              memory: 512M
           ports:
             - containerPort: 80
           env:
