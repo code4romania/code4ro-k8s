@@ -73,6 +73,8 @@ spec:
                   key: MAIL_FROM_ADDRESS
             - name: MAIL_FROM_NAME
               value: "RVM"
+            - name: FILAMENT_FILESYSTEM_DRIVER
+              value: "s3"
             - name: FILESYSTEM_DISK
               value: "s3"
             - name: MEDIA_DISK
