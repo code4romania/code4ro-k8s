@@ -62,13 +62,18 @@ spec:
                   key: DB_PASSWORD
             - name: MAIL_MAILER
               value: "ses"
+            - name: MAIL_FROM_NAME
+              value: "Ceasul Bun"
             - name: MAIL_FROM_ADDRESS
               valueFrom:
                 secretKeyRef:
                   name: cerajutor-secret
                   key: MAIL_FROM_ADDRESS
-            - name: MAIL_FROM_NAME
-              value: "Ceasul Bun"
+            - name: CONTACT_FORM_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: CONTACT_FORM_EMAIL
             - name: FILESYSTEM_DISK
               value: "s3"
             - name: MEDIA_DISK
@@ -93,3 +98,13 @@ spec:
                 secretKeyRef:
                   name: cerajutor-secret
                   key: AWS_BUCKET
+            - name: RECAPTCHAV3_SITEKEY
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: RECAPTCHAV3_SITEKEY
+            - name: RECAPTCHAV3_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: RECAPTCHAV3_SECRET
