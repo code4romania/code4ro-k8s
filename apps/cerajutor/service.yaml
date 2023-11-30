@@ -1,0 +1,95 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: cerajutor
+  namespace: cerajutor
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/min-scale: "1"
+        autoscaling.knative.dev/max-scale: "1"
+    spec:
+      nodeSelector:
+        nodegroup-role: spot
+      tolerations:
+        - key: "nodegroup-role"
+          operator: "Equal"
+          value: "spot"
+          effect: "NoSchedule"
+      containers:
+        - image: code4romania/adapt-just-api:1.0.5
+          resources:
+            requests:
+              cpu: 10m
+              memory: 70M
+            limits:
+              cpu: 500m
+              memory: 256M
+          ports:
+            - containerPort: 80
+          env:
+            - name: APP_NAME
+              value: "Ceasul Bun"
+            - name: APP_URL
+              value: "https://api.cerajutor.ro"
+            - name: WEB_CLIENT_URL
+              value: "https://www.cerajutor.ro"
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: APP_KEY
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: DB_HOST
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: DB_DATABASE
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: DB_PASSWORD
+            - name: MAIL_MAILER
+              value: "ses"
+            - name: MAIL_FROM_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: MAIL_FROM_ADDRESS
+            - name: MAIL_FROM_NAME
+              value: "Ceasul Bun"
+            - name: FILESYSTEM_DISK
+              value: "s3"
+            - name: MEDIA_DISK
+              value: "s3"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: AWS_DEFAULT_REGION
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: cerajutor-secret
+                  key: AWS_BUCKET
