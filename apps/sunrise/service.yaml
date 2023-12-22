@@ -10,156 +10,87 @@ spec:
         autoscaling.knative.dev/max-scale: "1"
     spec:
       containers:
-        - image: code4romania/sunrise:v1.35
+        - image: code4romania/sunrise:0.1.0
           resources:
             requests:
               cpu: 10m
-              memory: 141M
+              memory: 70M
             limits:
               cpu: 500m
-              memory: 300M
+              memory: 256M
           ports:
             - containerPort: 80
           env:
-            - name: APP_DEBUG
-              value: "false"
             - name: APP_NAME
               value: "Sunrise"
             - name: APP_URL
-              value: "https://sunrise-api.stopviolenteidomestice.ro"
+              value: "https://app.stopviolenteidomestice.ro"
             - name: APP_KEY
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
                   key: app_key
-            - name: APP_LOCALE
-              value: "ro"
-            - name: APP_FALLBACK_LOCALE
-              value: "en"
-            - name: APP_FRONTEND_URL
-              value: "https://sunrise.stopviolenteidomestice.ro"
-            - name: APP_TRUSTED_HOSTS_PRODUCTION
-              value: "https://sunrise-api.stopviolenteidomestice.ro/"
-            - name: DB_CONNECTION
-              value: "mysql"
-            - name: DB_CONNECTION_MYSQL_HOST
+            - name: DB_HOST
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
-                  key: db_host
-            - name: DB_CONNECTION_MYSQL_PORT
+                  key: DB_HOST
+            - name: DB_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
-                  key: db_port
-            - name: DB_CONNECTION_MYSQL_DATABASE
+                  key: DB_DATABASE
+            - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
-                  key: db_database
-            - name: DB_CONNECTION_MYSQL_USERNAME
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
-                  key: db_username
-            - name: DB_CONNECTION_MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: sunrise-secret
-                  key: db_password
-            - name: CACHE_DRIVER
-              value: "file"
-            - name: CACHE_CODE_PARSER_DATA_CACHE_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: sunrise-secret
-                  key: cache_code_parser_data_cache_key
-            - name: LOG_CHANNEL
-              value: "daily"
-            - name: CMS_ACTIVE_THEME
-              value: "sunrise"
-            - name: SESSION_DRIVER
-              value: "database"
-            - name: SESSION_LIFETIME
-              value: "120"
-            - name: SESSION_SECURE
-              value: "true"
-            - name: JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: sunrise-secret
-                  key: jwt_secret
-            - name: QUEUE_DRIVER
-              value: "sync"
-            - name: MAIL_DRIVER
-              value: "smtp"
-            - name: MAIL_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: sunrise-secret
-                  key: mail_host
-            - name: MAIL_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: sunrise-secret
-                  key: mail_port
-            - name: MAIL_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: sunrise-secret
-                  key: mail_username
+                  key: DB_PASSWORD
+            - name: MAIL_MAILER
+              value: "ses"
             - name: MAIL_FROM_ADDRESS
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
-                  key: mail_from
+                  key: MAIL_FROM_ADDRESS
             - name: MAIL_FROM_NAME
               value: "Sunrise"
-            - name: MAIL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: sunrise-secret
-                  key: mail_password
-            - name: MAIL_ENCRYPTION
-              valueFrom:
-                secretKeyRef:
-                  name: sunrise-secret
-                  key: mail_encryption
-            - name: CMS_EDGE_UPDATES
-              value: "false"
-            - name: CMS_BACKEND_FORCE_SECURE
-              value: "false"
-            - name: CMS_ASSET_DEEP_HASHING
-              value: "true"
-            - name: CMS_ASSET_MINIFY
-              value: "true"
-            - name: CMS_BACKEND_URI
-              value: "backend-sunrise"
-            - name: CMS_CONVERT_LINE_ENDINGS
-              value: "true"
-            - name: CMS_ROUTES_CACHE
-              value: "true"
-            - name: CMS_ASSET_CACHE
-              value: "true"
-            - name: CMS_LINK_POLICY
-              value: "secure"
-            - name: CMS_ENABLE_CSRF
-              value: "true"
-            - name: FILESYSTEMS_DEFAULT
+            - name: FILAMENT_FILESYSTEM_DRIVER
               value: "s3"
-            - name: FILESYSTEMS_DISKS_S3_DRIVER
+            - name: FILESYSTEM_DISK
               value: "s3"
-            - name: FILESYSTEMS_DISKS_S3_KEY
+            - name: MEDIA_DISK
+              value: "s3"
+            - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: sunrise-secret
-                  key: filesystem_disks_s3_key
-            - name: FILESYSTEMS_DISKS_S3_SECRET
+                  name: rvm-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: sunrise-secret
-                  key: filesystem_disks_s3_secret
-            - name: FILESYSTEMS_DISKS_S3_REGION
-              value: "eu-central-1"
-            - name: FILESYSTEMS_DISKS_S3_REGION
-              value: "code4ro-sunrise-production"
+                  name: rvm-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: rvm-secret
+                  key: AWS_DEFAULT_REGION
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: rvm-secret
+                  key: AWS_BUCKET
+            - name: SENTRY_LARAVEL_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: rvm-secret
+                  key: SENTRY_LARAVEL_DSN
+            - name: SENTRY_TRACES_SAMPLE_RATE
+              value: "0.2"
+            - name: SENTRY_PROFILES_SAMPLE_RATE
+              value: "0.5"
