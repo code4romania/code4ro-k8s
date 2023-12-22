@@ -29,7 +29,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: sunrise-secret
-                  key: app_key
+                  key: APP_KEY
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
