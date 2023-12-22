@@ -68,27 +68,27 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: rvm-secret
+                  name: sunrise-secret
                   key: AWS_ACCESS_KEY_ID
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: rvm-secret
+                  name: sunrise-secret
                   key: AWS_SECRET_ACCESS_KEY
             - name: AWS_DEFAULT_REGION
               valueFrom:
                 secretKeyRef:
-                  name: rvm-secret
+                  name: sunrise-secret
                   key: AWS_DEFAULT_REGION
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
-                  name: rvm-secret
+                  name: sunrise-secret
                   key: AWS_BUCKET
             - name: SENTRY_LARAVEL_DSN
               valueFrom:
                 secretKeyRef:
-                  name: rvm-secret
+                  name: sunrise-secret
                   key: SENTRY_LARAVEL_DSN
             - name: SENTRY_TRACES_SAMPLE_RATE
               value: "0.2"
