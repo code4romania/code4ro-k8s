@@ -59,7 +59,7 @@ spec:
                   key: MAIL_FROM_ADDRESS
             - name: MAIL_FROM_NAME
               value: "Sunrise"
-            - name: FILAMENT_FILESYSTEM_DRIVER
+            - name: FILAMENT_FILESYSTEM_DISK
               value: "s3"
             - name: FILESYSTEM_DISK
               value: "s3"
