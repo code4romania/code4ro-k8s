@@ -51,6 +51,8 @@ spec:
                 secretKeyRef:
                   name: rvm-secret
                   key: DB_PASSWORD
+            - name: QUEUE_CONNECTION
+              value: "database"
             - name: MAIL_HOST
               valueFrom:
                 secretKeyRef:
