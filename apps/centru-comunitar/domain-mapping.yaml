@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1beta1
+kind: DomainMapping
+metadata:
+  name: bacau.centru-comunitar.ro
+  namespace: centru-comunitar
+spec:
+  ref:
+    name: bacau
+    kind: Service
+    apiVersion: serving.knative.dev/v1
