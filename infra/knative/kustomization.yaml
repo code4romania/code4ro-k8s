@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - https://github.com/knative/operator/releases/download/knative-v1.11.6/operator.yaml
-  - https://github.com/knative/net-certmanager/releases/download/knative-v1.11.1/release.yaml
+  - https://github.com/knative/operator/releases/download/knative-v1.13.0/operator.yaml
+  - https://github.com/knative/net-certmanager/releases/download/knative-v1.13.0/release.yaml
   - crd.yaml
 
 patches:
