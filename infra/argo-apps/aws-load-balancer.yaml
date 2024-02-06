@@ -15,7 +15,7 @@ spec:
           create: false
           name: aws-load-balancer-controller
     repoURL: https://aws.github.io/eks-charts
-    targetRevision: 1.6.2
+    targetRevision: 1.7.0
   destination:
     namespace: aws-load-balancer
     server: https://kubernetes.default.svc
