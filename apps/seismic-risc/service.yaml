@@ -64,3 +64,8 @@ spec:
                 secretKeyRef:
                   name: seismic-risc-secret
                   key: DATABASE_HOST
+            - name: DATABASE_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: seismic-risc-secret
+                  key: DATABASE_PORT
