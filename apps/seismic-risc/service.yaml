@@ -22,6 +22,8 @@ spec:
           ports:
             - containerPort: 80
           env:
+            - name: RUN_CREATE_SUPER_USER
+              value: "False"
             - name: GUNICORN_PORT
               value: "80"
             - name: GUNICORN_WORKERS
