@@ -7,11 +7,10 @@ metadata:
 spec:
   template:
     metadata:
-      spec:
-        labels:
-          nodegroup-role: karpenter-spot
-          app: code4ro-k8s-prod
-          env: prod
+      labels:
+        nodegroup-role: karpenter-spot
+        app: code4ro-k8s-prod
+        env: prod
     spec:
       requirements:
         - key: karpenter.sh/capacity-type
