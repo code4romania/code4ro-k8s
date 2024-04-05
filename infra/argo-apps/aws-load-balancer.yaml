@@ -8,9 +8,16 @@ spec:
   source:
     chart: aws-load-balancer-controller
     helm:
-      values: |-
+      valuesObject:
         replicaCount: 1
         clusterName: code4ro-prod
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: karpenter.sh/nodepool
+                      operator: DoesNotExist
         serviceAccount:
           create: false
           name: aws-load-balancer-controller
