@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/max-scale: "1"
     spec:
       containers:
-        - image: code4romania/seismic-risc:1.0.0
+        - image: code4romania/seismic-risc:1.1.1
           resources:
             requests:
               cpu: 10m
