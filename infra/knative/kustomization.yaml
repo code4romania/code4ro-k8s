@@ -2,16 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - https://github.com/knative/operator/releases/download/knative-v1.12.0/operator.yaml
-  - https://github.com/knative/net-certmanager/releases/download/knative-v1.12.0/release.yaml
+  - https://github.com/knative/operator/releases/download/knative-v1.13.0/operator.yaml
+  - https://github.com/knative/net-certmanager/releases/download/knative-v1.13.0/release.yaml
   - crd.yaml
 
 patches:
   - path: config-certmanager.yaml
-  - patch: |-
-      - op: replace
-        path: /spec/template/metadata/annotations/cluster-autoscaler.kubernetes.io~1safe-to-evict
-        value: "true"
-    target:
-      kind: Deployment
-      name: operator-webhook
