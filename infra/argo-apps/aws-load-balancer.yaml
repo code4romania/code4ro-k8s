@@ -12,6 +12,17 @@ spec:
         replicaCount: 1
         clusterName: code4ro-prod
         affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - aws-load-balancer-controller
+                  topologyKey: kubernetes.io/hostname
+                weight: 100
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
