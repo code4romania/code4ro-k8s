@@ -12,6 +12,7 @@ spec:
     - chart: karpenter
       helm:
         valuesObject:
+          replicas: 1
           settings:
             clusterName: code4ro-prod
           controller:
