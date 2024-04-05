@@ -8,7 +8,7 @@ spec:
   template:
     metadata:
       labels:
-        nodegroup-role: karpenter-spot
+        nodegroup-role: spot
         app: code4ro-k8s-prod
         env: prod
     spec:
