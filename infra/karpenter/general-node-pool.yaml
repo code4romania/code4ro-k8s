@@ -35,6 +35,5 @@ spec:
       nodeClassRef:
         name: default
   limits:
-    resources:
-      cpu: "80" # 10 instances * 8 vCPU
-      memory: 320Gi # 10 instances * 32Gi
+    cpu: "80" # 10 instances * 8 vCPU
+    memory: 320Gi # 10 instances * 32Gi
