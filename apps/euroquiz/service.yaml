@@ -75,3 +75,7 @@ spec:
               value: "2024-04-08"
             - name: ONLINE_MEETING_END_DATE
               value: "2024-04-22"
+            - name: CONTEST_START_DATE
+              value: "2024-04-25"
+            - name: CONTEST_END_DATE
+              value: "2024-05-15"
