@@ -1,0 +1,21 @@
+apiVersion: serving.knative.dev/v1beta1
+kind: DomainMapping
+metadata:
+  name: euroquiz.ro
+  namespace: euroquiz
+spec:
+  ref:
+    name: euroquiz
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1beta1
+kind: DomainMapping
+metadata:
+  name: www.euroquiz.ro
+  namespace: nginx-www-redirect
+spec:
+  ref:
+    name: nginx-www-redirect
+    kind: Service
+    apiVersion: v1
