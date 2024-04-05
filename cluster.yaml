@@ -3,15 +3,16 @@ kind: ClusterConfig
 
 metadata:
   name: code4ro-prod
-  region: eu-west-1
-  version: "1.27"
-  tags: 
+  region: eu-central-1
+  version: "1.29"
+  tags:
     app: code4ro-k8s-prod
     env: production
+    karpenter.sh/discovery: code4ro-k8s-prod
 vpc:
   publicAccessCIDRs: ["82.79.70.195/16"]
   clusterEndpoints:
-    publicAccess:  true
+    publicAccess: true
     privateAccess: true
 
 iamIdentityMappings:
@@ -22,8 +23,13 @@ iamIdentityMappings:
     username: admin
     noDuplicateARNs: true # prevents shadowing of ARNs
 
+karpenter:
+  version: "v0.35.4"
+  createServiceAccount: true
+  withSpotInterruptionQueue: true # adds all required policies and rules for supporting Spot Interruption Queue, default is false
+
 iam:
-  withOIDC: true   
+  withOIDC: true
   serviceAccounts:
     - metadata:
         name: aws-load-balancer-controller
@@ -43,9 +49,9 @@ addons:
     serviceAccountRoleARN: arn:aws:iam::172019762325:role/AmazonEKS_EBS_CSI_Driver
 
 managedNodeGroups:
-  - name: nodegroup1
+  - name: nodegroup
     instanceType: t3a.medium
-    availabilityZones: ["eu-west-1a"]
+    availabilityZones: ["eu-central-1a"]
     iam:
       attachPolicyARNs:
         - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
@@ -55,46 +61,14 @@ managedNodeGroups:
         - arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess
         - arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy # we need only this for viewing logs in Cloudwatch, the rest are there because we need the default https://eksctl.io/usage/iam-policies/#attaching-policies-by-arn
       withAddonPolicies:
-        autoScaler: true
         awsLoadBalancerController: true
         cloudWatch: true
         ebs: true
     desiredCapacity: 2
-    minSize: 2
-    maxSize: 8
+    minSize: 1
+    maxSize: 3
     volumeSize: 20
     tags:
       nodegroup-role: worker
-      app: code4ro-k8s-prod
-      env: prod
-
-  - name: spot-pool1
-    instanceTypes: ["t3a.medium", "t3.medium", "t3a.large", "t3.large", "t2.medium", "t2.large"]
-    availabilityZones: ["eu-west-1a"]
-    spot: true
-    iam:
-      attachPolicyARNs:
-        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
-        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
-        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
-        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
-        - arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess
-        - arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy # we need only this for viewing logs in Cloudwatch, the rest are there because we need the default https://eksctl.io/usage/iam-policies/#attaching-policies-by-arn
-      withAddonPolicies:
-        autoScaler: true
-        awsLoadBalancerController: true
-        cloudWatch: true
-        ebs: true
-    desiredCapacity: 1
-    minSize: 0
-    maxSize: 6
-    volumeSize: 20
-    labels: { nodegroup-role: spot, autoscaling: enabled }
-    taints:
-      - key: nodegroup-role
-        value: spot
-        effect: NoSchedule
-    tags:
-      nodegroup-role: spot
       app: code4ro-k8s-prod
       env: prod

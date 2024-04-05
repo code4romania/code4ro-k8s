@@ -1,0 +1,15 @@
+apiVersion: karpenter.k8s.aws/v1beta1
+kind: EC2NodeClass
+metadata:
+  name: default
+  annotations:
+    kubernetes.io/description: "General purpose EC2NodeClass for running Amazon Linux 2 nodes"
+spec:
+  amiFamily: AL2
+  role: "KarpenterNodeRole-code4ro-prod"
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "code4ro-prod"
+  securityGroupSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "code4ro-prod"
