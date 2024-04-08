@@ -4,14 +4,13 @@ kube-state-metrics:
   metricLabelsAllowlist:
     - pods=[*]
     - deployments=[app.kubernetes.io/name,app.kubernetes.io/component,app.kubernetes.io/instance]
-  nodeSelector: 
+  nodeSelector:
     nodegroup-role: spot
   tolerations:
     - key: "nodegroup-role"
       operator: "Equal"
       value: "spot"
       effect: "NoSchedule"
-
 
 vmsingle:
   spec:
@@ -20,10 +19,11 @@ vmsingle:
       maxLabelsPerTimeseries: "40"
     resources:
       requests:
-        memory: 1.5Gi
-      limits: 
+        cpu: 150m
+        memory: 1Gi
+      limits:
         memory: 2Gi
-    nodeSelector: 
+    nodeSelector:
       nodegroup-role: spot
     tolerations:
       - key: "nodegroup-role"
@@ -36,9 +36,10 @@ vmagent:
     resources:
       requests:
         cpu: 60m
-      limits: 
-        memory: 200M
-    nodeSelector: 
+        memory: 130M
+      limits:
+        memory: 400M
+    nodeSelector:
       nodegroup-role: spot
     tolerations:
       - key: "nodegroup-role"
@@ -71,7 +72,7 @@ grafana:
   persistence:
     enabled: true
 
-  nodeSelector: 
+  nodeSelector:
     nodegroup-role: spot
   tolerations:
     - key: "nodegroup-role"
@@ -93,7 +94,7 @@ grafana:
       "alb.ingress.kubernetes.io/target-type": ip
       "alb.ingress.kubernetes.io/group.name": main-alb
       "alb.ingress.kubernetes.io/listen-ports": '[{"HTTP": 80}, {"HTTPS":443}]'
-      "alb.ingress.kubernetes.io/ssl-redirect": '443' 
+      "alb.ingress.kubernetes.io/ssl-redirect": "443"
 
   grafana.ini:
     server:
@@ -106,11 +107,11 @@ grafana:
       mode: console
       level: error
     auth.google:
-        enabled: true
-        client_id: 578670592407-0r9vnq4l6r6ck8jpo1gthohfq520rgt7.apps.googleusercontent.com
-        client_secret: ${google-client-secret}
-        allowed_domains: code4.ro commitglobal.org
-      
+      enabled: true
+      client_id: 578670592407-0r9vnq4l6r6ck8jpo1gthohfq520rgt7.apps.googleusercontent.com
+      client_secret: ${google-client-secret}
+      allowed_domains: code4.ro commitglobal.org
+
   alerting:
     contactpoints.yaml:
       apiVersion: 1
