@@ -33,6 +33,9 @@ spec:
           values: ["eu-central-1a"]
       nodeClassRef:
         name: default
+  disruption:
+    budgets:
+      - nodes: 20%
   limits:
     cpu: "80" # 10 instances * 8 vCPU
     memory: 320Gi # 10 instances * 32Gi
