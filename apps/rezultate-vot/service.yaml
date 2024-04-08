@@ -14,8 +14,8 @@ spec:
         - image: code4romania/rezultate-vot-api:v1.0
           resources:
             requests:
-              cpu: 100m
-              memory: 140M
+              cpu: 50m
+              memory: 300M
             limits:
               cpu: 500m
               memory: 500M

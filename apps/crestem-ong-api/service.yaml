@@ -14,8 +14,8 @@ spec:
         - image: code4romania/crestem-ong-api:1.0.17
           resources:
             requests:
-              cpu: 100m
-              memory: 300M
+              cpu: 10m
+              memory: 200M
             limits:
               cpu: 500m
               memory: 512M

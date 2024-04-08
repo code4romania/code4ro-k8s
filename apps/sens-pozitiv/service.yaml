@@ -10,7 +10,7 @@ spec:
         autoscaling.knative.dev/max-scale: "3"
         autoscaling.knative.dev/min-scale: "1"
     spec:
-      nodeSelector: 
+      nodeSelector:
         nodegroup-role: spot
       tolerations:
         - key: "nodegroup-role"
@@ -21,8 +21,8 @@ spec:
         - image: code4romania/sens-pozitiv:1.2.2
           resources:
             requests:
-              cpu: 10m
-              memory: 800M          
+              cpu: 30m
+              memory: 870M
             limits:
               cpu: 300m
               memory: 2500M
