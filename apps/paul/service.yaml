@@ -18,7 +18,7 @@ spec:
               memory: 512M
             limits:
               cpu: 500m
-              memory: 2000M
+              memory: 2Gi
           ports:
             - containerPort: 80
           env:
