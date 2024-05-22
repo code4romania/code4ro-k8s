@@ -31,5 +31,5 @@ spec:
             - name: APP_KEY
               valueFrom:
                 secretKeyRef:
-                  name: wf-ngohub-secret
+                  name: wevote4eu-secret
                   key: APP_KEY
