@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wevote4eu
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: apps/wevote4eu
+    repoURL: https://github.com/code4romania/code4ro-k8s.git
+    targetRevision: HEAD
+  destination:
+    namespace: wevote4eu
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

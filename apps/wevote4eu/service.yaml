@@ -1,0 +1,35 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: wevote4eu
+  namespace: wevote4eu
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/min-scale: "1"
+        autoscaling.knative.dev/max-scale: "1"
+    spec:
+      containers:
+        - image: commitglobal/wevote4eu:1.0.0
+          resources:
+            requests:
+              cpu: 10m
+              memory: 80M
+            limits:
+              cpu: 250m
+              memory: 256M
+          ports:
+            - containerPort: 80
+          env:
+            - name: APP_NAME
+              value: "WeVote4.EU"
+            - name: APP_URL
+              value: "https://wevote4.eu"
+            - name: GOOGLE_ANALYTICS_ID
+              value: "G-9SB6HGE4BR"
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: wf-ngohub-secret
+                  key: APP_KEY
