@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/max-scale: "1"
     spec:
       containers:
-        - image: commitglobal/wevote4eu:1.0.8
+        - image: commitglobal/wevote4eu:1.0.9
           resources:
             requests:
               cpu: 10m
