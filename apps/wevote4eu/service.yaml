@@ -101,11 +101,11 @@ spec:
                 secretKeyRef:
                   name: wevote4eu-secret
                   key: REVERB_APP_SECRET
-            - name: REVERB_APP_HOST
+            - name: REVERB_HOST
               valueFrom:
                 secretKeyRef:
                   name: wevote4eu-secret
-                  key: REVERB_APP_HOST
+                  key: REVERB_HOST
             - name: SENTRY_LARAVEL_DSN
               valueFrom:
                 secretKeyRef:
