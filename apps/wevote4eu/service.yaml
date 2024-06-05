@@ -86,6 +86,26 @@ spec:
                 secretKeyRef:
                   name: wevote4eu-secret
                   key: AWS_URL
+            - name: REVERB_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: wevote4eu-secret
+                  key: REVERB_APP_ID
+            - name: REVERB_APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: wevote4eu-secret
+                  key: REVERB_APP_KEY
+            - name: REVERB_APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: wevote4eu-secret
+                  key: REVERB_APP_SECRET
+            - name: REVERB_APP_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: wevote4eu-secret
+                  key: REVERB_APP_HOST
             - name: SENTRY_LARAVEL_DSN
               valueFrom:
                 secretKeyRef:
