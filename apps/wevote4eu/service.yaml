@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/max-scale: "1"
     spec:
       containers:
-        - image: commitglobal/wevote4eu:1.1.2
+        - image: commitglobal/wevote4eu:1.2.0
           resources:
             requests:
               cpu: 500m
@@ -35,6 +35,18 @@ spec:
                 secretKeyRef:
                   name: wevote4eu-secret
                   key: APP_KEY
+            - name: VOTEMONITOR_ENABLED
+              value: "true"
+            - name: VOTEMONITOR_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: wevote4eu-secret
+                  key: VOTEMONITOR_APIKEY
+            - name: VOTEMONITOR_URL
+              valueFrom:
+                secretKeyRef:
+                  name: wevote4eu-secret
+                  key: VOTEMONITOR_URL
             - name: DB_CONNECTION
               value: "mysql"
             - name: DB_HOST
