@@ -26,6 +26,8 @@ spec:
               value: "WeVote4.EU"
             - name: APP_URL
               value: "https://wevote4.eu"
+            - name: APP_TIMEZONE
+              value: "Europe/Bucharest"
             - name: GOOGLE_ANALYTICS_ID
               value: "G-9SB6HGE4BR"
             - name: APP_KEY
