@@ -1,0 +1,162 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: votong-ces2024
+  namespace: votong-ces2024
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/max-scale: "1"
+        autoscaling.knative.dev/min-scale: "1"
+    spec:
+      containers:
+        - image: code4romania/votong:1.15.1
+          resources:
+            requests:
+              cpu: 10m
+              memory: 1Gi
+            limits:
+              cpu: 250m
+              memory: 1536Mi
+          ports:
+            - containerPort: 8010
+          env:
+            - name: ALLOWED_HOSTS
+              value: "ces2024.votong.ro,www.votong.ro"
+            - name: ANALYTICS_ENABLED
+              value: "true"
+            - name: USE_S3
+              value: "true"
+            - name: EMAIL_BACKEND
+              value: "django_ses.SESBackend"
+            - name: DEFAULT_FROM_EMAIL
+              value: "no-reply@votong.ro"
+            - name: SENTRY_TRACES_SAMPLE_RATE
+              value: "0.3"
+            - name: SENTRY_PROFILES_SAMPLE_RATE
+              value: "0.5"
+            - name: GUNICORN_WORKERS
+              value: "3"
+            - name: DJANGO_Q_WORKERS_COUNT
+              value: "2"
+            - name: DJANGO_Q_RECYCLE_RATE
+              value: "50"
+            - name: DJANGO_Q_TIMEOUT_SECONDS
+              value: "1200"
+            - name: DJANGO_Q_RETRY_AFTER_TIMEOUT_SECONDS
+              value: "120"
+            - name: DJANGO_Q_POLL_SECONDS
+              value: "4"
+
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: SECRET_KEY
+
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_REGION_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: AWS_REGION_NAME
+            - name: AWS_S3_STORAGE_DEFAULT_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: AWS_S3_STORAGE_DEFAULT_BUCKET_NAME
+            - name: AWS_S3_STORAGE_PUBLIC_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: AWS_S3_STORAGE_PUBLIC_BUCKET_NAME
+
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: DATABASE_NAME
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: DATABASE_USER
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: DATABASE_PASSWORD
+            - name: DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: DATABASE_HOST
+            - name: DATABASE_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: DATABASE_PORT
+
+            - name: RECAPTCHA_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: RECAPTCHA_PUBLIC_KEY
+            - name: RECAPTCHA_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: RECAPTCHA_PRIVATE_KEY
+
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: S_SENTRY_DSN
+
+            - name: AWS_COGNITO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: AWS_COGNITO_CLIENT_ID
+            - name: AWS_COGNITO_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: AWS_COGNITO_CLIENT_SECRET
+            - name: AWS_COGNITO_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: AWS_COGNITO_DOMAIN
+
+            - name: NGOHUB_API_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: NGOHUB_API_HOST
+            - name: NGOHUB_API_ACCOUNT
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: NGOHUB_API_ACCOUNT
+            - name: NGOHUB_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: NGOHUB_API_KEY
+            - name: NGOHUB_ORG_OVERWRITE
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: NGOHUB_ORG_OVERWRITE

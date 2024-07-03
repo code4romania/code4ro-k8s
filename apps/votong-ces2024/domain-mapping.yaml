@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1beta1
+kind: DomainMapping
+metadata:
+  name: ces2024.votong.ro
+  namespace: votong-ces2024
+spec:
+  ref:
+    name: votong-ces2024
+    kind: Service
+    apiVersion: serving.knative.dev/v1
