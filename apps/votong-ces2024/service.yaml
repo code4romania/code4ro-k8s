@@ -48,6 +48,8 @@ spec:
               value: "120"
             - name: DJANGO_Q_POLL_SECONDS
               value: "4"
+            - name: RUN_LOAD_INITIAL_DATA
+              value: "True"
 
             - name: SECRET_KEY
               valueFrom:
