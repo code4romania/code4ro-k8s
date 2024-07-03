@@ -122,7 +122,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: votong-ces2024-secret
-                  key: S_SENTRY_DSN
+                  key: SENTRY_DSN
 
             - name: AWS_COGNITO_CLIENT_ID
               valueFrom:
