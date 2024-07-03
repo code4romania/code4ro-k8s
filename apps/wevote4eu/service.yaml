@@ -11,14 +11,14 @@ spec:
         autoscaling.knative.dev/max-scale: "1"
     spec:
       containers:
-        - image: commitglobal/wevote4eu:1.3.3
+        - image: commitglobal/wevote4eu:1.3.4
           resources:
             requests:
-              cpu: 500m
-              memory: 512M
+              cpu: 50m
+              memory: 128M
             limits:
-              cpu: 1000m
-              memory: 1024M
+              cpu: 100m
+              memory: 256M
           ports:
             - containerPort: 80
           env:
