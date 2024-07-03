@@ -20,7 +20,7 @@ spec:
               cpu: 250m
               memory: 1536Mi
           ports:
-            - containerPort: 80
+            - containerPort: 8000
           env:
             - name: ALLOWED_HOSTS
               value: "ces2024.votong.ro,www.votong.ro"
