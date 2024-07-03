@@ -160,3 +160,14 @@ spec:
                 secretKeyRef:
                   name: votong-ces2024-secret
                   key: NGOHUB_ORG_OVERWRITE
+
+            - name: DJANGO_ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: DJANGO_ADMIN_EMAIL
+            - name: DJANGO_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: DJANGO_ADMIN_PASSWORD
