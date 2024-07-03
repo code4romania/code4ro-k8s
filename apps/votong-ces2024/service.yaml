@@ -50,6 +50,8 @@ spec:
               value: "4"
             - name: RUN_LOAD_INITIAL_DATA
               value: "True"
+            - name: GLOBAL_SUPPORT_ENABLED
+              value: "True"
 
             - name: SECRET_KEY
               valueFrom:
