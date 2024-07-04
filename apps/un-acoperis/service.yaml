@@ -20,7 +20,7 @@ spec:
               cpu: 600m
               memory: 2Gi
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           env:
             - name: APP_NAME
               value: "Un Acoperiș"
