@@ -19,12 +19,6 @@ spec:
             limits:
               cpu: 600m
               memory: 2Gi
-          command: ["/bin/sh"]
-          args:
-            - -c
-            - >-
-              php artisan migrate --force &&
-              exec /usr/sbin/apache2ctl -D FOREGROUND
           ports:
             - containerPort: 8080
           env:
