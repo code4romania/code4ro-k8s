@@ -30,6 +30,12 @@ spec:
               value: "postgres"
             - name: TZ
               value: "Europe/Bucharest"
+            - name: AWS_COGNITO_REGION
+              value: "eu-west-1"
+            - name: AWS_COGNITO_DOMAIN
+              value: "auth-staging.ngohub.ro"
+            - name: NGOHUB_API_HOST
+              value: "https://api-staging.ngohub.ro"
             - name: APP_KEYS
               valueFrom:
                 secretKeyRef:
@@ -138,3 +144,29 @@ spec:
                 secretKeyRef:
                   name: crestem-ong-api-secret
                   key: CLIENT_PUBLIC_URL
+            - name: AWS_COGNITO_USER_POOL_ID
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: AWS_COGNITO_USER_POOL_ID
+            - name: AWS_COGNITO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: AWS_COGNITO_CLIENT_ID
+            - name: AWS_COGNITO_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: AWS_COGNITO_CLIENT_SECRET
+            - name: NGOHUB_API_ACCOUNTS
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: NGOHUB_API_ACCOUNTS
+            - name: NGOHUB_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: crestem-ong-api-secret
+                  key: NGOHUB_API_KEY
+
