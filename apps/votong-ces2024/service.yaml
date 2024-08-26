@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
-        - image: code4romania/votong:2.0.0
+        - image: code4romania/votong:2.1.0
           resources:
             requests:
               cpu: 10m
@@ -52,6 +52,10 @@ spec:
               value: "False"
             - name: GLOBAL_SUPPORT_ENABLED
               value: "True"
+            - name: VOTONG_WEBSITE
+              value: "https://votong.staging.heroesof.tech"
+            - name: NGOHUB_HOME_HOST
+              value: "app-staging.ngohub.ro"
 
             - name: SECRET_KEY
               valueFrom:
@@ -143,6 +147,11 @@ spec:
                 secretKeyRef:
                   name: votong-ces2024-secret
                   key: AWS_COGNITO_DOMAIN
+            - name: AWS_COGNITO_USER_POOL_ID
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: AWS_COGNITO_USER_POOL_ID
             - name: AWS_COGNITO_REGION
               valueFrom:
                 secretKeyRef:
