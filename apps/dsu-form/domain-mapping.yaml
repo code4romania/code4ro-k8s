@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1beta1
+kind: DomainMapping
+metadata:
+  name: evaluare-dsu.code4.ro
+  namespace: dsu-form
+spec:
+  ref:
+    name: dsu-form
+    kind: Service
+    apiVersion: serving.knative.dev/v1
