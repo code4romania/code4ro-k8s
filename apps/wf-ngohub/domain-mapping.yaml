@@ -1,6 +1,17 @@
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
+  name: wf.commitglobal.org
+  namespace: wf-ngohub
+spec:
+  ref:
+    name: wf-ngohub
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1beta1
+kind: DomainMapping
+metadata:
   name: wf.ngohub.ro
   namespace: wf-ngohub
 spec:
