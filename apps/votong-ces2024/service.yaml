@@ -49,7 +49,7 @@ spec:
             - name: DJANGO_Q_POLL_SECONDS
               value: "4"
             - name: RUN_LOAD_INITIAL_DATA
-              value: "False"
+              value: "True"
             - name: GLOBAL_SUPPORT_ENABLED
               value: "True"
             - name: VOTONG_WEBSITE
