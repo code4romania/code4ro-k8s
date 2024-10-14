@@ -1,10 +1,21 @@
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: ces2024.votong.ro
+  name: votong.ro
   namespace: votong-ces2024
 spec:
   ref:
     name: votong-ces2024
     kind: Service
     apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1beta1
+kind: DomainMapping
+metadata:
+  name: www.votong.ro
+  namespace: nginx-www-redirect
+spec:
+  ref:
+    name: nginx-www-redirect
+    kind: Service
+    apiVersion: v1

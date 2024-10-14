@@ -23,7 +23,7 @@ spec:
             - containerPort: 80
           env:
             - name: ALLOWED_HOSTS
-              value: "ces2024.votong.ro,www.votong.ro"
+              value: "votong.ro"
             - name: ANALYTICS_ENABLED
               value: "true"
             - name: USE_S3
@@ -53,9 +53,9 @@ spec:
             - name: GLOBAL_SUPPORT_ENABLED
               value: "True"
             - name: VOTONG_WEBSITE
-              value: "https://votong.staging.heroesof.tech"
+              value: "https://votong.ro"
             - name: NGOHUB_HOME_HOST
-              value: "app-staging.ngohub.ro"
+              value: "www.ngohub.ro"
 
             - name: SECRET_KEY
               valueFrom:
