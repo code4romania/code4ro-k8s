@@ -1,21 +1,10 @@
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: votong.ro
+  name: pnrr2022.votong.ro
   namespace: votong-pnrr2022
 spec:
   ref:
     name: votong-pnrr2022
     kind: Service
     apiVersion: serving.knative.dev/v1
----
-apiVersion: serving.knative.dev/v1beta1
-kind: DomainMapping
-metadata:
-  name: www.votong.ro
-  namespace: nginx-www-redirect
-spec:
-  ref:
-    name: nginx-www-redirect
-    kind: Service
-    apiVersion: v1
