@@ -21,6 +21,8 @@ spec:
           ports:
             - containerPort: 8010
           env:
+            - name: ALLOWED_HOSTS
+              value: "pnrr2022.votong.ro"
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
@@ -96,11 +98,6 @@ spec:
                 secretKeyRef:
                   name: votong-pnrr2022-secret
                   key: S_AWS_STORAGE_BUCKET_NAME
-            - name: ALLOWED_HOSTS
-              valueFrom:
-                secretKeyRef:
-                  name: votong-pnrr2022-secret
-                  key: S_ALLOWED_HOSTS
             - name: SENTRY_DSN
               valueFrom:
                 secretKeyRef:
