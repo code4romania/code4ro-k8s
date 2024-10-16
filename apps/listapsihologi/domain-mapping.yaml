@@ -1,21 +1,21 @@
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: wf.commitglobal.org
-  namespace: wf-ngohub
+  name: listapsihologi.ro
+  namespace: listapsihologi
 spec:
   ref:
-    name: wf-ngohub
+    name: listapsihologi
     kind: Service
     apiVersion: serving.knative.dev/v1
 ---
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: wf.ngohub.ro
-  namespace: wf-ngohub
+  name: www.listapsihologi.ro
+  namespace: nginx-www-redirect
 spec:
   ref:
-    name: wf-ngohub
+    name: nginx-www-redirect
     kind: Service
-    apiVersion: serving.knative.dev/v1
+    apiVersion: v1
