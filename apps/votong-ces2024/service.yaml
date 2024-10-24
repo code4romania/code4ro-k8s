@@ -158,6 +158,11 @@ spec:
                   name: votong-ces2024-secret
                   key: AWS_COGNITO_REGION
 
+            - name: NGOHUB_APP_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: votong-ces2024-secret
+                  key: NGOHUB_APP_HOST
             - name: NGOHUB_API_HOST
               valueFrom:
                 secretKeyRef:
