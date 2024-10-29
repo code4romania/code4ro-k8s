@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
-        - image: code4romania/votong:2.5.8
+        - image: code4romania/votong:2.5.10
           resources:
             requests:
               cpu: 250m
@@ -32,6 +32,8 @@ spec:
               value: "django_ses.SESBackend"
             - name: DEFAULT_FROM_EMAIL
               value: "no-reply@votong.ro"
+            - name: CONTACT_EMAIL
+              value: "civic@code4.ro"
             - name: SENTRY_TRACES_SAMPLE_RATE
               value: "0.3"
             - name: SENTRY_PROFILES_SAMPLE_RATE
