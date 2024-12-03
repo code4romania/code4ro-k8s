@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
-        - image: code4romania/votong:2.5.54
+        - image: code4romania/votong:2.5.55
           resources:
             requests:
               cpu: 250m
