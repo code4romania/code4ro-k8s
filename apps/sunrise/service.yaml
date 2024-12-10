@@ -14,11 +14,11 @@ spec:
         - image: code4romania/sunrise:1.0.1
           resources:
             requests:
-              cpu: 10m
-              memory: 50M
+              cpu: 250m
+              memory: 1Gi
             limits:
-              cpu: 500m
-              memory: 256M
+              cpu: 1250m
+              memory: 2Gi
           ports:
             - containerPort: 80
           env:
