@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1beta1
+kind: DomainMapping
+metadata:
+  name: localizare.hartareciclarii.ro
+  namespace: harta-reciclarii
+spec:
+  ref:
+    name: harta-reciclarii
+    kind: Service
+    apiVersion: serving.knative.dev/v1

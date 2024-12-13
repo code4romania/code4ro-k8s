@@ -18,7 +18,7 @@ spec:
       #     value: "spot"
       #     effect: "NoSchedule"
       containers:
-        - image: code4romania/website-factory:1.9.5
+        - image: code4romania/website-factory:1.9.7
           resources:
             requests:
               cpu: 10m

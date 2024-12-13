@@ -1,8 +1,8 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: conduc-electric
-  namespace: conduc-electric
+  name: harta-reciclarii
+  namespace: harta-reciclarii
 spec:
   template:
     metadata:
@@ -10,99 +10,100 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
         autoscaling.knative.dev/max-scale: "1"
     spec:
-      # nodeSelector:
-      #   nodegroup-role: spot
-      # tolerations:
-      #   - key: "nodegroup-role"
-      #     operator: "Equal"
-      #     value: "spot"
-      #     effect: "NoSchedule"
       containers:
-        - image: code4romania/website-factory:1.9.7
+        - image: code4romania/harta-reciclarii:1.0.0
           resources:
             requests:
               cpu: 10m
-              memory: 60M
+              memory: 50M
             limits:
               cpu: 500m
               memory: 256M
           ports:
             - containerPort: 80
           env:
-            - name: APP_DEBUG
-              value: "false"
             - name: APP_NAME
-              value: "Conduc Electric"
-            - name: WEBSITE_FACTORY_EDITION
-              value: "internal"
+              value: "Harta Reciclării"
+            - name: APP_URL
+              value: "https://localizare.hartareciclarii.ro"
             - name: APP_KEY
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: APP_KEY
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: DB_HOST
             - name: DB_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: DB_DATABASE
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: DB_USERNAME
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: DB_PASSWORD
+
+            - name: MAIL_MAILER
+              value: "smtp"
+            - name: MAIL_FROM_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: harta-reciclarii-secret
+                  key: MAIL_FROM_ADDRESS
             - name: MAIL_HOST
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: MAIL_HOST
+            - name: MAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: harta-reciclarii-secret
+                  key: MAIL_PORT
             - name: MAIL_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: MAIL_USERNAME
             - name: MAIL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: MAIL_PASSWORD
-            - name: MAIL_FROM_ADDRESS
-              valueFrom:
-                secretKeyRef:
-                  name: conduc-electric-secret
-                  key: MAIL_FROM_ADDRESS
-            - name: MAIL_FROM_NAME
-              value: "Conduc Electric"
-            - name: FILESYSTEM_DRIVER
+
+            - name: FILAMENT_FILESYSTEM_DISK
               value: "s3"
-            - name: FILESYSTEM_CLOUD
+            - name: FILESYSTEM_DISK
               value: "s3"
+            - name: MEDIA_DISK
+              value: "s3"
+
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: AWS_ACCESS_KEY_ID
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: AWS_SECRET_ACCESS_KEY
             - name: AWS_DEFAULT_REGION
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: AWS_DEFAULT_REGION
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
-                  name: conduc-electric-secret
+                  name: harta-reciclarii-secret
                   key: AWS_BUCKET
