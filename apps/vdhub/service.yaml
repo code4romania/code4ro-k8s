@@ -25,7 +25,7 @@ spec:
             - name: WEBSITE_FACTORY_EDITION
               value: "ong"
             - name: WEBSITE_FACTORY_HIDE_BANNER
-              value: "true"
+              value: "false"
             - name: APP_URL
               value: "https://vdhub.ro"
             - name: APP_KEY
