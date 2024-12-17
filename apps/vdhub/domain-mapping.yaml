@@ -2,20 +2,20 @@ apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
   name: vdhub.ro
-  namespace: vdhub.ro
+  namespace: vdhub
 spec:
   ref:
-    name: vdhub.ro
+    name: vdhub
     kind: Service
     apiVersion: serving.knative.dev/v1
 ---
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: vdhub.ro
-  namespace: vdhub.ro
+  name: www.vdhub.ro
+  namespace: nginx-www-redirect
 spec:
   ref:
-    name: vdhub.ro
+    name: nginx-www-redirect
     kind: Service
-    apiVersion: serving.knative.dev/v1
+    apiVersion: v1
