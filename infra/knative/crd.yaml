@@ -14,7 +14,7 @@ metadata:
   name: knative-serving
   namespace: knative-serving
 spec:
-  version: "1.15"
+  version: "1.16"
   ingress:
     kourier:
       enabled: true
