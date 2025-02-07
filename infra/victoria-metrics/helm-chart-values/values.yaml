@@ -69,7 +69,7 @@ defaultDashboards:
     argocd.argoproj.io/sync-options: ServerSideApply=true
 
 grafana:
-  vmServiceScrape:
+  vmScrape:
     enabled: false
   admin:
     existingSecret: grafana-secret
