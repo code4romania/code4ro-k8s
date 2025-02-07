@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - https://github.com/knative/operator/releases/download/knative-v1.13.0/operator.yaml
   - https://github.com/knative/net-certmanager/releases/download/knative-v1.13.0/release.yaml
+  - https://raw.githubusercontent.com/knative-extensions/monitoring/main/grafana/dashboards.yaml
   - crd.yaml
 
 patches:
