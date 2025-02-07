@@ -60,8 +60,13 @@ alertmanager:
     configSecret: "alertmanager-config"
 
 defaultRules:
-  rules:
-    general: false
+  groups:
+    general:
+      create: false
+
+defaultDashboards:
+  annotations:
+    argocd.argoproj.io/sync-options: ServerSideApply=true
 
 grafana:
   vmServiceScrape:
