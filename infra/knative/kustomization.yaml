@@ -5,3 +5,12 @@ resources:
   - https://github.com/knative/operator/releases/download/knative-v1.17.2/operator.yaml
   - https://raw.githubusercontent.com/knative-extensions/monitoring/main/grafana/dashboards.yaml
   - crd.yaml
+
+patches:
+  - patch: |
+      $patch: delete
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: knative-eventing-dashboards
+        namespace: knative-eventing

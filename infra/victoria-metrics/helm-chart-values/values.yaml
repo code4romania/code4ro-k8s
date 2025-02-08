@@ -69,6 +69,9 @@ defaultDashboards:
     argocd.argoproj.io/sync-options: ServerSideApply=true
 
 grafana:
+  sidecar:
+    dashboards:
+      searchNamespace: ALL
   vmScrape:
     enabled: false
   admin:
