@@ -27,7 +27,7 @@ spec:
             annotations:
               eks.amazonaws.com/role-arn: arn:aws:iam::172019762325:role/KarpenterControllerRole-code4ro-prod
       repoURL: public.ecr.aws/karpenter
-      targetRevision: 0.37.0
+      targetRevision: 0.37.7
   destination:
     namespace: karpenter
     server: https://kubernetes.default.svc
