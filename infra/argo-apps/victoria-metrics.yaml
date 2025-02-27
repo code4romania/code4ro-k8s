@@ -22,3 +22,19 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+      # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#respect-ignore-difference-configs
+      # argocd must also ignore difference during apply stage
+      # otherwise it ll silently override changes and cause a problem
+      - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: victoria-metrics-victoria-metrics-operator-validation
+      namespace: victoria-metrics
+      jsonPointers:
+        - /data
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      name: victoria-metrics-victoria-metrics-operator-admission
+      jqPathExpressions:
+        - ".webhooks[]?.clientConfig.caBundle"
