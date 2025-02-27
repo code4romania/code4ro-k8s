@@ -13,3 +13,4 @@ data:
 
     g, andrei.ionita@commitglobal.org, role:admin
     g, gheorghe.lupu@code4.ro, role:admin
+  scopes: "[groups, email]"
