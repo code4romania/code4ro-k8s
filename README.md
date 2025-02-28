@@ -19,7 +19,7 @@ The flow is as follow:
 ArgoCD projects:
 
 - **_infra_**: knative, cert-manager, sealed-secrets and argocd. `infra/argo-apps-infra.yaml` is the root ArgoCD Application for `infra/argo-apps`. `infra/argo-apps` store the ArgoCD Applications.
-- **_default_**: all applications manifests. `apps/argo-apps-default.yaml` is the root ArgoCD Application for `apps/argo-apps`. `apps/argo-apps` store the ArgoCD Applications.
+- **_default_**: all applications manifests. `./apps/argo-apps/apps.yaml` is the root ArgoCD Application for `apps`. `apps` store the ArgoCD Applications.
 
 ### Sealed Secrets
 
