@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-of-apps
+  namespace: argocd
+spec:
+  goTemplate: true
+  generators:
+    - git:
+        repoURL: https://github.com/code4romania/code4ro-k8s.git
+        revision: HEAD
+        directories:
+          - path: apps/*
+  template:
+    metadata:
+      name: "{{ .path.basename }}"
+    spec:
+      project: default
+      source:
+        path: apps/{{ .path.basename }}
+        repoURL: https://github.com/code4romania/code4ro-k8s.git
+        targetRevision: HEAD
+      destination:
+        namespace: "{{ .path.basename }}"
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        # automated: {}
+        syncOptions:
+          - CreateNamespace=true
