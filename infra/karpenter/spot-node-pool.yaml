@@ -22,12 +22,12 @@ spec:
         - key: kubernetes.io/os
           operator: In
           values: ["linux"]
-        - key: karpenter.k8s.aws/instance-category
+        - key: karpenter.k8s.aws/instance-family
           operator: In
-          values: ["t", "c", "m", "r"]
-        - key: karpenter.k8s.aws/instance-generation
-          operator: Gt
-          values: ["2"]
+          values: ["m5a", "m5"]
+        - key: karpenter.k8s.aws/instance-size
+          operator: In
+          values: ["large"]
         - key: "topology.kubernetes.io/zone"
           operator: In
           values: ["eu-central-1a"]
