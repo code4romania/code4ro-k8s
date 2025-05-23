@@ -27,8 +27,7 @@ spec:
       # otherwise it ll silently override changes and cause a problem
       - RespectIgnoreDifferences=true
   ignoreDifferences:
-    - group: ""
-      kind: Secret
+    - kind: Secret
       name: victoria-metrics-victoria-metrics-operator-validation
       namespace: victoria-metrics
       jsonPointers:
