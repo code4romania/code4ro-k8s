@@ -50,7 +50,7 @@ addons:
 
 managedNodeGroups:
   - name: nodegroup
-    instanceType: m5a.large
+    instanceType: t3a.medium
     availabilityZones: ["eu-central-1a"]
     iam:
       attachPolicyARNs:
