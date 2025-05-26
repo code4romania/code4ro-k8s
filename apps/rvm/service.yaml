@@ -11,7 +11,7 @@ spec:
         autoscaling.knative.dev/max-scale: "1"
     spec:
       containers:
-        - image: code4romania/rvm:1.2.2
+        - image: code4romania/rvm:1.2.3
           resources:
             requests:
               cpu: 10m
@@ -101,6 +101,11 @@ spec:
                 secretKeyRef:
                   name: rvm-secret
                   key: AWS_BUCKET
+            - name: AWS_BUCKET_PUBLIC
+              valueFrom:
+                secretKeyRef:
+                  name: rvm-secret
+                  key: AWS_BUCKET_PUBLIC
             - name: SENTRY_LARAVEL_DSN
               valueFrom:
                 secretKeyRef:
