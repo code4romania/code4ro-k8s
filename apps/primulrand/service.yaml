@@ -24,6 +24,8 @@ spec:
           env:
             - name: WEBSITE_FACTORY_EDITION
               value: "ngo"
+            - name: WEBSITE_FACTORY_HIDE_BANNER
+              value: "false"
             - name: APP_URL
               value: "https://in.primulrand.ro"
             - name: APP_KEY
@@ -51,7 +53,7 @@ spec:
                 secretKeyRef:
                   name: primulrand-secret
                   key: DB_PASSWORD
-            - namșe: MAIL_MAILER
+            - name: MAIL_MAILER
               value: "ses"
             - name: MAIL_FROM_ADDRESS
               valueFrom:
