@@ -23,7 +23,7 @@ spec:
             - containerPort: 80
           env:
             - name: WEBSITE_FACTORY_EDITION
-              value: "ngo"
+              value: "ong"
             - name: WEBSITE_FACTORY_HIDE_BANNER
               value: "false"
             - name: APP_URL
