@@ -1,0 +1,81 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: colectare-declaratii
+  namespace: colectare-declaratii
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/min-scale: "1"
+        autoscaling.knative.dev/max-scale: "1"
+    spec:
+      containers:
+        - image: commitglobal/colectare-declaratii:0.1.1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128M
+            limits:
+              cpu: 250m
+              memory: 512M
+          ports:
+            - containerPort: 80
+          env:
+            - name: APP_URL
+              value: "https://declaratii.code4.ro"
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: colectare-declaratii-secret
+                  key: APP_KEY
+            - name: DB_CONNECTION
+              value: "mysql"
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: colectare-declaratii-secret
+                  key: DB_HOST
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: colectare-declaratii-secret
+                  key: DB_DATABASE
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: colectare-declaratii-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: colectare-declaratii-secret
+                  key: DB_PASSWORD
+            - name: FILAMENT_FILESYSTEM_DISK
+              value: "s3"
+            - name: FILESYSTEM_DISK
+              value: "s3"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: colectare-declaratii-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: colectare-declaratii-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: colectare-declaratii-secret
+                  key: AWS_DEFAULT_REGION
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: colectare-declaratii-secret
+                  key: AWS_BUCKET
+            - name: SENTRY_TRACES_SAMPLE_RATE
+              value: "0.2"
+            - name: SENTRY_PROFILES_SAMPLE_RATE
+              value: "0.5"
