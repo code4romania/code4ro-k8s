@@ -51,21 +51,8 @@ spec:
                 secretKeyRef:
                   name: primulrand-secret
                   key: DB_PASSWORD
-            - name: MAIL_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: primulrand-secret
-                  key: MAIL_HOST
-            - name: MAIL_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: primulrand-secret
-                  key: MAIL_USERNAME
-            - name: MAIL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: primulrand-secret
-                  key: MAIL_PASSWORD
+            - namșe: MAIL_MAILER
+              value: "ses"
             - name: MAIL_FROM_ADDRESS
               valueFrom:
                 secretKeyRef:
