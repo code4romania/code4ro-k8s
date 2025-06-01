@@ -75,6 +75,8 @@ spec:
                 secretKeyRef:
                   name: colectare-declaratii-secret
                   key: AWS_BUCKET
+            - name: AWS_BUCKET_ROOT
+              value: "uploads"
             - name: SENTRY_TRACES_SAMPLE_RATE
               value: "0.2"
             - name: SENTRY_PROFILES_SAMPLE_RATE
