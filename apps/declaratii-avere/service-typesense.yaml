@@ -21,6 +21,7 @@ spec:
               memory: 2048M
           ports:
             - containerPort: 8108
+              targetPort: 8108
           volumeMounts:
             - mountPath: /typesense-data
               name: typesense-data
