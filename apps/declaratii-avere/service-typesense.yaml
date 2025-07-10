@@ -49,5 +49,6 @@ spec:
     app: typesense
   ports:
     - protocol: TCP
+      name: http
       port: 8108
       targetPort: 8108
