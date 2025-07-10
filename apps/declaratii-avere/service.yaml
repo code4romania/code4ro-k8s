@@ -70,9 +70,9 @@ spec:
             - name: SCOUT_DRIVER
               value: "typesense"
             - name: TYPESENSE_HOST
-              value: "typesense.declaratii-avere.svc.cluster.local"
+              value: "typesense"
             - name: TYPESENSE_PORT
-              value: "8108"
+              value: "80"
             - name: TYPESENSE_API_KEY
               valueFrom:
                 secretKeyRef:
