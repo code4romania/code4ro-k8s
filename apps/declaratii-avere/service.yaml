@@ -67,6 +67,14 @@ spec:
                   name: declaratii-avere-secret
                   key: DB_PASSWORD_DECLARATION
 
+            - name: MAIL_MAILER
+              value: "ses"
+            - name: MAIL_FROM_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: declaratii-avere-secret
+                  key: MAIL_FROM_ADDRESS
+
             - name: SCOUT_DRIVER
               value: "typesense"
             - name: TYPESENSE_HOST
