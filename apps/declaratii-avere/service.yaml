@@ -70,9 +70,9 @@ spec:
             - name: SCOUT_DRIVER
               value: "typesense"
             - name: TYPESENSE_HOST
-              value: "typesense"
+              value: "typesense-clusterip"
             - name: TYPESENSE_PORT
-              value: "80"
+              value: "8108"
             - name: TYPESENSE_API_KEY
               valueFrom:
                 secretKeyRef:
