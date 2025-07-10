@@ -46,7 +46,7 @@ metadata:
   name: typesense
 spec:
   selector:
-    app: typesense
+    name: typesense
   ports:
     - protocol: TCP
       name: http
