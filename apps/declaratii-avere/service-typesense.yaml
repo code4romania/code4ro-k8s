@@ -8,6 +8,7 @@ spec:
     app: typesense
   ports:
     - protocol: TCP
+      name: typsense-port
       port: 8108
       targetPort: 8108
 ---
