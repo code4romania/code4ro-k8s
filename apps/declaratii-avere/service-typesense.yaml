@@ -21,9 +21,9 @@ spec:
               memory: 2048M
           ports:
             - containerPort: 8108
-          volumeMounts:
-            - mountPath: /typesense-data
-              name: typesense-data
+          # volumeMounts:
+          #   - mountPath: /typesense-data
+          #     name: typesense-data
           env:
             - name: TYPESENSE_DATA_DIR
               value: "/typesense-data"
@@ -34,7 +34,7 @@ spec:
                 secretKeyRef:
                   name: declaratii-avere-secret
                   key: TYPESENSE_API_KEY
-      volumes:
-        - name: typesense-data
-          persistentVolumeClaim:
-            claimName: declaratii-avere-pvc
+      # volumes:
+      #   - name: typesense-data
+      #     persistentVolumeClaim:
+      #       claimName: declaratii-avere-pvc
