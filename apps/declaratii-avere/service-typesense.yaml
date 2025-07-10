@@ -9,6 +9,8 @@ spec:
       annotations:
         autoscaling.knative.dev/min-scale: "1"
         autoscaling.knative.dev/max-scale: "1"
+      labels:
+        app: typesense
     spec:
       containers:
         - image: typesense/typesense:29.0
@@ -20,13 +22,11 @@ spec:
               cpu: 1000m
               memory: 2048M
           ports:
-            - containerPort: 80
+            - containerPort: 8108
           volumeMounts:
             - mountPath: /typesense-data
               name: typesense-data
           env:
-            - name: TYPESENSE_API_PORT
-              value: "80"
             - name: TYPESENSE_DATA_DIR
               value: "/typesense-data"
             - name: TYPESENSE_ENABLE_CORS
@@ -40,4 +40,18 @@ spec:
         - name: typesense-data
           persistentVolumeClaim:
             claimName: declaratii-avere-pvc
-            readOnly: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: typesense-clusterip
+  namespace: declaratii-avere
+spec:
+  selector:
+    app: typesense
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      name: http
+      port: 8108
+      targetPort: 8108
