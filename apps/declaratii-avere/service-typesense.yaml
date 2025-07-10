@@ -21,7 +21,6 @@ spec:
               memory: 2048M
           ports:
             - containerPort: 8108
-              targetPort: 8108
           volumeMounts:
             - mountPath: /typesense-data
               name: typesense-data
@@ -40,3 +39,15 @@ spec:
           persistentVolumeClaim:
             claimName: declaratii-avere-pvc
             readOnly: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: typesense
+spec:
+  selector:
+    app: typesense
+  ports:
+    - protocol: TCP
+      port: 8108
+      targetPort: 8108
