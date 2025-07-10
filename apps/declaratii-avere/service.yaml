@@ -66,6 +66,19 @@ spec:
                 secretKeyRef:
                   name: declaratii-avere-secret
                   key: DB_PASSWORD_DECLARATION
+
+            - name: SCOUT_DRIVER
+              value: "typesense"
+            - name: TYPESENSE_HOST
+              value: "typesense.declaratii-avere.svc.cluster.local"
+            - name: TYPESENSE_PORT
+              value: "8108"
+            - name: TYPESENSE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: declaratii-avere-secret
+                  key: TYPESENSE_API_KEY
+
             - name: FILAMENT_FILESYSTEM_DISK
               value: "s3"
             - name: FILESYSTEM_DISK
