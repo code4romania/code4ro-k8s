@@ -8,7 +8,7 @@ spec:
   sources:
     - path: infra/karpenter
       repoURL: https://github.com/code4romania/code4ro-k8s.git
-      targetRevision: HEAD
+      targetRevision: old-cluster-aws
     - chart: karpenter
       helm:
         valuesObject:

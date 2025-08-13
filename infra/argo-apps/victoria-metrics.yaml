@@ -11,7 +11,7 @@ spec:
   sources:
     - path: infra/victoria-metrics
       repoURL: https://github.com/code4romania/code4ro-k8s.git
-      targetRevision: HEAD
+      targetRevision: old-cluster-aws
       ref: myRepo
     - repoURL: https://victoriametrics.github.io/helm-charts
       targetRevision: 0.48.1

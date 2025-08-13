@@ -8,7 +8,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/code4romania/code4ro-k8s.git
-        revision: HEAD
+        revision: old-cluster-aws
         directories:
           - path: apps/*
   template:
@@ -19,7 +19,7 @@ spec:
       source:
         path: apps/{{ .path.basename }}
         repoURL: https://github.com/code4romania/code4ro-k8s.git
-        targetRevision: HEAD
+        targetRevision: old-cluster-aws
       destination:
         namespace: "{{ .path.basename }}"
         server: https://kubernetes.default.svc

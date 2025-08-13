@@ -8,7 +8,7 @@ spec:
   source:
     path: infra/argo-apps
     repoURL: https://github.com/code4romania/code4ro-k8s.git
-    targetRevision: HEAD
+    targetRevision: old-cluster-aws
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc

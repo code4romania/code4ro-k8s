@@ -8,10 +8,10 @@ spec:
   source:
     path: infra/cert-manager/clusterissuer
     repoURL: https://github.com/code4romania/code4ro-k8s.git
-    targetRevision: HEAD
+    targetRevision: old-cluster-aws
   destination:
     namespace: kube-system
     server: https://kubernetes.default.svc
   syncPolicy:
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
