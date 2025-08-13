@@ -1,0 +1,29 @@
+controller:
+  kind: DaemonSet
+  metrics:
+    enabled: true
+    serviceMonitor:
+      additionalLabels:
+        release: "kube-prometheus-stack"
+      enabled: true
+  ingressClassResource:
+    default: "true"
+  service:
+    annotations:
+      load-balancer.hetzner.cloud/location: nbg1
+      # NOTE: This is NOT the load balancer created automatically for HA clusters. You need to specify a different name here to create a separate load balancer for ingress Nginx.
+      load-balancer.hetzner.cloud/name: code4ro-prod-ingress-nginx
+
+      # Ensures communication between the load balancer and cluster nodes happens through the private network.
+      load-balancer.hetzner.cloud/use-private-ip: "true"
+
+      # "uses-proxyprotocol" enables the proxy protocol on the load balancer so that the ingress controller and applications can see the real client IP.
+      load-balancer.hetzner.cloud/uses-proxyprotocol: "true"
+      load-balancer.hetzner.cloud/http-redirect-https: "true"
+
+  # -- Will add custom configuration options to Nginx https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
+  config:
+    use-gzip: "true"
+    enable-real-ip: "true"
+    disable-access-log: "true"
+    enable-brotli: "true"
