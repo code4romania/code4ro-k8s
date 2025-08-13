@@ -4,13 +4,6 @@ kube-state-metrics:
   metricLabelsAllowlist:
     - pods=[*]
     - deployments=[app.kubernetes.io/name,app.kubernetes.io/component,app.kubernetes.io/instance]
-  nodeSelector:
-    nodegroup-role: spot
-  tolerations:
-    - key: "nodegroup-role"
-      operator: "Equal"
-      value: "spot"
-      effect: "NoSchedule"
 
 vmsingle:
   spec:
@@ -23,13 +16,6 @@ vmsingle:
         memory: 1Gi
       limits:
         memory: 2Gi
-    nodeSelector:
-      nodegroup-role: spot
-    tolerations:
-      - key: "nodegroup-role"
-        operator: "Equal"
-        value: "spot"
-        effect: "NoSchedule"
 
 vmagent:
   spec:
@@ -39,13 +25,6 @@ vmagent:
         memory: 130M
       limits:
         memory: 400M
-    nodeSelector:
-      nodegroup-role: spot
-    tolerations:
-      - key: "nodegroup-role"
-        operator: "Equal"
-        value: "spot"
-        effect: "NoSchedule"
 
 kubeControllerManager:
   enabled: false
