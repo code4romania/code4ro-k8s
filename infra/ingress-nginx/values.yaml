@@ -16,10 +16,9 @@ controller:
 
       # Ensures communication between the load balancer and cluster nodes happens through the private network.
       load-balancer.hetzner.cloud/use-private-ip: "true"
-
+      load-balancer.hetzner.cloud/hostname: cd.code4.ro
       # "uses-proxyprotocol" enables the proxy protocol on the load balancer so that the ingress controller and applications can see the real client IP.
-      load-balancer.hetzner.cloud/uses-proxyprotocol: "true"
-      load-balancer.hetzner.cloud/http-redirect-https: "true"
+      load-balancer.hetzner.cloud/uses-proxyprotocol: "false"
 
   # -- Will add custom configuration options to Nginx https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
   config:
