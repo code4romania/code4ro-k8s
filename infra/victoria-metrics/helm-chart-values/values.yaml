@@ -80,29 +80,14 @@ grafana:
   persistence:
     enabled: true
 
-  nodeSelector:
-    nodegroup-role: spot
-  tolerations:
-    - key: "nodegroup-role"
-      operator: "Equal"
-      value: "spot"
-      effect: "NoSchedule"
-
   ingress:
     enabled: true
-    ingressClassName: alb
     hosts:
       - metrics.code4.ro
     tls:
       - secretName: web-ssl
         hosts:
           - metrics.code4.ro
-    annotations:
-      "alb.ingress.kubernetes.io/scheme": internet-facing
-      "alb.ingress.kubernetes.io/target-type": ip
-      "alb.ingress.kubernetes.io/group.name": main-alb
-      "alb.ingress.kubernetes.io/listen-ports": '[{"HTTP": 80}, {"HTTPS":443}]'
-      "alb.ingress.kubernetes.io/ssl-redirect": "443"
 
   grafana.ini:
     server:
