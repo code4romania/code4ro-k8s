@@ -8,5 +8,14 @@ metadata:
 data:
   # Run server without TLS
   server.insecure: "true"
- 
-  
+
+  controller.log.format: "json"
+  controller.log.level: "warn"
+  server.log.format: "json"
+  server.log.level: "warn"
+  reposerver.log.format: "json"
+  reposerver.log.level: "warn"
+  applicationsetcontroller.log.format: "json"
+  applicationsetcontroller.log.level: "warn"
+  notificationscontroller.log.format: "json"
+  notificationscontroller.log.level: "warn"
