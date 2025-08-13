@@ -3,10 +3,9 @@ kind: Kustomization
 
 namespace: argocd
 resources:
-  - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml?ref=v2.14.2
+  - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml?ref=v3.0.12
   - namespace.yaml
   - project.yaml
-  - domain-mapping.yaml
   - sealed-secret.yaml
 
 patches:
@@ -21,19 +20,3 @@ patches:
       version: v1
       kind: ConfigMap
       name: argocd-cm
-  - patch: |-
-      kind: not-important
-      metadata:
-        name: not-important
-      spec:
-        template:
-          spec:
-            nodeSelector:
-              nodegroup-role: spot
-            tolerations:
-              - key: "nodegroup-role"
-                operator: "Equal"
-                value: "spot"
-                effect: "NoSchedule"
-    target:
-      kind: (StatefulSet|Deployment)

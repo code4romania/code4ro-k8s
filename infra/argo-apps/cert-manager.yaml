@@ -5,18 +5,22 @@ metadata:
   namespace: argocd
 spec:
   project: infra
-  source:
-    chart: cert-manager
-    helm:
-      values: |-
-        installCRDs: true
-        global:
-          leaderElection:
-            namespace: cert-manager
-        prometheus:
-          enabled: false
-    repoURL: https://charts.jetstack.io
-    targetRevision: v1.17.2
+  sources:
+    - chart: cert-manager
+      helm:
+        values: |-
+          global:
+            leaderElection:
+              namespace: cert-manager
+          crds:
+            enabled: true
+          prometheus:
+            enabled: false
+      repoURL: https://charts.jetstack.io
+      targetRevision: v1.18.2
+    - repoURL: https://github.com/code4romania/code4ro-k8s.git
+      path: infra/cert-manager
+      targetRevision: HEAD
   destination:
     namespace: cert-manager
     server: https://kubernetes.default.svc
