@@ -1,11 +1,5 @@
 controller:
   kind: DaemonSet
-  metrics:
-    enabled: true
-    serviceMonitor:
-      additionalLabels:
-        release: "kube-prometheus-stack"
-      enabled: true
   watchIngressWithoutClass: "true"
   ingressClassResource:
     default: "true"
