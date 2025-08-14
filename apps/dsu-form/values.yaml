@@ -2,7 +2,7 @@ fullnameOverride: dsu-form
 
 image:
   repository: code4romania/website-factory
-  tag: 1.10.5
+  tag: 1.11.3
 
 ingress:
   enabled: true
