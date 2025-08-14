@@ -2,7 +2,7 @@ fullnameOverride: centre-testare-hiv
 
 image:
   repository: code4romania/centre-testare-hiv
-  tag: v1.9
+  tag: v1.10
 
 ingress:
   enabled: true
