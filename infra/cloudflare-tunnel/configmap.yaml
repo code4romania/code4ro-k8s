@@ -4,7 +4,7 @@ metadata:
   name: cloudflared-configmap
 data:
   config.yaml: |
-    tunnel: code4ro-k8s-hetzner
+    tunnel: prod-k8s-hetzner
     metrics: 0.0.0.0:2000
     warp-routing:
       enabled: true
