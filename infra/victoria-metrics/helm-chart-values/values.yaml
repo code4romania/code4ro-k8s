@@ -59,15 +59,6 @@ grafana:
   persistence:
     enabled: true
 
-  ingress:
-    enabled: true
-    hosts:
-      - metrics.code4.ro
-    tls:
-      - secretName: web-ssl
-        hosts:
-          - metrics.code4.ro
-
   grafana.ini:
     server:
       domain: metrics.code4.ro
