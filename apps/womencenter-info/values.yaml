@@ -8,6 +8,7 @@ ingress:
   enabled: true
   annotations:
     "cert-manager.io/cluster-issuer": letsencrypt
+    "nginx.ingress.kubernetes.io/from-to-www-redirect": "true"
   hosts:
     - host: womencenter.info
       paths:
