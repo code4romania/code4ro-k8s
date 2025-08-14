@@ -2,7 +2,7 @@ fullnameOverride: paul
 
 image:
   repository: code4romania/paul
-  tag: 1.2.11
+  tag: 1.2.14
 
 ingress:
   enabled: true
