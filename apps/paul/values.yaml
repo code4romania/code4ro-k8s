@@ -1,0 +1,128 @@
+fullnameOverride: paul
+
+image:
+  repository: code4romania/paul
+  tag: 1.2.11
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: paul.code4.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - paul.code4.ro
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 512M
+  limits:
+    cpu: 500m
+    memory: 2Gi
+
+env:
+  - name: DEBUG
+    value: "False"
+  - name: CORS_ALLOWED_ORIGINS
+    value: "https://paul.code4.ro"
+  - name: FRONTEND_DOMAIN
+    value: "paul.code4.ro"
+  - name: ALLOWED_HOSTS
+    value: "paul.code4.ro"
+  - name: NO_REPLY_EMAIL
+    value: "paul@code4.ro"
+  - name: PLUGIN_MAILCHIMP_ENABLED
+    value: "True"
+  - name: RUN_COLLECT_STATIC
+    value: "yes"
+  - name: DATABASE_URL
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: DATABASE_URL
+  - name: SECRET_KEY
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: SECRET_KEY
+  - name: EMAIL_BACKEND
+    value: "django.core.mail.backends.smtp.EmailBackend"
+  - name: EMAIL_HOST
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: EMAIL_HOST
+  - name: EMAIL_HOST_USER
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: EMAIL_HOST_USER
+  - name: EMAIL_HOST_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: EMAIL_HOST_PASSWORD
+  - name: EMAIL_PORT
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: EMAIL_PORT
+  - name: EMAIL_USE_TLS
+    value: "True"
+  - name: USE_S3
+    value: "True"
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_STORAGE_BUCKET_NAME
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: AWS_STORAGE_BUCKET_NAME
+  - name: AWS_S3_REGION_NAME
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: AWS_S3_REGION_NAME
+  - name: AWS_DEFAULT_ACL
+    value: "public-read"
+  - name: DJANGO_ADMIN_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: DJANGO_ADMIN_EMAIL
+  - name: DJANGO_ADMIN_EMAIL
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: DJANGO_ADMIN_EMAIL
+  - name: DJANGO_ADMIN_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: DJANGO_ADMIN_PASSWORD
+  - name: SENTRY_DSN
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: SENTRY_DSN
+  - name: SENTRY_ENVIRONMENT
+    value: main
+  - name: MAILCHIMP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: paul-secret
+        key: MAILCHIMP_KEY

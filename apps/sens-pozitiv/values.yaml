@@ -1,0 +1,143 @@
+fullnameOverride: sens-pozitiv
+
+image:
+  repository: code4romania/sens-pozitiv
+  tag: 1.2.2
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: app.consilierehiv.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - app.consilierehiv.ro
+
+service:
+  port: 8070
+
+resources:
+  requests:
+    cpu: 30m
+    memory: 870M
+  limits:
+    cpu: 300m
+    memory: 2500M
+
+env:
+  - name: ENVIRONMENT
+    value: "production"
+  - name: DEBUG
+    value: "no"
+  - name: APP_PORT
+    value: "8070"
+  - name: SECRET_KEY
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: secret_key
+  - name: RUN_MIGRATION
+    value: "yes"
+  - name: RUN_COMPILEMESSAGES
+    value: "yes"
+  - name: RUN_SEED_DATA
+    value: "yes"
+  - name: RUN_COLLECT_STATIC
+    value: "yes"
+  - name: RUN_DEV_SERVER
+    value: "no"
+  - name: DJANGO_SETTINGS_MODULE
+    value: "sens_pozitiv_site.settings.production"
+  - name: ALLOWED_HOSTS
+    value: ".consilierehiv.ro"
+  - name: DATABASE_USER
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: database_user
+  - name: DATABASE_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: database_password
+  - name: DATABASE_NAME
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: database_name
+  - name: DATABASE_HOST
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: database_host
+  - name: DATABASE_PORT
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: database_port
+  - name: GUNICORN_WORKERS
+    value: "10"
+  - name: SUPER_ADMIN_PASS
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: super_admin_password
+  - name: SUPER_ADMIN_EMAIL
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: super_admin_email
+  - name: SUPER_ADMIN_FIRST_NAME
+    value: "Super"
+  - name: SUPER_ADMIN_LAST_NAME
+    value: "Admin"
+  - name: EMAIL_USE_TLS
+    value: "yes"
+  - name: EMAIL_USE_SSL
+    value: "no"
+  - name: FROM_EMAIL
+    value: "noreply@consilierehiv.ro"
+  - name: EMAIL_HOST
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: email_host
+  - name: EMAIL_PORT
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: email_port
+  - name: EMAIL_HOST_USER
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: email_host_user
+  - name: EMAIL_HOST_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: email_host_password
+  - name: ENABLE_SLACK_LOGGING
+    value: "yes"
+  - name: SLACK_LOGGING_COLOR
+    value: "1D49A7"
+  - name: SLACK_WEBHOOK_URL
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: slack_webhook_url
+  - name: RECAPTCHA_PUBLIC_KEY
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: recapcha_public_key
+  - name: RECAPTCHA_PRIVATE_KEY
+    valueFrom:
+      secretKeyRef:
+        name: sens-pozitiv-secret
+        key: recapcha_private_key

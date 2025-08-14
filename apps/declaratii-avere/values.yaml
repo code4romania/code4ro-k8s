@@ -1,0 +1,132 @@
+fullnameOverride: declaratii-avere
+
+image:
+  repository: code4romania/declaratii-avere
+  tag: 1.0.2
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: declaratiideavere.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - declaratiideavere.ro
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 256M
+  limits:
+    cpu: 1000m
+    memory: 512M
+
+env:
+  - name: APP_URL
+    value: "https://declaratiideavere.ro"
+  - name: APP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: APP_KEY
+  - name: DB_CONNECTION
+    value: "mysql"
+  - name: DB_HOST
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: DB_HOST
+  - name: DB_DATABASE
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: DB_DATABASE
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: DB_USERNAME
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: DB_PASSWORD
+  - name: DB_DATABASE_DECLARATION
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: DB_DATABASE_DECLARATION
+  - name: DB_USERNAME_DECLARATION
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: DB_USERNAME_DECLARATION
+  - name: DB_PASSWORD_DECLARATION
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: DB_PASSWORD_DECLARATION
+
+  - name: MAIL_MAILER
+    value: "ses"
+  - name: MAIL_FROM_ADDRESS
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: MAIL_FROM_ADDRESS
+
+  - name: SCOUT_DRIVER
+    value: "typesense"
+  - name: TYPESENSE_HOST
+    value: "typesense-clusterip"
+  - name: TYPESENSE_PORT
+    value: "8108"
+  - name: TYPESENSE_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: TYPESENSE_API_KEY
+
+  - name: FILAMENT_FILESYSTEM_DISK
+    value: "s3"
+  - name: FILESYSTEM_DISK
+    value: "s3"
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_DEFAULT_REGION
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: AWS_DEFAULT_REGION
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: AWS_BUCKET
+  - name: AWS_BUCKET_SOURCE
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: AWS_BUCKET_SOURCE
+  - name: SENTRY_LARAVEL_DSN
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: SENTRY_LARAVEL_DSN
+  - name: SENTRY_TRACES_SAMPLE_RATE
+    value: "0.2"
+  - name: SENTRY_PROFILES_SAMPLE_RATE
+    value: "0.5"

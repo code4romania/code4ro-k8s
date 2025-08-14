@@ -1,0 +1,54 @@
+fullnameOverride: vieti-pierdute
+
+image:
+  repository: code4romania/vieti-pierdute-api
+  tag: v1.16
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: api.vietipierdute.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - api.vietipierdute.ro
+
+service:
+  port: 1337
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 100M
+  limits:
+    cpu: 250m
+    memory: 500M
+
+env:
+  - name: DATE_LA_ZI_API
+    value: "https://d35p9e4fm9h3wo.cloudfront.net/smallData.json"
+  - name: RECAPTCHA_SECRET_KEY
+    valueFrom:
+      secretKeyRef:
+        name: vieti-pierdute-secret
+        key: recapcha_key
+  - name: DATABASE_URL
+    valueFrom:
+      secretKeyRef:
+        name: vieti-pierdute-secret
+        key: database_url
+  - name: ADMIN_JWT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: vieti-pierdute-secret
+        key: admin_jwt_secret
+  - name: JWT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: vieti-pierdute-secret
+        key: jwt_secret

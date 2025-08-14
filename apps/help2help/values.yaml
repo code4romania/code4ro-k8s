@@ -1,0 +1,117 @@
+fullnameOverride: help2help
+
+image:
+  repository: code4romania/harta-help2help-ucraina
+  tag: 2.1.4
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: servicii.helptohelpukraine.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+    - host: help2help.heroesof.tech
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - servicii.helptohelpukraine.ro
+        - help2help.heroesof.tech
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 30M
+  limits:
+    cpu: 500m
+    memory: 256M
+
+env:
+  - name: APP_DEBUG
+    value: "false"
+  - name: APP_URL
+    value: "https://servicii.helptohelpukraine.ro"
+  - name: APP_NAME
+    value: "Help2Help Ukraine"
+  - name: APP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: APP_KEY
+  - name: DB_HOST
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: DB_HOST
+  - name: DB_DATABASE
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: DB_DATABASE
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: DB_USERNAME
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: DB_PASSWORD
+  - name: MAIL_HOST
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: MAIL_HOST
+  - name: MAIL_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: MAIL_USERNAME
+  - name: MAIL_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: MAIL_PASSWORD
+  - name: MAIL_FROM_ADDRESS
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: MAIL_FROM_ADDRESS
+  - name: GOOGLE_MAPS_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: GOOGLE_MAPS_API_KEY
+  - name: GOOGLE_ANALYTICS_ID
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: GOOGLE_ANALYTICS_ID
+  - name: MEDIA_DISK
+    value: "s3"
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_DEFAULT_REGION
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: AWS_DEFAULT_REGION
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: help2help-secret
+        key: AWS_BUCKET

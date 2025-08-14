@@ -1,0 +1,143 @@
+fullnameOverride: crestem-ong-api
+
+image:
+  repository: code4romania/crestem-ong-api
+  tag: 1.0.17
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: api.crestem.ong
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - api.crestem.ong
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 200M
+  limits:
+    cpu: 500m
+    memory: 512M
+
+env:
+  - name: APP_NAME
+    value: "CrestemOng"
+  - name: NODE_ENV
+    value: "production"
+  - name: DATABASE_CLIENT
+    value: "postgres"
+  - name: TZ
+    value: "Europe/Bucharest"
+  - name: APP_KEYS
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: APP_KEYS
+  - name: API_TOKEN_SALT
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: API_TOKEN_SALT
+  - name: ADMIN_JWT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: ADMIN_JWT_SECRET
+  - name: JWT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: JWT_SECRET
+  - name: DATABASE_HOST
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: DATABASE_HOST
+  - name: DATABASE_PORT
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: DATABASE_PORT
+  - name: DATABASE_NAME
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: DATABASE_NAME
+  - name: DATABASE_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: DATABASE_USERNAME
+  - name: DATABASE_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: DATABASE_PASSWORD
+
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_ACCESS_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: AWS_ACCESS_SECRET
+  - name: AWS_REGION
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: AWS_REGION
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: AWS_BUCKET
+  - name: AWS_BUCKET_ACL
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: AWS_BUCKET_ACL
+  - name: BUCKET_PREFIX
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: BUCKET_PREFIX
+  - name: AWS_SES_KEY
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: AWS_SES_KEY
+  - name: AWS_SES_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: AWS_SES_SECRET
+  - name: AWS_SES_AMAZON
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: AWS_SES_AMAZON
+  - name: DEFAULT_FROM
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: DEFAULT_FROM
+  - name: DEFAULT_REPLY_TO
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: DEFAULT_REPLY_TO
+  - name: CLIENT_PUBLIC_URL
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-api-secret
+        key: CLIENT_PUBLIC_URL

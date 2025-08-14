@@ -1,0 +1,108 @@
+fullnameOverride: cerajutor
+
+image:
+  repository: code4romania/adapt-just-api
+  tag: 1.0.6
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: api.cerajutor.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - api.cerajutor.ro
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 25M
+  limits:
+    cpu: 500m
+    memory: 256M
+
+env:
+  - name: APP_NAME
+    value: "Ceasul Bun"
+  - name: APP_URL
+    value: "https://api.cerajutor.ro"
+  - name: WEB_CLIENT_URL
+    value: "https://www.cerajutor.ro"
+  - name: APP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: APP_KEY
+  - name: DB_HOST
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: DB_HOST
+  - name: DB_DATABASE
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: DB_DATABASE
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: DB_USERNAME
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: DB_PASSWORD
+  - name: MAIL_MAILER
+    value: "ses"
+  - name: MAIL_FROM_NAME
+    value: "Ceasul Bun"
+  - name: MAIL_FROM_ADDRESS
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: MAIL_FROM_ADDRESS
+  - name: CONTACT_FORM_EMAIL
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: CONTACT_FORM_EMAIL
+  - name: FILESYSTEM_DISK
+    value: "s3"
+  - name: MEDIA_DISK
+    value: "s3"
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_DEFAULT_REGION
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: AWS_DEFAULT_REGION
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: AWS_BUCKET
+  - name: RECAPTCHAV3_SITEKEY
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: RECAPTCHAV3_SITEKEY
+  - name: RECAPTCHAV3_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: cerajutor-secret
+        key: RECAPTCHAV3_SECRET

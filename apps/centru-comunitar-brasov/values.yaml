@@ -1,0 +1,90 @@
+fullnameOverride: centru-comunitar-brasov
+
+image:
+  repository: code4romania/website-factory
+  tag: 1.10.5
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: brasov.centru-comunitar.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - brasov.centru-comunitar.ro
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 60M
+  limits:
+    cpu: 250m
+    memory: 256M
+
+env:
+  - name: WEBSITE_FACTORY_EDITION
+    value: "ong"
+  - name: WEBSITE_FACTORY_HIDE_BANNER
+    value: "false"
+  - name: APP_URL
+    value: "https://brasov.centru-comunitar.ro"
+  - name: DB_DATABASE
+    value: "centru-comunitar-brasov"
+  - name: AWS_BUCKET_ROOT
+    value: "brasov"
+  - name: APP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: centru-comunitar-secret
+        key: APP_KEY
+  - name: DB_HOST
+    valueFrom:
+      secretKeyRef:
+        name: centru-comunitar-secret
+        key: DB_HOST
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: centru-comunitar-secret
+        key: DB_USERNAME
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: centru-comunitar-secret
+        key: DB_PASSWORD
+  - name: MAIL_MAILER
+    value: "ses"
+  - name: MAIL_FROM_ADDRESS
+    valueFrom:
+      secretKeyRef:
+        name: centru-comunitar-secret
+        key: MAIL_FROM_ADDRESS
+  - name: FILESYSTEM_DRIVER
+    value: "s3"
+  - name: FILESYSTEM_CLOUD
+    value: "s3"
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: centru-comunitar-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: centru-comunitar-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_DEFAULT_REGION
+    valueFrom:
+      secretKeyRef:
+        name: centru-comunitar-secret
+        key: AWS_DEFAULT_REGION
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: centru-comunitar-secret
+        key: AWS_BUCKET

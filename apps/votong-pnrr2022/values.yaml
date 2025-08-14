@@ -1,0 +1,119 @@
+fullnameOverride: votong-pnrr2022
+
+image:
+  repository: code4romania/votong
+  tag: 1.16.0
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: pnrr2022.votong.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - pnrr2022.votong.ro
+
+service:
+  port: 8010
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 1Gi
+  limits:
+    cpu: 250m
+    memory: 1536Mi
+
+env:
+  - name: ALLOWED_HOSTS
+    value: "pnrr2022.votong.ro"
+  - name: DATABASE_URL
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_DATABASE_URL
+  - name: ANALYTICS_ENABLED
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_ANALYTICS_ENABLED
+  - name: ENABLE_DEBUG_TOOLBAR
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_ENABLE_DEBUG_TOOLBAR
+  - name: LOAD_DUMMY_DATA
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_LOAD_DUMMY_DATA
+  - name: RUN_DEV_SERVER
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_RUN_DEV_SERVER
+  - name: RUN_COLLECT_STATIC
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_RUN_COLLECT_STATIC
+  - name: DJANGO_SETTINGS_MODULE
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_DJANGO_SETTINGS_MODULE
+  - name: SECRET_KEY
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_SECRET_KEY
+  - name: RECAPTCHA_PUBLIC_KEY
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_RECAPTCHA_PUBLIC_KEY
+  - name: RECAPTCHA_PRIVATE_KEY
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_RECAPTCHA_PRIVATE_KEY
+  - name: USE_S3
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_USE_S3
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_AWS_SECRET_ACCESS_KEY
+  - name: AWS_S3_REGION_NAME
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_AWS_S3_REGION_NAME
+  - name: AWS_STORAGE_BUCKET_NAME
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_AWS_STORAGE_BUCKET_NAME
+  - name: SENTRY_DSN
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_SENTRY_DSN
+  - name: EMAIL_URL
+    valueFrom:
+      secretKeyRef:
+        name: votong-pnrr2022-secret
+        key: S_EMAIL_URL

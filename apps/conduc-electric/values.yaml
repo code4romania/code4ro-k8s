@@ -1,0 +1,106 @@
+fullnameOverride: conduc-electric
+
+image:
+  repository: code4romania/website-factory
+  tag: 1.10.5
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: conducelectric.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - conducelectric.ro
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 60M
+  limits:
+    cpu: 500m
+    memory: 256M
+
+env:
+  - name: APP_DEBUG
+    value: "false"
+  - name: APP_NAME
+    value: "Conduc Electric"
+  - name: WEBSITE_FACTORY_EDITION
+    value: "internal"
+  - name: APP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: APP_KEY
+  - name: DB_HOST
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: DB_HOST
+  - name: DB_DATABASE
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: DB_DATABASE
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: DB_USERNAME
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: DB_PASSWORD
+  - name: MAIL_HOST
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: MAIL_HOST
+  - name: MAIL_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: MAIL_USERNAME
+  - name: MAIL_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: MAIL_PASSWORD
+  - name: MAIL_FROM_ADDRESS
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: MAIL_FROM_ADDRESS
+  - name: MAIL_FROM_NAME
+    value: "Conduc Electric"
+  - name: FILESYSTEM_DRIVER
+    value: "s3"
+  - name: FILESYSTEM_CLOUD
+    value: "s3"
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_DEFAULT_REGION
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: AWS_DEFAULT_REGION
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: conduc-electric-secret
+        key: AWS_BUCKET
