@@ -6,6 +6,7 @@ controller:
       additionalLabels:
         release: "kube-prometheus-stack"
       enabled: true
+  watchIngressWithoutClass: "true"
   ingressClassResource:
     default: "true"
   service:
