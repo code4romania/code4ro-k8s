@@ -10,6 +10,8 @@ spec:
   project: infra
   sources:
     - path: infra/victoria-metrics
+      directory:
+        recurse: true
       repoURL: https://github.com/code4romania/code4ro-k8s.git
       targetRevision: HEAD
       ref: myRepo
