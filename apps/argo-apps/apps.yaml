@@ -16,14 +16,20 @@ spec:
       name: "{{ .path.basename }}"
     spec:
       project: default
-      source:
-        path: apps/{{ .path.basename }}
-        repoURL: https://github.com/code4romania/code4ro-k8s.git
-        targetRevision: HEAD
+      sources:
+        - path: apps/{{ .path.basename }}
+          repoURL: https://github.com/code4romania/code4ro-k8s.git
+          targetRevision: HEAD
+        - path: charts/universal-app
+          repoURL: https://github.com/code4romania/code4ro-k8s.git
+          targetRevision: HEAD
+          helm:
+            valueFiles:
+              - apps/{{ .path.basename }}/values.yaml
       destination:
         namespace: "{{ .path.basename }}"
         server: https://kubernetes.default.svc
       syncPolicy:
-        automated: {}
+        # automated: {}
         syncOptions:
           - CreateNamespace=true
