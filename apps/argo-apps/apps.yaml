@@ -11,6 +11,8 @@ spec:
         revision: HEAD
         directories:
           - path: apps/*
+          - path: apps/argo-apps
+            exclude: true
   template:
     metadata:
       name: "{{ .path.basename }}"
