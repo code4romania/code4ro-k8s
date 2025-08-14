@@ -24,7 +24,6 @@ spec:
         - path: charts/universal-app
           repoURL: https://github.com/code4romania/code4ro-k8s.git
           targetRevision: HEAD
-          ignoreMissingValueFiles: true
           helm:
             valueFiles:
               - $myRepo/apps/{{ .path.basename }}/values.yaml
