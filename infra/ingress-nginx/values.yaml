@@ -1,5 +1,7 @@
 controller:
   kind: DaemonSet
+  metrics:
+    enabled: true
   watchIngressWithoutClass: "true"
   ingressClassResource:
     default: "true"
