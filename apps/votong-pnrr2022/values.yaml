@@ -2,7 +2,7 @@ fullnameOverride: votong-pnrr2022
 
 image:
   repository: code4romania/votong
-  tag: 1.16.0
+  tag: 2.5.68
 
 ingress:
   enabled: true
