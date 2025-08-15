@@ -21,6 +21,16 @@ ingress:
 service:
   port: 1337
 
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
 resources:
   requests:
     cpu: 10m
