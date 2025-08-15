@@ -18,6 +18,9 @@ ingress:
       hosts:
         - api.crestem.ong
 
+service:
+  port: 1337
+
 livenessProbe:
   httpGet:
     path: /
