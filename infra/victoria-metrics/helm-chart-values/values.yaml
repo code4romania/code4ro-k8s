@@ -64,9 +64,9 @@ grafana:
   ingress:
     enabled: true
     annotations:
-      cert-manager.io/cluster-issuer: letsencrypt
+      "cert-manager.io/cluster-issuer": letsencrypt
     hosts:
-      - host: metrics.code4.ro
+      - metrics.code4.ro
     tls:
       - secretName: web-ssl
         hosts:
