@@ -61,6 +61,16 @@ grafana:
   envFromSecret: grafana-secret
   persistence:
     enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+    hosts:
+      - host: metrics.code4.ro
+    tls:
+      - secretName: web-ssl
+        hosts:
+          - metrics.code4.ro
 
   grafana.ini:
     server:
