@@ -2,7 +2,7 @@ fullnameOverride: votong-ces2020
 
 image:
   repository: code4romania/votong
-  tag: v1.3
+  tag: 1.16
 
 ingress:
   enabled: true
