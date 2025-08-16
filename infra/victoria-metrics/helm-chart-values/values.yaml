@@ -26,6 +26,12 @@ vmagent:
       limits:
         memory: 400M
 
+prometheus-node-exporter:
+  tolerations:
+    - effect: NoExecute
+      key: CriticalAddonsOnly
+      operator: Exists
+
 kubeControllerManager:
   enabled: false
 coreDns:
