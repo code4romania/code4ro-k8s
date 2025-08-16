@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
 data:
   # Argo CD's externally facing base URL (optional). Required when configuring SSO
-  url: https://cd.code4.ro
+  url: https://old-cd.code4.ro
 
   # # A dex connector configuration (optional). See SSO configuration documentation:
   # # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/sso
@@ -20,4 +20,4 @@ data:
           clientSecret: $dex.google.clientSecret
         type: oidc
         id: google
-        name: Google    
+        name: Google
