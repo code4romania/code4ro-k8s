@@ -15,6 +15,7 @@ spec:
     - repoURL: https://github.com/code4romania/code4ro-k8s.git
       targetRevision: HEAD
       ref: myRepo
+      path: infra/ingress-nginx
   destination:
     namespace: ingress-nginx
     server: https://kubernetes.default.svc
