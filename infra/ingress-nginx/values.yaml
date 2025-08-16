@@ -6,9 +6,9 @@ controller:
   ingressClassResource:
     default: "true"
   nodeSelector:
-    CriticalAddonsOnly: "true"
+    "node-role.kubernetes.io/control-plane": "true"
   tolerations:
-    - effect: NoSchedule
+    - effect: NoExecute
       key: CriticalAddonsOnly
       operator: Exists
   service:
