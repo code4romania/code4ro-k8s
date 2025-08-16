@@ -22,15 +22,8 @@ ingress:
 service:
   port: 8050
 
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
-
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
+livenessProbe: null
+readinessProbe: null
 
 resources:
   requests:
