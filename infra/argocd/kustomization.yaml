@@ -12,7 +12,7 @@ resources:
 
 patches:
   - path: argocd-rbac-cm.yaml
-  - path: deployment-application-controller.yaml
+  - path: deployment-argocd-application-controller.yaml
   - path: deployment-argocd-server.yaml
   - path: deployment-argocd-repo-server.yaml
   - path: deployment-argocd-dex-server.yaml
