@@ -8,7 +8,7 @@ controller:
   nodeSelector:
     CriticalAddonsOnly: "true"
   tolerations:
-    - effect: NoSchedule
+    - effect: NoExecute
       key: CriticalAddonsOnly
       operator: Exists
   service:
