@@ -18,6 +18,9 @@ ingress:
       hosts:
         - api.fiialiat.ro
 
+livenessProbe: null
+readinessProbe: null
+
 service:
   port: 1337
 
