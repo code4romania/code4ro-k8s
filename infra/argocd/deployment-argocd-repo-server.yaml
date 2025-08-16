@@ -9,6 +9,6 @@ spec:
         - name: argocd-repo-server
           resources:
             requests:
-              memory: "100Mi"
+              memory: "200Mi"
             limits:
-              memory: "150Mi"
+              memory: "250Mi"

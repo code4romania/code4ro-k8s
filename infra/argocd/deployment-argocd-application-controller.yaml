@@ -9,6 +9,6 @@ spec:
         - name: argocd-application-controller
           resources:
             requests:
-              memory: "500Mi"
+              memory: "600Mi"
             limits:
-              memory: "550Mi"
+              memory: "650Mi"
