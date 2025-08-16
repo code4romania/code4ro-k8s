@@ -21,10 +21,10 @@ ingress:
 resources:
   requests:
     cpu: 10m
-    memory: 400M
+    memory: 400Mi
   limits:
     cpu: 100m
-    memory: 1024M
+    memory: 1024Mi
 
 env:
   - name: RUN_CREATE_SUPER_USER

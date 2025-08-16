@@ -21,10 +21,10 @@ ingress:
 resources:
   requests:
     cpu: 10m
-    memory: 900M
+    memory: 900Mi
   limits:
     cpu: 300m
-    memory: 2500M
+    memory: 2500Mi
 
 service:
   port: 8070

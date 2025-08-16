@@ -21,10 +21,10 @@ ingress:
 resources:
   requests:
     cpu: 10m
-    memory: 25M
+    memory: 25Mi
   limits:
     cpu: 500m
-    memory: 256M
+    memory: 256Mi
 
 env:
   - name: APP_NAME

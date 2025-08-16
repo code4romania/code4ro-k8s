@@ -22,10 +22,20 @@ ingress:
 service:
   port: 8050
 
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
 resources:
   requests:
     cpu: 10m
-    memory: 800M
+    memory: 800Mi
   limits:
     cpu: 250m
     memory: 2Gi

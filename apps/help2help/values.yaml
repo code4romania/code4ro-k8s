@@ -27,10 +27,10 @@ ingress:
 resources:
   requests:
     cpu: 10m
-    memory: 30M
+    memory: 30Mi
   limits:
     cpu: 500m
-    memory: 256M
+    memory: 256Mi
 
 env:
   - name: APP_DEBUG

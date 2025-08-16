@@ -24,10 +24,10 @@ service:
 resources:
   requests:
     cpu: 30m
-    memory: 870M
+    memory: 870Mi
   limits:
     cpu: 300m
-    memory: 2500M
+    memory: 2500Mi
 
 env:
   - name: ENVIRONMENT

@@ -22,10 +22,10 @@ ingress:
 resources:
   requests:
     cpu: 10m
-    memory: 70M
+    memory: 70Mi
   limits:
     cpu: 250m
-    memory: 456M
+    memory: 456Mi
 
 env:
   - name: WEBSITE_FACTORY_EDITION
