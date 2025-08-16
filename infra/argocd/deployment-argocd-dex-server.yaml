@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-dex-server
+spec:
+  template:
+    spec:
+      containers:
+        - name: dex
+          resources:
+            requests:
+              memory: "100Mi"
+            limits:
+              memory: "150Mi"
