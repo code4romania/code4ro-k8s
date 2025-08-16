@@ -58,6 +58,11 @@ grafana:
   envFromSecret: grafana-secret
   persistence:
     enabled: true
+  resources:
+    requests:
+      memory: 150Mi
+    limits:
+      memory: 200Mi
   ingress:
     enabled: true
     annotations:
