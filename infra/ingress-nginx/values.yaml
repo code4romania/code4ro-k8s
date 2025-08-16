@@ -5,6 +5,12 @@ controller:
   watchIngressWithoutClass: "true"
   ingressClassResource:
     default: "true"
+  nodeSelector:
+    CriticalAddonsOnly: "true"
+  tolerations:
+    - effect: NoSchedule
+      key: CriticalAddonsOnly
+      operator: Exists
   service:
     annotations:
       load-balancer.hetzner.cloud/location: nbg1
