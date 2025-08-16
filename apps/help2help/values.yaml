@@ -24,6 +24,9 @@ ingress:
         - servicii.helptohelpukraine.ro
         - help2help.heroesof.tech
 
+livenessProbe: null
+readinessProbe: null
+
 resources:
   requests:
     cpu: 10m

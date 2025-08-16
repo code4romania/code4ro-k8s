@@ -18,6 +18,9 @@ ingress:
       hosts:
         - app.esense.ro
 
+livenessProbe: null
+readinessProbe: null
+
 resources:
   requests:
     cpu: 100m
