@@ -47,9 +47,6 @@ defaultDashboards:
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true
 
-prometheus-operator-crds:
-  enabled: true
-
 grafana:
   sidecar:
     dashboards:
