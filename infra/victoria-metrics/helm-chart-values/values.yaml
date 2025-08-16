@@ -51,6 +51,11 @@ grafana:
   sidecar:
     dashboards:
       searchNamespace: ALL
+    resources:
+      requests:
+        memory: 100Mi
+      limits:
+        memory: 150Mi
   vmScrape:
     enabled: false
   admin:
