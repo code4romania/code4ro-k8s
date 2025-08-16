@@ -7,6 +7,8 @@ resources:
   - namespace.yaml
   - project.yaml
   - sealed-secret.yaml
+  - ingress.yaml
+  - basic-auth-sealed-secret.yaml
 
 patches:
   - path: argocd-rbac-cm.yaml
