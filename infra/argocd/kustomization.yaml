@@ -12,6 +12,7 @@ resources:
 
 patches:
   - path: argocd-rbac-cm.yaml
+  - path: argocd-application-controller.yaml
   - path: argocd-cmd-params-cm.yaml
     target:
       version: v1
