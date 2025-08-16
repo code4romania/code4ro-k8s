@@ -18,6 +18,9 @@ ingress:
       hosts:
         - api.rezultatevot.ro
 
+livenessProbe: null
+readinessProbe: null
+
 resources:
   requests:
     cpu: 50m

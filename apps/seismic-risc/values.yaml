@@ -18,6 +18,9 @@ ingress:
       hosts:
         - api.acasainsiguranta.ro
 
+livenessProbe: null
+readinessProbe: null
+
 resources:
   requests:
     cpu: 10m

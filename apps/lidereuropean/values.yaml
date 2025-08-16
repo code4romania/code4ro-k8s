@@ -19,6 +19,9 @@ ingress:
       hosts:
         - lidereuropean.ro
 
+livenessProbe: null
+readinessProbe: null
+
 resources:
   requests:
     cpu: 10m

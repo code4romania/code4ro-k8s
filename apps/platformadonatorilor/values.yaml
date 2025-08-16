@@ -23,6 +23,9 @@ ingress:
         - platformadonatorilor.ro
         - dashboard.platformadonatorilor.ro
 
+livenessProbe: null
+readinessProbe: null
+
 resources:
   requests:
     cpu: 10m

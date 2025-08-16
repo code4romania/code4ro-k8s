@@ -18,6 +18,9 @@ ingress:
       hosts:
         - app.ukrainechildcancerhelp.ro
 
+livenessProbe: null
+readinessProbe: null
+
 resources:
   requests:
     cpu: 10m
