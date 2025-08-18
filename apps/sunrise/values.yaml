@@ -18,6 +18,9 @@ ingress:
       hosts:
         - app.stopviolenteidomestice.ro
 
+livenessProbe: null
+readinessProbe: null
+
 resources:
   requests:
     cpu: 250m
