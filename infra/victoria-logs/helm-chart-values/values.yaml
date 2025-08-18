@@ -1,8 +1,9 @@
 server:
   retentionPeriod: 30d
-
   persistentVolume:
     size: 5Gi
+  vmServiceScrape:
+    enabled: true
 
 vector:
   enabled: true
