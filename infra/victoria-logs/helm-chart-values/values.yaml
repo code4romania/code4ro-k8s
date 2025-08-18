@@ -1,0 +1,13 @@
+server:
+  retentionPeriod: 30d
+
+  persistentVolume:
+    size: 5Gi
+
+vector:
+  enabled: true
+
+dashboards:
+  enabled: true
+  labels:
+    grafana_dashboard: "1"

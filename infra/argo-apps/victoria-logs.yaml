@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: victoria-logs
+  namespace: argocd
+spec:
+  project: infra
+  sources:
+    - repoURL: https://github.com/code4romania/code4ro-k8s.git
+      targetRevision: HEAD
+      ref: myRepo
+    - repoURL: https://victoriametrics.github.io/helm-charts
+      targetRevision: 0.11.6
+      chart: victoria-logs-single
+      helm:
+        valueFiles:
+          - $myRepo/infra/victoria-logs/helm-chart-values/values.yaml
+  destination:
+    namespace: victoria-logs
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
