@@ -22,6 +22,9 @@ ingress:
 service:
   port: 8010
 
+livenessProbe: null
+readinessProbe: null
+
 resources:
   requests:
     cpu: 100m
