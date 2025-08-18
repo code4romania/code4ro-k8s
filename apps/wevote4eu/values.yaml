@@ -1,7 +1,7 @@
 fullnameOverride: wevote4eu
 
 image:
-  repository: code4romania/wevote4eu
+  repository: commitglobal/wevote4eu
   tag: 1.3.4
 
 ingress:
