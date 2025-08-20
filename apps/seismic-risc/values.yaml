@@ -2,7 +2,7 @@ fullnameOverride: seismic-risc
 
 image:
   repository: code4romania/seismic-risc
-  tag: 1.1.1
+  tag: 1.1.2
 
 ingress:
   enabled: true
