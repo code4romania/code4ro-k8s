@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - womencenter.info
+        - www.womencenter.info
 
 resources:
   requests:
@@ -31,7 +32,7 @@ env:
   - name: WEBSITE_FACTORY_EDITION
     value: "internal"
   - name: APP_URL
-    value: "https://new.womencenter.info"
+    value: "https://womencenter.info"
   - name: APP_KEY
     valueFrom:
       secretKeyRef:
