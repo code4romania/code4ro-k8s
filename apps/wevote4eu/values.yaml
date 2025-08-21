@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - wevote4.eu
+        - www.wevote4.eu
 
 livenessProbe: null
 readinessProbe: null
