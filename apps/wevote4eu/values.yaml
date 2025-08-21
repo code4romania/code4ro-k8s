@@ -19,8 +19,8 @@ ingress:
       hosts:
         - wevote4.eu
 
-service:
-  port: 8010
+# service:
+#   port: 8010
 
 livenessProbe: null
 readinessProbe: null
