@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - cezicelegea.ro
+        - www.cezicelegea.ro
 
 resources:
   requests:
