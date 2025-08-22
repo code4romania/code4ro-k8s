@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - howtongo.org
+        - www.howtongo.org
 
 resources:
   requests:
