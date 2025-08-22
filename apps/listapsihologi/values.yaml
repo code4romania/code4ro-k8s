@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - listapsihologi.ro
+        - www.listapsihologi.ro
 
 resources:
   requests:
