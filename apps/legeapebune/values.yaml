@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - legeapebune.ro
+        - www.legeapebune.ro
 
 resources:
   requests:
