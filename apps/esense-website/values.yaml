@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - esense.ro
+        - www.esense.ro
 
 resources:
   requests:
