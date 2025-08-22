@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - acasainsiguranta.ro
+        - www.acasainsiguranta.ro
 
 resources:
   requests:
