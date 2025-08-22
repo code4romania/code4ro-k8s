@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - crestem.ong
+        - www.crestem.ong
 
 resources:
   requests:
