@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - centretestarehiv-prod.heroesof.tech
+        - www.centretestarehiv-prod.heroesof.tech
 
 service:
   port: 8050
