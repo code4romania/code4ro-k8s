@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - atentlavot.ro
+        - www.atentlavot.ro
 
 resources:
   requests:
