@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - e-cutremur.ro
+        - www.e-cutremur.ro
 
 livenessProbe: null
 readinessProbe: null
