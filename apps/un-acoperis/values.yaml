@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - unacoperis.ro
+        - www.unacoperis.ro
 
 resources:
   requests:
