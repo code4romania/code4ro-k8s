@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - lidereuropean.ro
+        - www.lidereuropean.ro
 
 livenessProbe: null
 readinessProbe: null
@@ -31,8 +32,6 @@ resources:
     memory: 256Mi
 
 env:
-  - name: APP_DEBUG
-    value: "false"
   - name: APP_NAME
     value: "Lider European"
   - name: APP_KEY
