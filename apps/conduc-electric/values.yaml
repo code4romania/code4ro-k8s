@@ -18,6 +18,7 @@ ingress:
     - secretName: web-ssl
       hosts:
         - conducelectric.ro
+        - www.conducelectric.ro
 
 resources:
   requests:
