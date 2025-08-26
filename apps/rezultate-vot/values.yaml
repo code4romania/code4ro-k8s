@@ -2,7 +2,7 @@ fullnameOverride: rezultate-vot
 
 image:
   repository: code4romania/rezultate-vot-api
-  tag: v1.0
+  tag: 1.1.19
 
 ingress:
   enabled: true
