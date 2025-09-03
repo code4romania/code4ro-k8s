@@ -4,14 +4,9 @@ metadata:
   name: argocd
   labels:
     app.kubernetes.io/name: argocd
-  annotations:
-    "nginx.ingress.kubernetes.io/auth-type": basic
-    "nginx.ingress.kubernetes.io/auth-secret": basic-auth
-    "nginx.ingress.kubernetes.io/auth-realm": "Authentication Required - internal"
-    "cert-manager.io/cluster-issuer": letsencrypt
 spec:
   rules:
-    - host: cd.code4.ro
+    - host: argocd
       http:
         paths:
           - pathType: Prefix
@@ -23,5 +18,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - cd.code4.ro
-      secretName: web-ssl
+        - argocd
