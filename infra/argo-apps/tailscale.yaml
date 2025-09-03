@@ -12,6 +12,7 @@ spec:
     - repoURL: https://github.com/code4romania/code4ro-k8s.git
       targetRevision: HEAD
       ref: myRepo
+      path: infra/tailscale
   destination:
     namespace: tailscale
     server: https://kubernetes.default.svc
