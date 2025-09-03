@@ -6,7 +6,7 @@ This repository contains the k8s manifest for all the applications in the Code4r
 
 ### ArgoCD
 
-The k8s cluster is using [ArgoCD](https://cd.code4.ro) to automatically deploy manifests when a new change is detected.
+The k8s cluster is using [ArgoCD](https://argocd.serval-mark.ts.net/) to automatically deploy manifests when a new change is detected.
 
 The flow is as follow:
 
