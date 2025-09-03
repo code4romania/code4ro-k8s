@@ -5,6 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: argocd
 spec:
+  ingressClassName: tailscale
   rules:
     - host: argocd
       http:
