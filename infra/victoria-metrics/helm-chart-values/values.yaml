@@ -80,10 +80,10 @@ grafana:
     enabled: true
     ingressClassName: tailscale
     hosts:
-      - metrics.code4.ro
+      - grafana
     tls:
       - hosts:
-          - metrics.code4.ro
+          - grafana
   datasources:
     datasources.yaml:
       apiVersion: 1
@@ -97,8 +97,8 @@ grafana:
 
   grafana.ini:
     server:
-      domain: metrics.code4.ro
-      root_url: https://metrics.code4.ro
+      domain: grafana.serval-mark.ts.net
+      root_url: https://grafana.serval-mark.ts.net
     users:
       allow_sign_up: false
       allow_org_create: false
