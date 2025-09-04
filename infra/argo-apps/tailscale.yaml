@@ -7,6 +7,10 @@ spec:
   project: infra
   sources:
     - chart: tailscale-operator
+      helm:
+        values: |
+          apiServerProxyConfig:
+            mode: "noauth"
       repoURL: https://pkgs.tailscale.com/helmcharts
       targetRevision: 1.86.5
     - repoURL: https://github.com/code4romania/code4ro-k8s.git
