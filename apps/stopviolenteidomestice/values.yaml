@@ -2,7 +2,7 @@ fullnameOverride: stopviolenteidomestice
 
 image:
   repository: code4romania/website-factory
-  tag: 1.11.3
+  tag: 1.11.4
 
 ingress:
   enabled: true
