@@ -2,7 +2,7 @@ fullnameOverride: centru-comunitar-brasov
 
 image:
   repository: code4romania/website-factory
-  tag: 1.11.4
+  tag: 1.11.5
 
 ingress:
   enabled: true
