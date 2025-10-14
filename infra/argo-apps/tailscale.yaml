@@ -12,7 +12,7 @@ spec:
           apiServerProxyConfig:
             mode: "noauth"
       repoURL: https://pkgs.tailscale.com/helmcharts
-      targetRevision: 1.88.3
+      targetRevision: 1.88.4
     - repoURL: https://github.com/code4romania/code4ro-k8s.git
       targetRevision: HEAD
       ref: myRepo
