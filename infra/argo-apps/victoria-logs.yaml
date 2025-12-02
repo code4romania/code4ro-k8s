@@ -10,7 +10,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: https://victoriametrics.github.io/helm-charts
-      targetRevision: 0.11.17
+      targetRevision: 0.11.18
       chart: victoria-logs-single
       helm:
         valueFiles:
