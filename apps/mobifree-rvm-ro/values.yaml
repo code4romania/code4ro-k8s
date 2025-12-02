@@ -1,4 +1,4 @@
-fullnameOverride: rvm
+fullnameOverride: mobifree-rvm-ro
 
 image:
   repository: code4romania/rvm
