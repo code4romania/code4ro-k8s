@@ -41,6 +41,8 @@ env:
       secretKeyRef:
         name: mobifree-oneroof-ro-secret
         key: APP_KEY
+  - name: DB_CONNECTION
+    value: "mysql"
   - name: DB_HOST
     valueFrom:
       secretKeyRef:
