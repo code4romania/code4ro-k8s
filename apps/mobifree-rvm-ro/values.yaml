@@ -9,14 +9,14 @@ ingress:
   annotations:
     "cert-manager.io/cluster-issuer": letsencrypt
   hosts:
-    - host: rvmapp.ro
+    - host: rvm-ro.commitglobal.org
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls:
     - secretName: web-ssl
       hosts:
-        - rvmapp.ro
+        - rvm-ro.commitglobal.org
 
 livenessProbe: null
 readinessProbe: null
