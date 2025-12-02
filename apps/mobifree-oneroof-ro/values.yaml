@@ -1,0 +1,133 @@
+fullnameOverride: mobifree-oneroof-ro
+
+image:
+  repository: commitglobal/one-roof
+  tag: 0.5.1
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: oneroof-ro.commitglobal.org
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - oneroof-ro.commitglobal.org
+
+livenessProbe: null
+readinessProbe: null
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 100Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+env:
+  - name: APP_NAME
+    value: "One Roof"
+  - name: APP_URL
+    value: "https://oneroof-ro.commitglobal.org"
+  - name: APP_LOCALE
+    value: "ro"
+  - name: APP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: APP_KEY
+  - name: DB_HOST
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: DB_HOST
+  - name: DB_DATABASE
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: DB_DATABASE
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: DB_USERNAME
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: DB_PASSWORD
+  - name: QUEUE_CONNECTION
+    value: "database"
+  - name: MAIL_HOST
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: MAIL_HOST
+  - name: MAIL_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: MAIL_USERNAME
+  - name: MAIL_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: MAIL_PASSWORD
+  - name: MAIL_FROM_ADDRESS
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: MAIL_FROM_ADDRESS
+  - name: MAIL_FROM_NAME
+    value: "One Roof"
+  - name: MAIL_MAILER
+    value: "smtp"
+  - name: FILAMENT_FILESYSTEM_DISK
+    value: "s3"
+  - name: FILESYSTEM_DISK
+    value: "s3"
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_DEFAULT_REGION
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: AWS_DEFAULT_REGION
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: AWS_BUCKET
+  - name: AWS_BUCKET_ROOT
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: AWS_BUCKET_ROOT
+  - name: SENTRY_LARAVEL_DSN
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: SENTRY_LARAVEL_DSN
+  - name: SENTRY_ENVIRONMENT
+    value: "mobifree-oneroof-ro"
+  - name: SENTRY_SAMPLE_RATE
+    value: "1.0"
+  - name: SENTRY_TRACES_SAMPLE_RATE
+    value: "0.2"
+  - name: SENTRY_PROFILES_SAMPLE_RATE
+    value: "0.5"
+  - name: SCOUT_DRIVER
+    value: "database"
