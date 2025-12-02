@@ -34,6 +34,8 @@ env:
     value: "RVM"
   - name: APP_URL
     value: "https://rvm-ro.commitglobal.org"
+  - name: APP_LOCALE
+    value: "ro"
   - name: APP_KEY
     valueFrom:
       secretKeyRef:
