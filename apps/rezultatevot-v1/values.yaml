@@ -1,0 +1,52 @@
+fullnameOverride: rezultatevot-v1
+
+image:
+  repository: code4romania/rezultate-vot-api
+  tag: 1.1.21
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: api.rezultatevot.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - api.rezultatevot.ro
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 512Mi
+  limits:
+    cpu: 2000m
+    memory: 1024Mi
+
+env:
+  - name: ConnectionStrings__DefaultConnection
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-v1-secret
+        key: db_connection
+
+  - name: ASPNETCORE__ENVIRONMENT
+    value: "Production"
+  - name: ASPNETCORE_URLS
+    value: "http://+:80"
+
+  - name: S3Bucket__BucketName
+    value: "rezultatevot-images-upload"
+  - name: S3Bucket__AccessKeyId
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-v1-secret
+        key: s3_access_key_id
+  - name: S3Bucket__AccessKeySecret
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-v1-secret
+        key: s3_secret_access_key
