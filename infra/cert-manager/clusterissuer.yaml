@@ -25,6 +25,6 @@ spec:
             apiTokenSecretRef:
               name: acme-cloudflare
               key: api-token
-          selector:
-            dnsZones:
-              - rezultatevot.ro
+        selector:
+          dnsZones:
+            - rezultatevot.ro
