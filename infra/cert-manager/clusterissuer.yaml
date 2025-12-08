@@ -18,3 +18,13 @@ spec:
             secretAccessKeySecretRef:
               name: acme-route53
               key: secret-access-key
+      - dns01:
+          cnameStrategy: Follow
+          cloudflare:
+            email: infrastructure@code4.ro
+            apiTokenSecretRef:
+              name: acme-cloudflare
+              key: api-token
+          selector:
+            dnsZones:
+              - rezultatevot.ro
