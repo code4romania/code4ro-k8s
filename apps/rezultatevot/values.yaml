@@ -1,0 +1,117 @@
+fullnameOverride: rezultatevot
+
+image:
+  repository: code4romania/rezultatevot
+  tag: 0.13.6
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+    "nginx.ingress.kubernetes.io/from-to-www-redirect": "true"
+  hosts:
+    - host: rezultatevot.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - rezultatevot.ro
+        - www.rezultatevot.ro
+
+service:
+  port: 8080
+
+resources:
+  requests:
+    cpu: 1000m
+    memory: 512Mi
+  limits:
+    cpu: 2000m
+    memory: 1024Mi
+
+env:
+  - name: APP_NAME
+    value: "Rezultate Vot"
+  - name: APP_URL
+    value: "https://rezultatevot.ro"
+  - name: APP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: APP_KEY
+
+  - name: CACHE_STORE
+    value: "database"
+
+  - name: DB_HOST
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: DB_HOST
+  - name: DB_DATABASE
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: DB_DATABASE
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: DB_USERNAME
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: DB_PASSWORD
+
+  - name: FILAMENT_FILESYSTEM_DRIVER
+    value: "s3"
+  - name: FILESYSTEM_DISK
+    value: "s3"
+  - name: SCOUT_DRIVER
+    value: "database"
+
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_DEFAULT_REGION
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: AWS_DEFAULT_REGION
+  - name: AWS_ENDPOINT
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: AWS_ENDPOINT
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: AWS_BUCKET
+  - name: AWS_URL
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: AWS_URL
+
+  - name: SENTRY_LARAVEL_DSN
+    valueFrom:
+      secretKeyRef:
+        name: rezultatevot-secret
+        key: SENTRY_LARAVEL_DSN
+  - name: SENTRY_SAMPLE_RATE
+    value: "1.0"
+  - name: SENTRY_TRACES_SAMPLE_RATE
+    value: "0.2"
+  - name: SENTRY_PROFILES_SAMPLE_RATE
+    value: "0.5"
