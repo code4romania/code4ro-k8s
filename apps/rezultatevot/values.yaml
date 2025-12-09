@@ -23,6 +23,13 @@ ingress:
 service:
   port: 8080
 
+livenessProbe:
+  httpGet:
+    path: /up
+readinessProbe:
+  httpGet:
+    path: /up
+
 resources:
   requests:
     cpu: 1000m
