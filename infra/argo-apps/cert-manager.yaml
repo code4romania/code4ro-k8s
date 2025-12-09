@@ -17,7 +17,7 @@ spec:
           prometheus:
             enabled: false
       repoURL: https://charts.jetstack.io
-      targetRevision: v1.19.1
+      targetRevision: v1.19.2
     - repoURL: https://github.com/code4romania/code4ro-k8s.git
       path: infra/cert-manager
       targetRevision: HEAD
