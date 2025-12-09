@@ -45,6 +45,8 @@ env:
   - name: CACHE_STORE
     value: "database"
 
+  - name: DB_CONNECTION
+    value: "mysql"
   - name: DB_HOST
     valueFrom:
       secretKeyRef:
