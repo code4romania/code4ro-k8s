@@ -10,16 +10,8 @@ ingress:
 service:
   port: 6379
 
-livenessProbe:
-  httpGet: null
-  exec:
-    command:
-      - redis-cli ping | grep PONG
-readinessProbe:
-  httpGet: null
-  exec:
-    command:
-      - redis-cli ping | grep PONG
+livenessProbe: null
+readinessProbe: null
 
 resources:
   requests:
