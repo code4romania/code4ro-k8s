@@ -1,0 +1,32 @@
+fullnameOverride: rezultatevot-redis
+
+image:
+  repository: valkey/valkey
+  tag: 9-alpine
+
+ingress:
+  enabled: false
+
+service:
+  port: 6379
+
+livenessProbe:
+  httpGet: false
+  exec:
+    command:
+      - CMD-SHELL
+      - redis-cli ping | grep PONG
+readinessProbe:
+  httpGet: false
+  exec:
+    command:
+      - CMD-SHELL
+      - redis-cli ping | grep PONG
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
