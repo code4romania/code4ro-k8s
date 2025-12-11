@@ -49,8 +49,15 @@ env:
         name: rezultatevot-secret
         key: APP_KEY
 
+  - name: SCHEDULE_ENABLED
+    value: "false"
+
   - name: CACHE_STORE
-    value: "database"
+    value: "redis"
+  - name: REDIS_HOST
+    value: "rezultatevot-redis"
+  - name: REDIS_PORT
+    value: "6379"
 
   - name: DB_CONNECTION
     value: "mysql"
