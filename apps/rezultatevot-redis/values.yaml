@@ -11,13 +11,13 @@ service:
   port: 6379
 
 livenessProbe:
-  httpGet: false
+  httpGet: null
   exec:
     command:
       - CMD-SHELL
       - redis-cli ping | grep PONG
 readinessProbe:
-  httpGet: false
+  httpGet: null
   exec:
     command:
       - CMD-SHELL
