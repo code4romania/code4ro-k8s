@@ -14,13 +14,11 @@ livenessProbe:
   httpGet: null
   exec:
     command:
-      - CMD-SHELL
       - redis-cli ping | grep PONG
 readinessProbe:
   httpGet: null
   exec:
     command:
-      - CMD-SHELL
       - redis-cli ping | grep PONG
 
 resources:
