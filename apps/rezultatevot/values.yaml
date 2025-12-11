@@ -55,7 +55,7 @@ env:
   - name: CACHE_STORE
     value: "redis"
   - name: REDIS_HOST
-    value: "rezultatevot-redis"
+    value: "rezultatevot-redis.rezultatevot-redis.svc.cluster.local"
   - name: REDIS_PORT
     value: "6379"
 
