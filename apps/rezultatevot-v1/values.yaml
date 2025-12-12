@@ -7,7 +7,7 @@ image:
 ingress:
   enabled: true
   annotations:
-    "cert-manager.io/cluster-issuer": letsencrypt
+    "cert-manager.io/cluster-issuer": cloudflare
   hosts:
     - host: api.rezultatevot.ro
       paths:
