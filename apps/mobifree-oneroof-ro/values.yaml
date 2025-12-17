@@ -70,6 +70,11 @@ env:
       secretKeyRef:
         name: mobifree-oneroof-ro-secret
         key: MAIL_HOST
+  - name: MAIL_PORT
+    valueFrom:
+      secretKeyRef:
+        name: mobifree-oneroof-ro-secret
+        key: MAIL_PORT
   - name: MAIL_USERNAME
     valueFrom:
       secretKeyRef:
