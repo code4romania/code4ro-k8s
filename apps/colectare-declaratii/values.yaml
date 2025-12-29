@@ -2,7 +2,7 @@ fullnameOverride: colectare-declaratii
 
 image:
   repository: code4romania/colectare-declaratii
-  tag: 0.1.6
+  tag: 0.1.7
 
 ingress:
   enabled: true
