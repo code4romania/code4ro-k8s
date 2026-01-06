@@ -19,7 +19,15 @@ ingress:
         - oneroof-nl.commitglobal.org
 
 livenessProbe: null
-readinessProbe: null
+service:
+  port: 8080
+
+livenessProbe:
+  httpGet:
+    path: /up
+readinessProbe:
+  httpGet:
+    path: /up
 
 resources:
   requests:
