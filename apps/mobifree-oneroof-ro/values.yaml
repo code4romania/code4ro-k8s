@@ -18,7 +18,6 @@ ingress:
       hosts:
         - oneroof-ro.commitglobal.org
 
-livenessProbe: null
 service:
   port: 8080
 
