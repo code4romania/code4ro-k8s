@@ -2,7 +2,7 @@ fullnameOverride: mobifree-oneroof-nl
 
 image:
   repository: commitglobal/one-roof
-  tag: 0.5.1
+  tag: 0.6.1
 
 ingress:
   enabled: true
@@ -18,8 +18,15 @@ ingress:
       hosts:
         - oneroof-nl.commitglobal.org
 
-livenessProbe: null
-readinessProbe: null
+service:
+  port: 8080
+
+livenessProbe:
+  httpGet:
+    path: /up
+readinessProbe:
+  httpGet:
+    path: /up
 
 resources:
   requests:
