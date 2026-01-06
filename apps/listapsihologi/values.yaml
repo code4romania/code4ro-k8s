@@ -2,7 +2,7 @@ fullnameOverride: listapsihologi
 
 image:
   repository: code4romania/website-factory
-  tag: 1.11.5
+  tag: 1.11.6
 
 ingress:
   enabled: true
