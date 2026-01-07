@@ -2,7 +2,7 @@ fullnameOverride: rvm
 
 image:
   repository: code4romania/rvm
-  tag: 1.2.8
+  tag: 1.2.10
 
 ingress:
   enabled: true
