@@ -3,7 +3,6 @@ kind: StatefulSet
 metadata:
   name: argocd-application-controller
 spec:
-  replicas: 3
   template:
     spec:
       containers:
@@ -13,6 +12,7 @@ spec:
               memory: "600Mi"
             limits:
               memory: "1024Mi"
-          env:
-            - name: ARGOCD_CONTROLLER_REPLICAS
-              value: "3"
+          args:
+          # The number of queue processors for each queue. --status-processors (20 by default) and --operation-processors (10 by default)
+            - --status-processors=5
+            - --operation-processors=3

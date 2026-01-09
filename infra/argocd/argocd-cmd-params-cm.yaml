@@ -19,3 +19,6 @@ data:
   applicationsetcontroller.log.level: "warn"
   notificationscontroller.log.format: "json"
   notificationscontroller.log.level: "warn"
+
+  # controls how many manifests generations are running concurrently and helps avoid OOM kills
+  controller.status.processors: "3"
