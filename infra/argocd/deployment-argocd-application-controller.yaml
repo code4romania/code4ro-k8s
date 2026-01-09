@@ -12,7 +12,3 @@ spec:
               memory: "600Mi"
             limits:
               memory: "1024Mi"
-          args:
-          # The number of queue processors for each queue. --status-processors (20 by default) and --operation-processors (10 by default)
-            - --status-processors=5
-            - --operation-processors=3

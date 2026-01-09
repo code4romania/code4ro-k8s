@@ -21,4 +21,5 @@ data:
   notificationscontroller.log.level: "warn"
 
   # controls how many manifests generations are running concurrently and helps avoid OOM kills
-  controller.status.processors: "3"
+  controller.status.processors: "4"
+  controller.operation.processors: "3"
