@@ -1,5 +1,6 @@
 controller:
-  kind: DaemonSet
+  kind: Deployment
+  replicaCount: 3
   resources:
     limits:
       cpu: 1
@@ -12,8 +13,31 @@ controller:
   watchIngressWithoutClass: "true"
   ingressClassResource:
     default: "true"
-  nodeSelector:
-    "node-role.kubernetes.io/control-plane": "true"
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          preference:
+            matchExpressions:
+              - key: node-role.kubernetes.io/control-plane
+                operator: In
+                values:
+                  - "true"
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - ingress-nginx
+                - key: app.kubernetes.io/component
+                  operator: In
+                  values:
+                    - controller
+            topologyKey: kubernetes.io/hostname
   tolerations:
     - effect: NoExecute
       key: CriticalAddonsOnly
