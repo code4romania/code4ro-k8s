@@ -2,7 +2,7 @@ fullnameOverride: wevote4eu
 
 image:
   repository: commitglobal/wevote4eu
-  tag: 1.4.0
+  tag: 1.4.1
 
 ingress:
   enabled: true
