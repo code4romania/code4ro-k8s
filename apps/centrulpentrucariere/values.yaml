@@ -1,0 +1,91 @@
+fullnameOverride: centrulpentrucariere
+
+image:
+  repository: code4romania/website-factory
+  tag: 1.11.7
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+    "nginx.ingress.kubernetes.io/from-to-www-redirect": "true"
+  hosts:
+    - host: centrulpentrucariere.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - centrulpentrucariere.ro
+        - www.centrulpentrucariere.ro
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 80Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
+
+env:
+  - name: WEBSITE_FACTORY_EDITION
+    value: "internal"
+  - name: WEBSITE_FACTORY_HIDE_BANNER
+    value: "false"
+  - name: APP_URL
+    value: "https://centrulpentrucariere.ro"
+  - name: APP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: centrulpentrucariere-secret
+        key: APP_KEY
+  - name: DB_HOST
+    valueFrom:
+      secretKeyRef:
+        name: centrulpentrucariere-secret
+        key: DB_HOST
+  - name: DB_DATABASE
+    valueFrom:
+      secretKeyRef:
+        name: centrulpentrucariere-secret
+        key: DB_DATABASE
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: centrulpentrucariere-secret
+        key: DB_USERNAME
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: centrulpentrucariere-secret
+        key: DB_PASSWORD
+  - name: MAIL_FROM_ADDRESS
+    valueFrom:
+      secretKeyRef:
+        name: centrulpentrucariere-secret
+        key: MAIL_FROM_ADDRESS
+  - name: FILESYSTEM_DRIVER
+    value: "s3"
+  - name: FILESYSTEM_CLOUD
+    value: "s3"
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: centrulpentrucariere-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: centrulpentrucariere-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_DEFAULT_REGION
+    valueFrom:
+      secretKeyRef:
+        name: centrulpentrucariere-secret
+        key: AWS_DEFAULT_REGION
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: centrulpentrucariere-secret
+        key: AWS_BUCKET
