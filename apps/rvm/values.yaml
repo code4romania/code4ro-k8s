@@ -91,6 +91,10 @@ env:
     value: "s3"
   - name: MEDIA_DISK
     value: "s3"
+  - name: AWS_BUCKET_ROOT
+    value: ""
+  - name: AWS_BUCKET_PUBLIC_ROOT
+    value: ""
   - name: AWS_ACCESS_KEY_ID
     valueFrom:
       secretKeyRef:
