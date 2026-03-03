@@ -68,6 +68,8 @@ env:
     value: "s3"
   - name: FILESYSTEM_CLOUD
     value: "s3"
+  - name: AWS_URL
+    value: "https://d31v7kz4c8gywj.cloudfront.net"
   - name: AWS_ACCESS_KEY_ID
     valueFrom:
       secretKeyRef:
