@@ -1,0 +1,97 @@
+fullnameOverride: ngohub
+
+image:
+  repository: code4romania/website-factory
+  tag: 1.11.7
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+  hosts:
+    - host: ngohub.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - ngohub.ro
+        - www.ngohub.ro
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 512Mi
+
+env:
+  - name: WEBSITE_FACTORY_EDITION
+    value: "internal"
+  - name: APP_URL
+    value: "https://www.ngohub.ro"
+  - name: APP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: APP_KEY
+  - name: DB_HOST
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: DB_HOST
+  - name: DB_DATABASE
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: DB_DATABASE
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: DB_USERNAME
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: DB_PASSWORD
+  - name: MAIL_MAILER
+    value: "ses"
+  - name: MAIL_FROM_ADDRESS
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: MAIL_FROM_ADDRESS
+  - name: FILESYSTEM_DRIVER
+    value: "s3"
+  - name: FILESYSTEM_CLOUD
+    value: "s3"
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_DEFAULT_REGION
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: AWS_DEFAULT_REGION
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: AWS_BUCKET
+  - name: SENTRY_LARAVEL_DSN
+    valueFrom:
+      secretKeyRef:
+        name: ngohub-secret
+        key: SENTRY_LARAVEL_DSN
+  - name: SENTRY_ENVIRONMENT
+    value: "ngohub.ro"
