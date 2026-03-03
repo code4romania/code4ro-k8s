@@ -8,6 +8,7 @@ ingress:
   enabled: true
   annotations:
     "cert-manager.io/cluster-issuer": letsencrypt
+    "nginx.ingress.kubernetes.io/from-to-www-redirect": "true"
   hosts:
     - host: ngohub.ro
       paths:
@@ -31,7 +32,7 @@ env:
   - name: WEBSITE_FACTORY_EDITION
     value: "internal"
   - name: APP_URL
-    value: "https://www.ngohub.ro"
+    value: "https://ngohub.ro"
   - name: APP_KEY
     valueFrom:
       secretKeyRef:
