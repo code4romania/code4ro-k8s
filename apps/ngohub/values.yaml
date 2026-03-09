@@ -2,7 +2,7 @@ fullnameOverride: ngohub
 
 image:
   repository: code4romania/website-factory
-  tag: 1.11.7
+  tag: 1.11.8
 
 ingress:
   enabled: true
