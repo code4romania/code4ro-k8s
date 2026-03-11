@@ -2,7 +2,7 @@ fullnameOverride: mobifree-oneroof-ro
 
 image:
   repository: commitglobal/one-roof
-  tag: 0.7.0
+  tag: 0.7.1
 
 ingress:
   enabled: true
