@@ -16,9 +16,16 @@ spec:
       helm:
         valueFiles:
           - $myRepo/infra/terrakube/helm-chart-values/values.yaml
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      name: terrakube-api
+      jsonPointers:
+        - /spec/template/spec/hostAliases
   destination:
     namespace: terrakube
     server: https://kubernetes.default.svc
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+      - RespectIgnoreDifferences=true
