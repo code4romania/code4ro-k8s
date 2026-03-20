@@ -1,0 +1,123 @@
+name: "terrakube"
+
+security:
+  useOpenLDAP: false
+  adminGroup: "code4romania:infrastructure"
+  patSecret: "placeholder-overridden-by-secret"
+  internalSecret: "placeholder-overridden-by-secret"
+  dexClientId: "terrakube"
+  dexClientScope: "email openid profile offline_access groups"
+  dexIssuerUri: "https://terrakube-api.serval-mark.ts.net/dex"
+
+dex:
+  config:
+    issuer: https://terrakube-api.serval-mark.ts.net/dex
+    storage:
+      type: memory
+    web:
+      http: 0.0.0.0:5556
+      allowedOrigins: ['*']
+    oauth2:
+      responseTypes: ["code", "token", "id_token"]
+      skipApprovalScreen: true
+
+    staticClients:
+      - id: terrakube
+        redirectURIs:
+          - 'https://terrakube.serval-mark.ts.net'
+          - '/device/callback'
+          - 'http://localhost:10000/login'
+          - 'http://localhost:10001/login'
+        name: 'terrakube'
+        public: true
+
+    connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: $GITHUB_CLIENT_ID
+          clientSecret: $GITHUB_CLIENT_SECRET
+          redirectURI: "https://terrakube-api.serval-mark.ts.net/dex/callback"
+          orgs:
+            - name: code4romania
+
+  envVars:
+    - name: GITHUB_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: terrakube-credentials
+          key: GITHUB_CLIENT_ID
+    - name: GITHUB_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: terrakube-credentials
+          key: GITHUB_CLIENT_SECRET
+
+## Storage — AWS S3 (keys provided via terrakube-credentials secret)
+storage:
+  defaultStorage: false
+  aws:
+    bucketName: "terrakube-code4-state"
+    region: "eu-west-1"
+
+api:
+  defaultDatabase: false
+  defaultRedis: true
+  loadSampleData: false
+  secrets:
+    - terrakube-api-secrets
+    - terrakube-credentials
+  properties:
+    databaseType: "POSTGRESQL"
+    databaseSchema: "public"
+    databaseSslMode: "require"
+    databasePort: "5432"
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+
+executor:
+  enabled: true
+  secrets:
+    - terrakube-executor-secrets
+    - terrakube-credentials
+  properties:
+    toolsRepository: "https://github.com/terrakube-io/terrakube-extensions"
+    toolsBranch: "main"
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+
+registry:
+  enabled: false
+
+ui:
+  enabled: true
+  replicaCount: "1"
+  serviceType: ClusterIP
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+ingress:
+  ui:
+    enabled: false
+  api:
+    enabled: false
+  dex:
+    enabled: false
+  registry:
+    enabled: false
