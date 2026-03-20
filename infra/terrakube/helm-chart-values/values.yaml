@@ -113,13 +113,13 @@ ingress:
   controller: "generic"
 
   ui:
-    domain: "terrakube"
+    domain: "terrakube.serval-mark.ts.net"
     path: "/"
     pathType: "Prefix"
     ingressClassName: "tailscale"
 
   api:
-    domain: "terrakube-api"
+    domain: "terrakube-api.serval-mark.ts.net"
     path: "/"
     pathType: "Prefix"
     ingressClassName: "tailscale"
