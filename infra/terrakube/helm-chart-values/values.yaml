@@ -62,17 +62,12 @@ storage:
     region: "eu-west-1"
 
 api:
-  defaultDatabase: false
+  defaultDatabase: true
   defaultRedis: true
   loadSampleData: false
   secrets:
     - terrakube-api-secrets
     - terrakube-credentials
-  properties:
-    databaseType: "POSTGRESQL"
-    databaseSchema: "public"
-    databaseSslMode: "require"
-    databasePort: "5432"
   resources:
     requests:
       cpu: 200m
