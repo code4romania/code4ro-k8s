@@ -113,11 +113,29 @@ ui:
       memory: 256Mi
 
 ingress:
+  useTls: true
+  includeTlsHosts: true
+  controller: "generic"
+
   ui:
-    enabled: false
+    domain: "terrakube"
+    path: "/(.*)"
+    pathType: "Prefix"
+    ingressClassName: "tailscale"
+
   api:
-    enabled: false
+    domain: "terrakube-api"
+    path: "/(.*)"
+    pathType: "Prefix"
+    ingressClassName: "tailscale"
+
   dex:
-    enabled: false
+    path: "/dex/(.*)"
+    pathType: "Prefix"
+    ingressClassName: "tailscale"
+
   registry:
+    enabled: false
+
+  executor:
     enabled: false
