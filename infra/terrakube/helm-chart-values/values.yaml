@@ -70,11 +70,11 @@ api:
     - terrakube-credentials
   resources:
     requests:
-      cpu: 200m
-      memory: 2024Mi
+      cpu: 100m
+      memory: 1024Mi
     limits:
-      cpu: 1000m
-      memory: 2024Mi
+      cpu: 100m
+      memory: 1024Mi
 
 executor:
   enabled: true
@@ -87,10 +87,10 @@ executor:
   resources:
     requests:
       cpu: 200m
-      memory: 1024Mi
+      memory: 700Mi
     limits:
       cpu: 1000m
-      memory: 1024Mi
+      memory: 700Mi
 
 registry:
   enabled: false
@@ -101,11 +101,9 @@ ui:
   serviceType: ClusterIP
   resources:
     requests:
-      cpu: 50m
-      memory: 256Mi
+      memory: 10Mi
     limits:
-      cpu: 200m
-      memory: 256Mi
+      memory: 100Mi
 
 ingress:
   useTls: true
