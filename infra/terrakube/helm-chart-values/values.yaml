@@ -70,10 +70,10 @@ api:
     - terrakube-credentials
   resources:
     requests:
-      cpu: 100m
+      cpu: 200m
       memory: 1024Mi
     limits:
-      cpu: 100m
+      cpu: 1000m
       memory: 1024Mi
 
 executor:
@@ -87,10 +87,10 @@ executor:
   resources:
     requests:
       cpu: 200m
-      memory: 700Mi
+      memory: 1024Mi
     limits:
       cpu: 1000m
-      memory: 700Mi
+      memory: 1024Mi
 
 registry:
   enabled: false
