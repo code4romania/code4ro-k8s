@@ -123,6 +123,8 @@ ingress:
     path: "/(.*)"
     pathType: "Prefix"
     ingressClassName: "tailscale"
+    useTls: true
+    tlsSecretName: tls-secret-api-terrakube
 
   dex:
     path: "/dex/(.*)"
