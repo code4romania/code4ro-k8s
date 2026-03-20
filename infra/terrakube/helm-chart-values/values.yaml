@@ -76,7 +76,7 @@ api:
   resources:
     requests:
       cpu: 200m
-      memory: 512Mi
+      memory: 1024Mi
     limits:
       cpu: 1000m
       memory: 1024Mi
@@ -92,7 +92,7 @@ executor:
   resources:
     requests:
       cpu: 200m
-      memory: 512Mi
+      memory: 1024Mi
     limits:
       cpu: 1000m
       memory: 1024Mi
@@ -107,7 +107,7 @@ ui:
   resources:
     requests:
       cpu: 50m
-      memory: 64Mi
+      memory: 256Mi
     limits:
       cpu: 200m
       memory: 256Mi
