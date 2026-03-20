@@ -125,6 +125,8 @@ ingress:
     ingressClassName: "tailscale"
     useTls: true
     tlsSecretName: tls-secret-api-terrakube
+    annotations:
+      tailscale.com/experimental-forward-cluster-traffic-via-ingress: "true"
 
   dex:
     path: "/dex/"
