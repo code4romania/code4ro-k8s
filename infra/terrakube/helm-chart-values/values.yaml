@@ -114,20 +114,20 @@ ingress:
 
   ui:
     domain: "terrakube"
-    path: "/(.*)"
+    path: "/"
     pathType: "Prefix"
     ingressClassName: "tailscale"
 
   api:
     domain: "terrakube-api"
-    path: "/(.*)"
+    path: "/"
     pathType: "Prefix"
     ingressClassName: "tailscale"
     useTls: true
     tlsSecretName: tls-secret-api-terrakube
 
   dex:
-    path: "/dex/(.*)"
+    path: "/dex/"
     pathType: "Prefix"
     ingressClassName: "tailscale"
 
