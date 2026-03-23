@@ -40,7 +40,7 @@ dex:
           clientSecret: $GITHUB_CLIENT_SECRET
           redirectURI: "https://terrakube-api.serval-mark.ts.net/dex/callback"
           orgs:
-            - name: code4romania
+            - name: commitglobal
 
   envVars:
     - name: GITHUB_CLIENT_ID
