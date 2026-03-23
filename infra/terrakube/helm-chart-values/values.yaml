@@ -65,6 +65,8 @@ api:
   defaultDatabase: false
   defaultRedis: true
   loadSampleData: false
+  properties:
+    databaseSslMode: "require"
   secrets:
     - terrakube-api-secrets
     - terrakube-credentials
