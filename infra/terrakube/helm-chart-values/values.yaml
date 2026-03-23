@@ -62,7 +62,7 @@ storage:
     region: "eu-west-1"
 
 api:
-  defaultDatabase: true
+  defaultDatabase: false
   defaultRedis: true
   loadSampleData: false
   secrets:
