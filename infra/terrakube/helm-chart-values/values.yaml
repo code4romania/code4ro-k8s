@@ -2,7 +2,7 @@ name: "terrakube"
 
 security:
   useOpenLDAP: false
-  adminGroup: "code4romania:infrastructure"
+  adminGroup: "commitglobal:terraform"
   patSecret: "placeholder-overridden-by-secret"
   internalSecret: "placeholder-overridden-by-secret"
   dexClientId: "terrakube"
