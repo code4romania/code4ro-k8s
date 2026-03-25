@@ -16,7 +16,7 @@ dex:
       type: memory
     web:
       http: 0.0.0.0:5556
-      allowedOrigins: ['*']
+      allowedOrigins: ["*"]
     oauth2:
       responseTypes: ["code", "token", "id_token"]
       skipApprovalScreen: true
@@ -24,11 +24,11 @@ dex:
     staticClients:
       - id: terrakube
         redirectURIs:
-          - 'https://terrakube.serval-mark.ts.net'
-          - '/device/callback'
-          - 'http://localhost:10000/login'
-          - 'http://localhost:10001/login'
-        name: 'terrakube'
+          - "https://terrakube.serval-mark.ts.net"
+          - "/device/callback"
+          - "http://localhost:10000/login"
+          - "http://localhost:10001/login"
+        name: "terrakube"
         public: true
 
     connectors:
@@ -72,11 +72,11 @@ api:
     - terrakube-credentials
   resources:
     requests:
-      cpu: 200m
-      memory: 1500Mi
+      cpu: 500m
+      memory: 1536Mi
     limits:
-      cpu: 1000m
-      memory: 1500Mi
+      cpu: 2000m
+      memory: 2048Mi
 
 executor:
   enabled: true
