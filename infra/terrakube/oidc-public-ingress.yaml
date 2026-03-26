@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: terrakube-oidc-public
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - terrakube-api.code4.ro
+      secretName: terrakube-api-code4ro-tls
+  rules:
+    - host: terrakube-api.code4.ro
+      http:
+        paths:
+          - path: /.well-known/openid-configuration
+            pathType: Exact
+            backend:
+              service:
+                name: terrakube-api-service
+                port:
+                  number: 8080
+          - path: /.well-known/jwks
+            pathType: Exact
+            backend:
+              service:
+                name: terrakube-api-service
+                port:
+                  number: 8080
