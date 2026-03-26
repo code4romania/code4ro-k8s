@@ -58,6 +58,8 @@ env:
       secretKeyRef:
         name: commitglobal-secret
         key: DB_PASSWORD
+  - name: MAIL_MAILER
+    value: "ses"
   - name: MAIL_FROM_ADDRESS
     valueFrom:
       secretKeyRef:
