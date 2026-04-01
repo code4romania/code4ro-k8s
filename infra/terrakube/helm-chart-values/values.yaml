@@ -88,11 +88,11 @@ executor:
     toolsBranch: "main"
   resources:
     requests:
-      cpu: 200m
+      cpu: 500m
       memory: 1024Mi
     limits:
       cpu: 1000m
-      memory: 1024Mi
+      memory: 2048Mi
 
 registry:
   enabled: false
