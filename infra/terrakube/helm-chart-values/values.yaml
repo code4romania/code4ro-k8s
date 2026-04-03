@@ -65,6 +65,9 @@ api:
   defaultDatabase: false
   defaultRedis: true
   loadSampleData: false
+  serviceAccountName: "terrakube-api-service-account"
+  ephemeralExecution:
+    enabled: true
   properties:
     databaseSslMode: "require"
   secrets:
