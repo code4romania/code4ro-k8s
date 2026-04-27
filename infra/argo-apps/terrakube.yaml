@@ -11,7 +11,7 @@ spec:
       targetRevision: HEAD
       ref: myRepo
     - repoURL: https://terrakube-io.github.io/terrakube-helm-chart
-      targetRevision: 4.6.0
+      targetRevision: 4.6.2
       chart: terrakube
       helm:
         valueFiles:
