@@ -79,7 +79,7 @@ env:
   - name: TYPESENSE_API_KEY
     valueFrom:
       secretKeyRef:
-        name: declaratii-avere-secret
+        name: sunrise-secret
         key: TYPESENSE_API_KEY
   - name: FILAMENT_FILESYSTEM_DISK
     value: "s3"
