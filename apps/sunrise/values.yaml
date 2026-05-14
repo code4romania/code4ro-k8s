@@ -2,7 +2,7 @@ fullnameOverride: sunrise
 
 image:
   repository: code4romania/sunrise
-  tag: 1.0.3
+  tag: 2.0.0
 
 ingress:
   enabled: true
@@ -24,10 +24,10 @@ readinessProbe: null
 resources:
   requests:
     cpu: 250m
-    memory: 1Gi
+    memory: 128Mi
   limits:
-    cpu: 1250m
-    memory: 2Gi
+    cpu: 1000m
+    memory: 256Mi
 
 env:
   - name: APP_NAME
@@ -68,6 +68,19 @@ env:
         key: MAIL_FROM_ADDRESS
   - name: MAIL_FROM_NAME
     value: "Sunrise"
+  - name: QUEUE_CONNECTION
+    value: "database"
+  - name: SCOUT_DRIVER
+    value: "typesense"
+  - name: TYPESENSE_HOST
+    value: "typesense-clusterip"
+  - name: TYPESENSE_PORT
+    value: "8108"
+  - name: TYPESENSE_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: declaratii-avere-secret
+        key: TYPESENSE_API_KEY
   - name: FILAMENT_FILESYSTEM_DISK
     value: "s3"
   - name: FILESYSTEM_DISK
