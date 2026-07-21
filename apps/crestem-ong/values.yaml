@@ -9,6 +9,7 @@ ingress:
   annotations:
     "cert-manager.io/cluster-issuer": letsencrypt
     "nginx.ingress.kubernetes.io/from-to-www-redirect": "true"
+    "nginx.ingress.kubernetes.io/proxy-body-size": "10m"
   hosts:
     - host: crestem.ong
       paths:
