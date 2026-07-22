@@ -124,6 +124,8 @@ grafana:
       mode: console
       # `error` suppresses the provisioning lines that name which datasource failed.
       level: info
+      # Temporary: per-logger debug to identify which datasource fails provisioning.
+      filters: datasources:debug,datasources-retriever:debug,provisioning.datasources:debug
     auth.google:
       enabled: true
       client_id: 578670592407-0r9vnq4l6r6ck8jpo1gthohfq520rgt7.apps.googleusercontent.com
