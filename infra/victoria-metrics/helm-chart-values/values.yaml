@@ -53,17 +53,31 @@ defaultDashboards:
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true
 
-# By default the chart also provisions a "VictoriaMetrics (DS)" datasource of type
-# victoriametrics-metrics-datasource. We don't install that plugin, and since Grafana 13.1
-# a datasource whose plugin isn't registered fails provisioning, which aborts startup.
+# Two deviations from the chart defaults here, both needed to keep Grafana 13 starting up:
+#
+# 1. The chart also provisions a "VictoriaMetrics (DS)" datasource of type
+#    victoriametrics-metrics-datasource. We don't install that plugin, so it is dropped.
+#
+# 2. No `uid` on these datasources. Grafana provisioning looks a datasource up by name, then
+#    re-queries by (id AND uid AND org_id) inside UpdateDataSource. Our rows predate the chart
+#    setting explicit uids, so they carry auto-generated ones (the VictoriaMetrics row is
+#    `P4169E866C3094E38`, which is what infra/victoria-metrics/dashboards/cluster-view.yaml
+#    references). A uid here that disagrees with the stored one makes that lookup miss and kills
+#    startup. Omitting it matches on id alone and preserves whatever uid is already stored.
+#    Note: on a from-scratch install these datasources would get random uids instead.
 defaultDatasources:
   victoriametrics:
     datasources:
       - name: VictoriaMetrics
         type: prometheus
         access: proxy
-        uid: VictoriaMetrics
         isDefault: true
+  alertmanager:
+    datasources:
+      - name: Alertmanager
+        access: proxy
+        jsonData:
+          implementation: prometheus
 
 grafana:
   sidecar:
@@ -107,7 +121,6 @@ grafana:
       apiVersion: 1
       datasources:
         - name: victoria-logs
-          uid: victoria-logs
           type: victoriametrics-logs-datasource
           orgId: 1
           url: http://victoria-logs-victoria-logs-single-server.victoria-logs.svc.cluster.local:9428
