@@ -74,8 +74,14 @@ grafana:
         memory: 100Mi
       limits:
         memory: 150Mi
+  # Version-pinned on purpose: Grafana's preinstall skips a plugin that is already present on the
+  # PVC, so an unpinned entry keeps loading whatever stale build was installed months ago.
   plugins:
-    - victoriametrics-logs-datasource
+    - victoriametrics-logs-datasource@0.30.1
+  # The Grafana PVC is RWO, so the chart's default RollingUpdate surges a second pod that either
+  # hits Multi-Attach or ends up sharing one SQLite DB with the outgoing pod.
+  deploymentStrategy:
+    type: Recreate
   vmScrape:
     enabled: false
   admin:
@@ -116,7 +122,8 @@ grafana:
       allow_org_create: false
     log:
       mode: console
-      level: error
+      # `error` suppresses the provisioning lines that name which datasource failed.
+      level: info
     auth.google:
       enabled: true
       client_id: 578670592407-0r9vnq4l6r6ck8jpo1gthohfq520rgt7.apps.googleusercontent.com
