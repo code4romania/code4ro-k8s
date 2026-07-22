@@ -53,6 +53,18 @@ defaultDashboards:
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true
 
+# By default the chart also provisions a "VictoriaMetrics (DS)" datasource of type
+# victoriametrics-metrics-datasource. We don't install that plugin, and since Grafana 13.1
+# a datasource whose plugin isn't registered fails provisioning, which aborts startup.
+defaultDatasources:
+  victoriametrics:
+    datasources:
+      - name: VictoriaMetrics
+        type: prometheus
+        access: proxy
+        uid: VictoriaMetrics
+        isDefault: true
+
 grafana:
   sidecar:
     dashboards:
@@ -73,9 +85,9 @@ grafana:
     enabled: true
   resources:
     requests:
-      memory: 150Mi
+      memory: 384Mi
     limits:
-      memory: 200Mi
+      memory: 512Mi
   ingress:
     enabled: true
     ingressClassName: tailscale
