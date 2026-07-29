@@ -86,6 +86,8 @@ grafana:
       memory: 384Mi
     limits:
       memory: 512Mi
+  deploymentStrategy:
+    type: Recreate
   ingress:
     enabled: true
     ingressClassName: tailscale
