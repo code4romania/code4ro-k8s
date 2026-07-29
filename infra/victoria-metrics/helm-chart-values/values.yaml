@@ -74,8 +74,6 @@ grafana:
         memory: 100Mi
       limits:
         memory: 150Mi
-  deploymentStrategy:
-    type: Recreate
   vmScrape:
     enabled: false
   admin:
