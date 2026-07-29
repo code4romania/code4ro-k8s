@@ -26,6 +26,25 @@ vmagent:
       limits:
         memory: 400M
 
+vlsingle:
+  enabled: true
+  spec:
+    retentionPeriod: "30d"
+    storage:
+      resources:
+        requests:
+          storage: 5Gi
+
+# spec.k8sCollector.enabled defaults to true, which makes the operator run VLAgent as a DaemonSet
+# tailing /var/log/containers instead of the StatefulSet it uses in plain forwarding mode.
+vlagent:
+  enabled: true
+  spec:
+    tolerations:
+      - effect: NoExecute
+        key: CriticalAddonsOnly
+        operator: Exists
+
 prometheus-node-exporter:
   tolerations:
     - effect: NoExecute
@@ -116,15 +135,15 @@ grafana:
     tls:
       - hosts:
           - grafana
+  # The chart provisions the logs datasource itself as "VictoriaLogs (DS)" against the in-release
+  # VLSingle, so this only clears out the stale hand-provisioned row that pointed at the standalone
+  # install. Safe to drop from here once it has run.
   datasources:
     datasources.yaml:
       apiVersion: 1
-      datasources:
+      deleteDatasources:
         - name: victoria-logs
-          type: victoriametrics-logs-datasource
           orgId: 1
-          url: http://victoria-logs-victoria-logs-single-server.victoria-logs.svc.cluster.local:9428
-          access: proxy
 
   grafana.ini:
     server:
