@@ -86,6 +86,8 @@ grafana:
       memory: 384Mi
     limits:
       memory: 512Mi
+  plugins:
+    - victoriametrics-logs-datasource@0.30.1
   deploymentStrategy:
     type: Recreate
   ingress:
