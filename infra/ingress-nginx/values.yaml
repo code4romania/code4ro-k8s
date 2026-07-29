@@ -4,25 +4,16 @@ controller:
   resources:
     limits:
       cpu: 1
-      memory: 900Mi
+      memory: 512Mi
     requests:
       cpu: 100m
-      memory: 150Mi
+      memory: 200Mi
   metrics:
     enabled: true
   watchIngressWithoutClass: "true"
   ingressClassResource:
     default: "true"
   affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100
-          preference:
-            matchExpressions:
-              - key: node-role.kubernetes.io/control-plane
-                operator: In
-                values:
-                  - "true"
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
         - weight: 100
@@ -38,10 +29,10 @@ controller:
                   values:
                     - controller
             topologyKey: kubernetes.io/hostname
-  tolerations:
-    - effect: NoExecute
-      key: CriticalAddonsOnly
-      operator: Exists
+  # -- No CriticalAddonsOnly toleration on purpose: the control-plane node is a 2GB
+  # CPX11 and k3s-server alone uses ~1GB of it. Tolerating that taint let replicas
+  # land on the master, exhausting it and triggering node-wide OOM kills that took
+  # ingress down. Keep the controller on worker nodes only.
   service:
     annotations:
       load-balancer.hetzner.cloud/location: nbg1
