@@ -58,8 +58,10 @@ alertmanager:
 
 defaultRules:
   groups:
-    general:
-      create: false
+    kubernetes-system-controller-manager:
+      enabled: false
+    kubernetes-system-scheduler:
+      enabled: false
 
 defaultDashboards:
   annotations:
