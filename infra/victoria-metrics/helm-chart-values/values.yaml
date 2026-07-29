@@ -35,15 +35,8 @@ vlsingle:
         requests:
           storage: 5Gi
 
-# spec.k8sCollector.enabled defaults to true, which makes the operator run VLAgent as a DaemonSet
-# tailing /var/log/containers instead of the StatefulSet it uses in plain forwarding mode.
 vlagent:
   enabled: true
-  spec:
-    tolerations:
-      - effect: NoExecute
-        key: CriticalAddonsOnly
-        operator: Exists
 
 prometheus-node-exporter:
   tolerations:
@@ -72,32 +65,6 @@ defaultDashboards:
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true
 
-# Two deviations from the chart defaults here, both needed to keep Grafana 13 starting up:
-#
-# 1. The chart also provisions a "VictoriaMetrics (DS)" datasource of type
-#    victoriametrics-metrics-datasource. We don't install that plugin, so it is dropped.
-#
-# 2. No `uid` on these datasources. Grafana provisioning looks a datasource up by name, then
-#    re-queries by (id AND uid AND org_id) inside UpdateDataSource. Our rows predate the chart
-#    setting explicit uids, so they carry auto-generated ones (the VictoriaMetrics row is
-#    `P4169E866C3094E38`, which is what infra/victoria-metrics/dashboards/cluster-view.yaml
-#    references). A uid here that disagrees with the stored one makes that lookup miss and kills
-#    startup. Omitting it matches on id alone and preserves whatever uid is already stored.
-#    Note: on a from-scratch install these datasources would get random uids instead.
-defaultDatasources:
-  victoriametrics:
-    datasources:
-      - name: VictoriaMetrics
-        type: prometheus
-        access: proxy
-        isDefault: true
-  alertmanager:
-    datasources:
-      - name: Alertmanager
-        access: proxy
-        jsonData:
-          implementation: prometheus
-
 grafana:
   sidecar:
     dashboards:
@@ -107,12 +74,6 @@ grafana:
         memory: 100Mi
       limits:
         memory: 150Mi
-  # Version-pinned on purpose: Grafana's preinstall skips a plugin that is already present on the
-  # PVC, so an unpinned entry keeps loading whatever stale build was installed months ago.
-  plugins:
-    - victoriametrics-logs-datasource@0.30.1
-  # The Grafana PVC is RWO, so the chart's default RollingUpdate surges a second pod that either
-  # hits Multi-Attach or ends up sharing one SQLite DB with the outgoing pod.
   deploymentStrategy:
     type: Recreate
   vmScrape:
@@ -135,15 +96,6 @@ grafana:
     tls:
       - hosts:
           - grafana
-  # The chart provisions the logs datasource itself as "VictoriaLogs (DS)" against the in-release
-  # VLSingle, so this only clears out the stale hand-provisioned row that pointed at the standalone
-  # install. Safe to drop from here once it has run.
-  datasources:
-    datasources.yaml:
-      apiVersion: 1
-      deleteDatasources:
-        - name: victoria-logs
-          orgId: 1
 
   grafana.ini:
     server:
@@ -154,10 +106,7 @@ grafana:
       allow_org_create: false
     log:
       mode: console
-      # `error` suppresses the provisioning lines that name which datasource failed.
-      level: info
-      # Temporary: per-logger debug to identify which datasource fails provisioning.
-      filters: datasources:debug,datasources-retriever:debug,provisioning.datasources:debug
+      level: error
     auth.google:
       enabled: true
       client_id: 578670592407-0r9vnq4l6r6ck8jpo1gthohfq520rgt7.apps.googleusercontent.com
