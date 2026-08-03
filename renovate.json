@@ -4,6 +4,8 @@
     "config:recommended"
   ],
   "argocd": {
-    "fileMatch": ["\\.yaml$"]
+    "managerFilePatterns": [
+      "/\\.yaml$/"
+    ]
   }
 }
