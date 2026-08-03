@@ -8,6 +8,7 @@ ingress:
   enabled: true
   annotations:
     "cert-manager.io/cluster-issuer": letsencrypt
+    "nginx.ingress.kubernetes.io/proxy-body-size": "10m"
   hosts:
     - host: wf.commitglobal.org
       paths:
