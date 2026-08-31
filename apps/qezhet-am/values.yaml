@@ -63,11 +63,11 @@ env:
         name: qezhet-am-secret
         key: JWT_REFRESH_SECRET
 
-  - name: MAIL_FROM_ADDRESS
+  - name: MAIL_FROM
     valueFrom:
       secretKeyRef:
         name: qezhet-am-secret
-        key: MAIL_FROM_ADDRESS
+        key: MAIL_FROM
 
   - name: S3_ACCESS_KEY
     valueFrom:
