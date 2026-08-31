@@ -19,6 +19,9 @@ ingress:
       hosts:
         - api.qezhet.am
 
+service:
+  port: 3000
+
 livenessProbe: null
 readinessProbe: null
 
