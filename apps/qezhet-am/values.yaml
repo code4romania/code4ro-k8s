@@ -19,6 +19,9 @@ ingress:
       hosts:
         - api.qezhet.am
 
+livenessProbe: null
+readinessProbe: null
+
 resources:
   requests:
     memory: 128Mi
