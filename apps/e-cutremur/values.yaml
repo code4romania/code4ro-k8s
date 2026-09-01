@@ -2,7 +2,7 @@ fullnameOverride: e-cutremur
 
 image:
   repository: code4romania/e-cutremur
-  tag: 1.0.2
+  tag: 1.0.3
 
 ingress:
   enabled: true
@@ -25,10 +25,8 @@ readinessProbe: null
 
 resources:
   requests:
-    cpu: 10m
-    memory: 300Mi
+    memory: 256Mi
   limits:
-    cpu: 250m
     memory: 512Mi
 
 env:
