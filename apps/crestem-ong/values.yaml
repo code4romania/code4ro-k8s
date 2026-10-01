@@ -1,112 +1,153 @@
 fullnameOverride: crestem-ong
 
 image:
-  repository: code4romania/website-factory
-  tag: 1.11.9
+  repository: code4romania/crestem-ong-backend
+  tag: 1.0.0
 
 ingress:
   enabled: true
   annotations:
     "cert-manager.io/cluster-issuer": letsencrypt
-    "nginx.ingress.kubernetes.io/from-to-www-redirect": "true"
-    "nginx.ingress.kubernetes.io/proxy-body-size": "10m"
+    "nginx.ingress.kubernetes.io/proxy-body-size": "64m"
   hosts:
-    - host: crestem.ong
+    - host: api.crestem.ong
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls:
     - secretName: web-ssl
       hosts:
-        - crestem.ong
-        - www.crestem.ong
+        - api.crestem.ong
+
+service:
+  port: 1337
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
 
 resources:
   requests:
-    cpu: 10m
-    memory: 100Mi
-  limits:
     cpu: 500m
-    memory: 256Mi
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 768Mi
 
 env:
-  - name: APP_DEBUG
-    value: "false"
-  - name: APP_NAME
-    value: "CrestemOng"
-  - name: APP_KEY
+  - name: APP_ENV
+    value: "production"
+  - name: FRONTEND_URL
+    value: "https://www.crestem.ong"
+
+  - name: APP_KEYS
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: APP_KEY
-  - name: DB_HOST
+        key: APP_KEYS
+  - name: API_TOKEN_SALT
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: DB_HOST
-  - name: DB_DATABASE
+        key: API_TOKEN_SALT
+  - name: ADMIN_JWT_SECRET
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: DB_DATABASE
-  - name: DB_USERNAME
+        key: ADMIN_JWT_SECRET
+  - name: TRANSFER_TOKEN_SALT
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: DB_USERNAME
-  - name: DB_PASSWORD
+        key: TRANSFER_TOKEN_SALT
+  - name: ENCRYPTION_KEY
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: DB_PASSWORD
-  - name: MAIL_HOST
+        key: ENCRYPTION_KEY
+  - name: DATABASE_CLIENT
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: MAIL_HOST
-  - name: MAIL_USERNAME
+        key: DATABASE_CLIENT
+  - name: DATABASE_HOST
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: MAIL_USERNAME
-  - name: MAIL_PASSWORD
+        key: DATABASE_HOST
+  - name: DATABASE_PORT
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: MAIL_PASSWORD
-  - name: MAIL_FROM_ADDRESS
+        key: DATABASE_PORT
+  - name: DATABASE_NAME
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: MAIL_FROM_ADDRESS
-  - name: MAIL_FROM_NAME
-    value: "CrestemOng"
-  - name: FILESYSTEM_DRIVER
-    value: "s3"
-  - name: FILESYSTEM_CLOUD
-    value: "s3"
-  - name: AWS_ACCESS_KEY_ID
+        key: DATABASE_NAME
+  - name: DATABASE_USERNAME
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: AWS_ACCESS_KEY_ID
-  - name: AWS_SECRET_ACCESS_KEY
+        key: DATABASE_USERNAME
+  - name: DATABASE_PASSWORD
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: AWS_SECRET_ACCESS_KEY
-  - name: AWS_DEFAULT_REGION
+        key: DATABASE_PASSWORD
+  - name: EMAIL_FROM
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
-        key: AWS_DEFAULT_REGION
+        key: EMAIL_FROM
+  - name: EMAIL_REPLY_TO
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-secret
+        key: EMAIL_REPLY_TO
+  - name: JWT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-secret
+        key: JWT_SECRET
+  - name: JWT_EXPIRES_IN
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-secret
+        key: JWT_EXPIRES_IN
+  - name: ACTIVATION_TTL
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-secret
+        key: ACTIVATION_TTL
+  - name: REFRESH_TOKEN_TTL
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-secret
+        key: REFRESH_TOKEN_TTL
+  - name: AWS_REGION
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-secret
+        key: AWS_REGION
+  - name: AWS_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-secret
+        key: AWS_ACCESS_KEY
+  - name: AWS_ACCESS_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: crestem-ong-secret
+        key: AWS_ACCESS_SECRET
   - name: AWS_BUCKET
     valueFrom:
       secretKeyRef:
         name: crestem-ong-secret
         key: AWS_BUCKET
-  - name: AWS_BUCKET_ROOT
-    valueFrom:
-      secretKeyRef:
-        name: crestem-ong-secret
-        key: AWS_BUCKET_ROOT
