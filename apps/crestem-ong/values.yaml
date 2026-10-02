@@ -2,7 +2,7 @@ fullnameOverride: crestem-ong
 
 image:
   repository: code4romania/crestem-ong-backend
-  tag: 1.0.0
+  tag: 1.0.1
 
 ingress:
   enabled: true
