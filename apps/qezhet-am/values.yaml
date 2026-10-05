@@ -10,7 +10,7 @@ ingress:
     "cert-manager.io/cluster-issuer": letsencrypt
     "nginx.ingress.kubernetes.io/proxy-body-size": "10m"
   hosts:
-    - host: qezhet.am
+    - host: api.qezhet.am
       paths:
         - path: /
           pathType: ImplementationSpecific
