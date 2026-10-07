@@ -2,7 +2,7 @@ fullnameOverride: qezhet-am
 
 image:
   repository: code4romania/armenia-service-map-backend
-  tag: 1.0.0
+  tag: 1.0.2
 
 ingress:
   enabled: true
