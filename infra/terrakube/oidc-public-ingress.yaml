@@ -28,14 +28,14 @@ spec:
                 name: terrakube-api-service
                 port:
                   number: 8080
-          - path: /callback/v1/
+          - path: /callback/
             pathType: Prefix
             backend:
               service:
                 name: terrakube-api-service
                 port:
                   number: 8080
-          - path: /webhook/v1/
+          - path: /webhook/
             pathType: Prefix
             backend:
               service:
