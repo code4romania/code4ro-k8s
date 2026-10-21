@@ -2,7 +2,7 @@ fullnameOverride: rezultatevot
 
 image:
   repository: code4romania/rezultatevot
-  tag: 0.13.6
+  tag: 0.13.7
 
 ingress:
   enabled: true
