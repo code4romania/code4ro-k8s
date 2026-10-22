@@ -1,0 +1,9 @@
+# Caps concurrent ephemeral executor Jobs. Terrakube retries "exceeded quota"
+# rejections, so runs over the limit stay pending instead of failing.
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: terrakube-ephemeral-jobs
+spec:
+  hard:
+    count/jobs.batch: "3"
