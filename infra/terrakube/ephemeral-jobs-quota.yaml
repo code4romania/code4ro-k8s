@@ -6,4 +6,4 @@ metadata:
   name: terrakube-ephemeral-jobs
 spec:
   hard:
-    count/jobs.batch: "3"
+    count/jobs.batch: "5"

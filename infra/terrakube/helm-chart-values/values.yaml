@@ -86,6 +86,7 @@ api:
 
 executor:
   enabled: true
+  replicaCount: "0" # runs configured to go the ephemeral executor
   secrets:
     - terrakube-executor-secrets
     - terrakube-credentials
