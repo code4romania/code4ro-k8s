@@ -17,6 +17,16 @@ ingress:
     - secretName: web-ssl
       hosts:
         - api.cerajutor.ro
+service:
+  port: 8080
+
+livenessProbe:
+  httpGet:
+    path: /up
+
+readinessProbe:
+  httpGet:
+    path: /up
 
 livenessProbe: null
 readinessProbe: null
