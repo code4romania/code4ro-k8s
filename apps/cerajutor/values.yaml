@@ -28,9 +28,6 @@ readinessProbe:
   httpGet:
     path: /up
 
-livenessProbe: null
-readinessProbe: null
-
 resources:
   requests:
     cpu: 10m
