@@ -2,7 +2,7 @@ fullnameOverride: help2help
 
 image:
   repository: code4romania/harta-help2help-ucraina
-  tag: 2.1.4
+  tag: 2.1.5
 
 ingress:
   enabled: true
@@ -24,6 +24,15 @@ ingress:
         - servicii.helptohelpukraine.ro
         - www.servicii.helptohelpukraine.ro
         - help2help.heroesof.tech
+
+service:
+  port: 8080
+livenessProbe:
+  httpGet:
+    path: /up
+readinessProbe:
+  httpGet:
+    path: /up
 
 livenessProbe: null
 readinessProbe: null
