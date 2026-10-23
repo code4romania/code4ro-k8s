@@ -2,7 +2,7 @@ fullnameOverride: parzorenq-am
 
 image:
   repository: code4romania/website-factory
-  tag: 1.11.11
+  tag: 1.11.12
 
 ingress:
   enabled: true
