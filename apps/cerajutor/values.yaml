@@ -2,7 +2,7 @@ fullnameOverride: cerajutor
 
 image:
   repository: code4romania/adapt-just-api
-  tag: 1.0.6
+  tag: 1.0.7
 
 ingress:
   enabled: true
