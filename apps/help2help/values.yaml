@@ -14,16 +14,11 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
-    - host: help2help.heroesof.tech
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
   tls:
     - secretName: web-ssl
       hosts:
         - servicii.helptohelpukraine.ro
         - www.servicii.helptohelpukraine.ro
-        - help2help.heroesof.tech
 
 service:
   port: 8080
@@ -33,9 +28,6 @@ livenessProbe:
 readinessProbe:
   httpGet:
     path: /up
-
-livenessProbe: null
-readinessProbe: null
 
 resources:
   requests:
