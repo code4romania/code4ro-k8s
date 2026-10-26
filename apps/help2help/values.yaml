@@ -7,7 +7,7 @@ image:
 ingress:
   enabled: true
   annotations:
-    "cert-manager.io/cluster-issuer": letsencrypt
+    "cert-manager.io/cluster-issuer": letsencrypt-http01
     "nginx.ingress.kubernetes.io/from-to-www-redirect": "true"
   hosts:
     - host: servicii.helptohelpukraine.ro
