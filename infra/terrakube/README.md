@@ -31,38 +31,34 @@ Sensitive values are stored in a Bitnami **SealedSecret** named
 The AWS keys are the same IAM credentials repeated under different names
 because the chart uses different env var names per component.
 
-## Tailscale ingress DNS workaround
+## Resolving the Tailscale hostname inside the cluster
 
-The Terrakube API pod needs to reach Dex at
-`https://terrakube-api.serval-mark.ts.net/dex` for OIDC discovery. Tailscale
-MagicDNS hostnames (`*.ts.net`) are not resolvable from inside the cluster by
-default, so we work around this with two pieces:
+Tailscale MagicDNS hostnames (`*.ts.net`) don't resolve inside the cluster by
+default, but in-cluster workloads need to reach
+`https://terrakube-api.serval-mark.ts.net`:
+
+- the **API** pod, for Dex OIDC discovery (`/dex`);
+- the **ephemeral executor jobs**, because Terrakube 2.34+ uses the API as a
+  Terraform HTTP state backend (`TerrakubeApiUrl/tfstate/v1/...`).
+
+Two pieces, both managed by the `tailscale` ArgoCD app, make this work:
 
 ### 1. Proxy Service (`infra/tailscale/tailscale-api-proxy-svc.yaml`)
 
 A ClusterIP Service in the `tailscale` namespace that selects the Tailscale
-ingress proxy pod for `terrakube-api`. This gives a **stable IP** that
-survives proxy pod restarts.
+ingress proxy pod for `terrakube-api`. It gives a stable address that
+survives proxy pod restarts. The proxy serves the ts.net TLS certificate, and
+the API ingress has
+`tailscale.com/experimental-forward-cluster-traffic-via-ingress: "true"`, so
+in-cluster HTTPS works end to end.
 
-### 2. `hostAliases` on the API Deployment (manual, one-time)
+### 2. CoreDNS rewrite (`infra/tailscale/coredns-custom.yaml`)
 
-The API Deployment is patched to map the Tailscale hostname to the proxy
-Service's ClusterIP in the pod's `/etc/hosts`:
+k3s CoreDNS imports `*.override` keys from the `coredns-custom` ConfigMap in
+`kube-system`. A `rewrite` rule there answers
+`terrakube-api.serval-mark.ts.net` with the proxy Service's ClusterIP for
+every pod in the cluster. Nothing needs patching by hand, and the rule keeps
+working if the Service is recreated with a new IP.
 
-```bash
-# Get the proxy Service ClusterIP
-PROXY_IP=$(kubectl get svc terrakube-api-ts-proxy -n tailscale \
-  -o jsonpath='{.spec.clusterIP}')
-
-# Patch the API Deployment
-kubectl patch deploy terrakube-api -n terrakube --type=strategic \
-  -p "{\"spec\":{\"template\":{\"spec\":{\"hostAliases\":[{\"ip\":\"$PROXY_IP\",\"hostnames\":[\"terrakube-api.serval-mark.ts.net\"]}]}}}}"
-```
-
-The ArgoCD Application is configured with `ignoreDifferences` and
-`RespectIgnoreDifferences=true` for this field, so ArgoCD will not revert the
-patch on sync.
-
-**When to re-run:** only if the `terrakube-api-ts-proxy` Service is deleted
-and recreated (which assigns a new ClusterIP), or if the API Deployment is
-fully replaced (e.g. major chart upgrade that renames it).
+To add another tailnet host, create a proxy Service for its ingress and add a
+`rewrite` line to the same ConfigMap.

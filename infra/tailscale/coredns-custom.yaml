@@ -1,0 +1,18 @@
+# k3s CoreDNS imports `*.override` keys from this ConfigMap into the main `.:53` server block.
+# See: https://docs.k3s.io/advanced#coredns-custom-configuration-imports
+#
+# Tailscale MagicDNS names (*.ts.net) don't resolve inside the cluster, so we rewrite the tailnet hostnames
+# that in-cluster workloads need to the ClusterIP Service in front of their Tailscale ingress proxy.
+# The proxy serves the ts.net TLS certificate, and the ingress has
+# `tailscale.com/experimental-forward-cluster-traffic-via-ingress: "true"`, so HTTPS works end to end.
+#
+# - terrakube-api: used by the API (Dex OIDC discovery) and by ephemeral executor jobs (Terraform HTTP state
+#   backend). Proxy Service: tailscale-api-proxy-svc.yaml.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  tailscale.override: |
+    rewrite stop name exact terrakube-api.serval-mark.ts.net terrakube-api-ts-proxy.tailscale.svc.cluster.local
