@@ -66,8 +66,17 @@ api:
   defaultRedis: true
   loadSampleData: false
   serviceAccountName: "terrakube-api-service-account"
+  env:
+    # The API fails queued/running jobs whose executor hasn't written a Redis heartbeat
+    # within this many seconds of dispatch (default 300). Increased because we scale
+    # terrakube worker nodes down to zero.
+    - name: ReconciliationHeartbeatGracePeriodSeconds
+      value: "900"
   ephemeralExecution:
     enabled: true
+    # Maximum seconds a job may run before Kubernetes terminates it as failed.
+    # 6h matches Terrakube's own inactive-run limit.
+    activeDeadlineSeconds: "21600"
     secretName:
       - terrakube-executor-secrets
       - terrakube-credentials
