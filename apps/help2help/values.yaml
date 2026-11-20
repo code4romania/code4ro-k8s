@@ -32,10 +32,10 @@ readinessProbe:
 resources:
   requests:
     cpu: 10m
-    memory: 30Mi
+    memory: 64Mi
   limits:
-    cpu: 500m
-    memory: 256Mi
+    cpu: 1000m
+    memory: 384Mi
 
 env:
   - name: APP_DEBUG

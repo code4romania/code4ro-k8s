@@ -17,11 +17,11 @@ spec:
           image: typesense/typesense:30.2
           resources:
             requests:
-              cpu: 500m
-              memory: 1024Mi
+              cpu: 25m
+              memory: 128Mi
             limits:
-              cpu: 1000m
-              memory: 2048Mi
+              cpu: 500m
+              memory: 512Mi
           ports:
             - containerPort: 8108
           volumeMounts:

@@ -30,11 +30,11 @@ readinessProbe:
 
 resources:
   requests:
-    cpu: 250m
+    cpu: 50m
     memory: 128Mi
   limits:
     cpu: 1000m
-    memory: 256Mi
+    memory: 384Mi
 
 env:
   - name: APP_NAME
