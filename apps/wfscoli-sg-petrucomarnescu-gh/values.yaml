@@ -1,0 +1,115 @@
+fullnameOverride: wfscoli-sg-petrucomarnescu-gh
+
+image:
+  repository: code4romania/website-factory
+  tag: 1.11.12
+
+ingress:
+  enabled: true
+  annotations:
+    "cert-manager.io/cluster-issuer": letsencrypt
+    # "nginx.ingress.kubernetes.io/from-to-www-redirect": "true"
+    "nginx.ingress.kubernetes.io/proxy-body-size": "10m"
+  hosts:
+    - host: sg-petrucomarnescu-gh.c01.wfscoli.ro
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+    # - host: petrucomarnescugh.ro
+    #   paths:
+    #     - path: /
+    #       pathType: ImplementationSpecific
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - sg-petrucomarnescu-gh.c01.wfscoli.ro
+        # - petrucomarnescugh.ro
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 512Mi
+
+env:
+  - name: WEBSITE_FACTORY_EDITION
+    value: "school"
+  - name: APP_URL
+    value: "https://sg-petrucomarnescu-gh.c01.wfscoli.ro"
+  - name: APP_KEY
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: APP_KEY
+  - name: DB_HOST
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: DB_HOST
+  - name: DB_DATABASE
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: DB_DATABASE
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: DB_USERNAME
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: DB_PASSWORD
+  - name: MAIL_MAILER
+    value: "ses"
+  - name: MAIL_FROM_ADDRESS
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: MAIL_FROM_ADDRESS
+  - name: FILESYSTEM_DRIVER
+    value: "s3"
+  - name: FILESYSTEM_CLOUD
+    value: "s3"
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: AWS_SECRET_ACCESS_KEY
+  - name: AWS_DEFAULT_REGION
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: AWS_DEFAULT_REGION
+  - name: AWS_BUCKET
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: AWS_BUCKET
+  - name: AWS_BUCKET_ROOT
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: AWS_BUCKET_ROOT
+  - name: AWS_URL
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: AWS_URL
+  - name: SENTRY_ENVIRONMENT
+    valueFrom:
+      secretKeyRef:
+        name: wfscoli-sg-petrucomarnescu-gh-secret
+        key: SENTRY_ENVIRONMENT
+  - name: SENTRY_TRACES_SAMPLE_RATE
+    value: "0.3"
+  - name: SENTRY_PROFILES_SAMPLE_RATE
+    value: "0.5"
