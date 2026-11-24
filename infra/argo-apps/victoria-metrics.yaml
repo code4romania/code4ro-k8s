@@ -22,6 +22,7 @@ spec:
         valueFiles:
           - $myRepo/infra/victoria-metrics/helm-chart-values/values.yaml
   syncPolicy:
+    automated: {}
     syncOptions:
       - CreateNamespace=true
       # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#respect-ignore-difference-configs
