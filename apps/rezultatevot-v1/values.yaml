@@ -21,10 +21,10 @@ ingress:
 resources:
   requests:
     cpu: 500m
-    memory: 512Mi
+    memory: 896Mi
   limits:
     cpu: 2000m
-    memory: 1024Mi
+    memory: 1280Mi
 
 env:
   - name: ConnectionStrings__DefaultConnection

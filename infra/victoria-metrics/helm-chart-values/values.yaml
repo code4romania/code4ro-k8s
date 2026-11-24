@@ -13,16 +13,16 @@ vmsingle:
     resources:
       requests:
         cpu: 150m
-        memory: 1Gi
+        memory: 1280Mi
       limits:
-        memory: 2Gi
+        memory: 2560Mi
 
 vmagent:
   spec:
     resources:
       requests:
-        cpu: 60m
-        memory: 130M
+        cpu: 100m
+        memory: 200Mi
       limits:
         memory: 400M
 
@@ -30,6 +30,13 @@ vlsingle:
   enabled: true
   spec:
     retentionPeriod: "30d"
+    resources:
+      requests:
+        cpu: 25m
+        memory: 128Mi
+      limits:
+        cpu: 1200m
+        memory: 1500Mi
     storage:
       resources:
         requests:
@@ -96,7 +103,7 @@ grafana:
     requests:
       memory: 384Mi
     limits:
-      memory: 512Mi
+      memory: 768Mi
   plugins:
     - victoriametrics-logs-datasource@0.30.1
   deploymentStrategy:

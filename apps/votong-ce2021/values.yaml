@@ -25,6 +25,9 @@ livenessProbe: null
 readinessProbe: null
 
 resources:
+  requests:
+    cpu: 10m
+    memory: 1280Mi
   limits:
     cpu: 250m
     memory: 1536Mi

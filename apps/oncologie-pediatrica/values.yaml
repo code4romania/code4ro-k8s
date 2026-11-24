@@ -23,7 +23,7 @@ readinessProbe: null
 
 resources:
   requests:
-    cpu: 10m
+    cpu: 40m
     memory: 900Mi
   limits:
     cpu: 300m

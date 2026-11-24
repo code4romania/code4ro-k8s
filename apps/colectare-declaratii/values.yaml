@@ -30,7 +30,7 @@ readinessProbe:
 
 resources:
   requests:
-    cpu: 500m
+    cpu: 25m
     memory: 256Mi
   limits:
     cpu: 1000m

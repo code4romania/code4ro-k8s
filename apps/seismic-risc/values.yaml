@@ -24,10 +24,10 @@ readinessProbe: null
 resources:
   requests:
     cpu: 10m
-    memory: 400Mi
+    memory: 896Mi
   limits:
     cpu: 100m
-    memory: 1024Mi
+    memory: 1280Mi
 
 env:
   - name: RUN_CREATE_SUPER_USER

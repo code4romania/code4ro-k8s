@@ -27,10 +27,10 @@ service:
 resources:
   requests:
     cpu: 10m
-    memory: 100Mi
+    memory: 128Mi
   limits:
     cpu: 250m
-    memory: 128Mi
+    memory: 256Mi
 
 env:
   - name: RECAPTCHA_SECRET_KEY

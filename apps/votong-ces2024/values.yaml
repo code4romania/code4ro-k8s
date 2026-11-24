@@ -25,11 +25,11 @@ readinessProbe: null
 
 resources:
   requests:
-    cpu: 250m
-    memory: 1Gi
+    cpu: 350m
+    memory: 2Gi
   limits:
     cpu: 1250m
-    memory: 2Gi
+    memory: 2560Mi
 
 env:
   - name: ALLOWED_HOSTS
