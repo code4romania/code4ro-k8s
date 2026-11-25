@@ -41,6 +41,7 @@ dex:
           redirectURI: "https://terrakube-api.serval-mark.ts.net/dex/callback"
           orgs:
             - name: commitglobal
+            - name: code4romania
 
   envVars:
     - name: GITHUB_CLIENT_ID
